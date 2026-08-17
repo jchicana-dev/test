@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epistemología de la Ingeniería Eléctrica | UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            blue: '#003366',
+                            gold: '#d97706',
+                            light: '#f1f5f9',
+                            dark: '#0f172a',
+                            accent: '#2563eb'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for charts and UI constraints */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        .tab-active {
+            border-bottom: 3px solid #d97706;
+            color: #003366;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Chosen Palette: Warm Engineering Neutral & UNAC Blue/Gold (#003366, #d97706, #f8fafc, #0f172a) -->
+    <!-- Application Structure Plan:
+        Designed as an interactive, non-linear educational hub for 1st cycle UNAC Electrical Engineering students:
+        1. Top Hero & Context Bar: UNAC branding, Week 1 framing, quick progress tracker.
+        2. Module Navigation (Tabs):
+           - Modulo 1: Espectro del Conocimiento (Interactive step progression: Data -> Info -> Science -> Engineering + The Triad).
+           - Modulo 2: Métodos en Conflicto (Method comparison matrix + Chart.js radar comparison + Callao Grid Case Study).
+           - Modulo 3: Ideas & Paradigmas (Rationalism vs Empiricism simulator + Paradigm Chart.js showing DC vs AC vs Smart Grids).
+           - Modulo 4: Lecturas & Debate SEIN (Interactive cards for Gasparini, Barragán, Aguilar Marín + Role-play debate).
+           - Modulo 5: Autoevaluación (Interactive quiz with instant feedback for 1st cycle review).
+        3. Footer: Academic credits, UNAC FIEE information.
+        Why this structure: 1st cycle students need visual progression, relatable examples (Callao power grid, SPICE vs Oscilloscopes), and immediate interactive validation to convert abstract epistemology into practical engineering intuition.
+    -->
+    <!-- Visualization & Content Choices:
+        1. Knowledge Spectrum Step-Explorer: Dynamic JS content swap showing concrete Callao 220V example. (Goal: Inform/Organize).
+        2. Radar Chart (Chart.js): Comparing Science vs Engineering priorities (Truth, Cost, Safety, Utility, Rigor). (Goal: Compare).
+        3. Line/Bar Chart (Chart.js): Historical Transmission Efficiency across Paradigms (DC vs AC vs Smart Grid). (Goal: Change/Trends).
+        4. Interactive Role-play (JS Toggle): Team Science vs Team Engineering for Callao Substation Outage. (Goal: Engage/Synthesize).
+        5. Flash Quiz (JS): Instant feedback knowledge test. (Goal: Assess).
+        NO SVG icons used; pure CSS/Unicode symbols used throughout. NO Mermaid.js used.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- HEADER / HERO -->
+    <header class="bg-unac-blue text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">⚡</span>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-tight">Epistemología de la Ingeniería Eléctrica</h1>
+                    <p class="text-xs text-amber-300 font-medium">UNAC • Facultad de Ingeniería Eléctrica y Electrónica • Primer Ciclo</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 bg-slate-800/60 px-3 py-1.5 rounded-lg border border-slate-700 text-xs">
+                <span class="text-amber-400">📍 Semana 1:</span>
+                <span class="text-slate-200">Fundamentos de Epistemología Aplicada</span>
+            </div>
+        </div>
+
+        <!-- MAIN NAVIGATION TABS -->
+        <nav class="bg-slate-900 border-t border-slate-800 text-sm overflow-x-auto">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-2 md:gap-6">
+                <button onclick="switchTab('mod1')" id="tab-mod1" class="tab-btn px-4 py-3 text-slate-300 hover:text-amber-400 transition tab-active">
+                    1. Espectro & Tríada
+                </button>
+                <button onclick="switchTab('mod2')" id="tab-mod2" class="tab-btn px-4 py-3 text-slate-300 hover:text-amber-400 transition">
+                    2. Métodos en Conflicto
+                </button>
+                <button onclick="switchTab('mod3')" id="tab-mod3" class="tab-btn px-4 py-3 text-slate-300 hover:text-amber-400 transition">
+                    3. Ideas & Paradigmas
+                </button>
+                <button onclick="switchTab('mod4')" id="tab-mod4" class="tab-btn px-4 py-3 text-slate-300 hover:text-amber-400 transition">
+                    4. Lecturas & Caso SEIN
+                </button>
+                <button onclick="switchTab('mod5')" id="tab-mod5" class="tab-btn px-4 py-3 text-slate-300 hover:text-amber-400 transition">
+                    5. Autoevaluación
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- INTRODUCTORY BANNER -->
+        <section class="mb-8 bg-amber-50 border-l-4 border-amber-600 p-4 rounded-r-lg shadow-sm">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                <span>🧠</span> ¿Por qué un Ingeniero Eléctrico de la UNAC necesita Epistemología?
+            </h2>
+            <p class="text-sm text-slate-700 mt-1 leading-relaxed">
+                Antes de diseñar un transformador, una subestación o un algoritmo para una red inteligente (<i>Smart Grid</i>), necesitas responder una pregunta fundamental: 
+                <strong>¿Cómo sabemos lo que sabemos y por qué confiamos en lo que construimos?</strong> La epistemología es el "código fuente" del pensamiento crítico ingenieril: nos permite validar modelos teóricos frente a restricciones reales de seguridad, costo y utilidad social.
+            </p>
+        </section>
+
+        <!-- MODULE 1: ESPECTRO DEL CONOCIMIENTO Y TRÍADA -->
+        <section id="mod1" class="tab-content block space-y-8">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <h3 class="text-xl font-bold text-unac-blue mb-2 flex items-center gap-2">
+                    <span>🪜</span> 1.1 El Espectro del Conocimiento: Del Dato al Artefacto
+                </h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    El conocimiento no es instantáneo; evoluciona a través de niveles de abstracción. Selecciona cada nivel para explorar cómo la información cruda se transforma en una solución tecnológica real en el Callao.
+                </p>
+
+                <!-- Interactive Step Selector -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <button onclick="setSpectrumStep(0)" id="spec-btn-0" class="spec-btn p-3 text-left rounded-lg border-2 border-amber-500 bg-amber-50 font-bold text-amber-900 text-sm hover:shadow transition">
+                        1. Dato Bruto 📊
+                    </button>
+                    <button onclick="setSpectrumStep(1)" id="spec-btn-1" class="spec-btn p-3 text-left rounded-lg border-2 border-slate-200 bg-slate-50 text-slate-700 text-sm hover:border-amber-400 transition">
+                        2. Información ℹ️
+                    </button>
+                    <button onclick="setSpectrumStep(2)" id="spec-btn-2" class="spec-btn p-3 text-left rounded-lg border-2 border-slate-200 bg-slate-50 text-slate-700 text-sm hover:border-amber-400 transition">
+                        3. Ciencia 🔬
+                    </button>
+                    <button onclick="setSpectrumStep(3)" id="spec-btn-3" class="spec-btn p-3 text-left rounded-lg border-2 border-slate-200 bg-slate-50 text-slate-700 text-sm hover:border-amber-400 transition">
+                        4. Ingeniería 🛠️
+                    </button>
+                </div>
+
+                <!-- Step Display Box -->
+                <div id="spectrum-display" class="bg-slate-900 text-white p-6 rounded-xl border-t-4 border-amber-500 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <span id="spec-title" class="text-lg font-bold text-amber-400">1. Dato Bruto</span>
+                        <span id="spec-badge" class="px-2.5 py-0.5 rounded text-xs font-semibold bg-amber-900/80 text-amber-200">Nivel Observacional</span>
+                    </div>
+                    <p id="spec-desc" class="text-sm text-slate-300 mb-4 leading-relaxed">
+                        Una lectura aislada instantánea capturada por un multímetro digital. No posee contexto ni interpretación por sí sola.
+                    </p>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1">Ejemplo Eléctrico UNAC:</span>
+                        <span id="spec-example" class="text-amber-300 font-mono text-base font-semibold">220.4 V</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- La Tríada: Ciencia, Tecnología e Ingeniería -->
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <h3 class="text-xl font-bold text-unac-blue mb-2 flex items-center gap-2">
+                    <span>🔺</span> 1.2 La Tríada: Ciencia, Tecnología e Ingeniería
+                </h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    A menudo se confunden, pero operan bajo metas, métodos y criterios de evaluación completamente distintos:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 rounded-xl bg-blue-50/50 border border-blue-200 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold mb-3 text-lg">1</div>
+                            <h4 class="font-bold text-blue-900 text-lg mb-1">Ciencia</h4>
+                            <p class="text-xs text-blue-700 font-semibold mb-3">Meta: Descubrir la verdad natural</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Busca explicar fenómenos mediante teorías, leyes y modelos falsables.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-blue-200/60 text-xs">
+                            <strong class="text-blue-900 block">Producto:</strong>
+                            <span class="text-slate-700">Ecuaciones de Maxwell, Ley de Ohm ($V=I \cdot R$).</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-teal-50/50 border border-teal-200 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold mb-3 text-lg">2</div>
+                            <h4 class="font-bold text-teal-900 text-lg mb-1">Tecnología</h4>
+                            <p class="text-xs text-teal-700 font-semibold mb-3">Meta: Sistematizar herramientas</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Conjunto de saberes prácticos, normas, instrumentos y técnicas organizadas.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-teal-200/60 text-xs">
+                            <strong class="text-teal-900 block">Producto:</strong>
+                            <span class="text-slate-700">Software SPICE, osciloscopios digitales, normas IEC/IEEE.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-amber-50/50 border border-amber-200 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold mb-3 text-lg">3</div>
+                            <h4 class="font-bold text-amber-900 text-lg mb-1">Ingeniería</h4>
+                            <p class="text-xs text-amber-700 font-semibold mb-3">Meta: Resolver problemas bajo restricciones</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Proceso creativo que combina ciencia y tecnología considerando costos, seguridad y medio ambiente.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-amber-200/60 text-xs">
+                            <strong class="text-amber-900 block">Producto:</strong>
+                            <span class="text-slate-700">Sistema de protección para la Subestación UNAC Callao.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 2: MÉTODOS EN CONFLICTO -->
+        <section id="mod2" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <h3 class="text-xl font-bold text-unac-blue mb-2 flex items-center gap-2">
+                    <span>⚔️</span> 2.1 Método Científico vs. Método Ingenieril
+                </h3>
+                <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                    Como sostiene <strong>Gasparini (2018)</strong>, la ingeniería no es "ciencia aplicada reducida". Posee su propia lógica epistemológica donde el fallo no es solo teórico, sino práctico y normativo.
+                </p>
+
+                <!-- Comparison Grid / Table -->
+                <div class="overflow-x-auto mb-8">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-slate-800 text-white">
+                                <th class="p-3 font-semibold rounded-tl-lg">Criterio Epistemológico</th>
+                                <th class="p-3 font-semibold bg-blue-900">Método Científico (Descubrir)</th>
+                                <th class="p-3 font-semibold bg-amber-900 rounded-tr-lg">Método Ingenieril (Crear)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold bg-slate-100">Pregunta Central</td>
+                                <td class="p-3">"¿Por qué ocurre este fenómeno?"</td>
+                                <td class="p-3 font-medium text-amber-900">"¿Cómo resolvemos la necesidad con recursos limitados?"</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold bg-slate-100">Criterio de Éxito</td>
+                                <td class="p-3">Verdad comprobable / Falsación de hipótesis</td>
+                                <td class="p-3 font-medium text-amber-900">Operatividad, Eficiencia, Costo-Beneficio, Seguridad</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold bg-slate-100">Manejo de Incertidumbre</td>
+                                <td class="p-3">Busca eliminar el error experimental</td>
+                                <td class="p-3 font-medium text-amber-900">Convive con el error mediante <strong>Factores de Seguridad</strong></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold bg-slate-100">Entregable Final</td>
+                                <td class="p-3">Artículo científico (Paper), Ley física, Ecuación</td>
+                                <td class="p-3 font-medium text-amber-900">Plano, Prototipo, Red Eléctrica, Licitación, Código</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Radar Chart Visualizer -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-2">⚖️ Prioridades Epistemológicas</h4>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Observa en el gráfico cómo el científico prioriza la exactitud teórica absoluta, mientras que el ingeniero equilibra economía, normas de seguridad y utilidad real.
+                        </p>
+                        <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 text-xs text-amber-900">
+                            <strong>💡 Concepto clave:</strong> Para un ingeniero, una solución $100\%$ perfecta pero inaccesible financieramente es un <i>fracaso de diseño</i>.
+                        </div>
+                    </div>
+
+                    <!-- Responsive Chart Container -->
+                    <div class="chart-container bg-slate-50 p-2 rounded-xl border border-slate-200">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: IDEAS Y PARADIGMAS -->
+        <section id="mod3" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <h3 class="text-xl font-bold text-unac-blue mb-2 flex items-center gap-2">
+                    <span>💡</span> 3.1 Racionalismo vs. Empirismo en la Práctica
+                </h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    Según <strong>Aguilar Marín (2018)</strong>, la ingeniería eléctrica moderna combina dos corrientes filosóficas fundamentales. Ninguna es autosuficiente sin la otra.
+                </p>
+
+                <!-- Interactive Dual Explorer -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- Racionalismo Card -->
+                    <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/30">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-bold text-indigo-900 text-base">📐 Racionalismo</h4>
+                            <span class="text-xs font-semibold bg-indigo-200 text-indigo-800 px-2 py-0.5 rounded">Deducción / Lógica</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Confía en las matemáticas, la deducción teórica y las leyes a priori antes de tocar la realidad física.
+                        </p>
+                        <div class="bg-white p-3 rounded-lg border border-indigo-200 text-xs space-y-2">
+                            <strong class="text-indigo-900 block">En la FIEE - UNAC:</strong>
+                            <p class="text-slate-700">Simulación en software SPICE o MATLAB del comportamiento de tensiones usando Leyes de Kirchhoff antes de construir el circuito real.</p>
+                        </div>
+                    </div>
+
+                    <!-- Empirismo Card -->
+                    <div class="p-5 rounded-xl border-2 border-emerald-200 bg-emerald-50/30">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-bold text-emerald-900 text-base">🔬 Empirismo</h4>
+                            <span class="text-xs font-semibold bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded">Experiencia / Medición</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Sostiene que solo la observación directa, la medición en laboratorio y la prueba física validan la verdad.
+                        </p>
+                        <div class="bg-white p-3 rounded-lg border border-emerald-200 text-xs space-y-2">
+                            <strong class="text-emerald-900 block">En la FIEE - UNAC:</strong>
+                            <p class="text-slate-700">Conectar un osciloscopio en el laboratorio para medir el ruido, la temperatura o la distorsión armónica real de un transformador.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3.2 Paradigmas Tecnológicos -->
+                <hr class="border-slate-200 my-6">
+
+                <h3 class="text-xl font-bold text-unac-blue mb-2 flex items-center gap-2">
+                    <span>🔄</span> 3.2 Paradigmas Tecnológicos (Kuhn en la Ingeniería)
+                </h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    Thomas Kuhn planteó que la ciencia progresa mediante revoluciones de paradigmas. En la ingeniería eléctrica, esto se refleja en las grandes transiciones de infraestructura tecnológica:
+                </p>
+
+                <!-- Chart container for Paradigms -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <div class="lg:col-span-1 space-y-3">
+                        <div class="p-3 rounded-lg bg-slate-100 border-l-4 border-red-500 text-xs">
+                            <strong class="block text-slate-900 font-bold">1. Paradigma DC (Edison, S. XIX):</strong>
+                            <span class="text-slate-600">Corriente continua. Pérdidas masivas por Joule ($P=I^2 R$) a larga distancia. Alcance limitado a pocos kilómetros.</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-100 border-l-4 border-blue-500 text-xs">
+                            <strong class="block text-slate-900 font-bold">2. Paradigma AC (Tesla/Westinghouse):</strong>
+                            <span class="text-slate-600">Revolución paradigmática. Transformadores elevan voltaje, reducen corriente y minimizan pérdidas en transmisión.</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-100 border-l-4 border-emerald-500 text-xs">
+                            <strong class="block text-slate-900 font-bold">3. Paradigma Actual (Siglo XXI):</strong>
+                            <span class="text-slate-600"><i>Smart Grids</i>, redes bidireccionales, energías renovables, HVDC e Inteligencia Artificial.</span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <div class="chart-container bg-slate-50 p-2 rounded-xl border border-slate-200">
+                            <canvas id="paradigmChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 4: LECTURAS & CASO SEIN -->
+        <section id="mod4" class="tab-content hidden space-y-8">
+            <!-- Lecturas Obligatorias Grid -->
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <h3 class="text-xl font-bold text-unac-blue mb-2 flex items-center gap-2">
+                    <span>📚</span> 4.1 Lecturas Obligatorias y Puntos de Análisis
+                </h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    Sintetiza las lecturas base para responder a los debates epistemológicos en clase:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Gasparini -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 uppercase">Obligatoria</span>
+                            <h4 class="font-bold text-slate-900 text-base mt-2">Gasparini, Z.</h4>
+                            <p class="text-xs text-amber-700 font-medium mb-2">Epistemología de la Ingeniería</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Define la especificidad de la ingeniería. Sostiene que la falla de un diseño es una falla epistemológica y ética, no un mero descuido técnico.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200 text-[11px] text-slate-500">
+                            <strong>Pregunta clave:</strong> ¿Por qué el fallo ingenieril involucra responsabilidad social?
+                        </div>
+                    </div>
+
+                    <!-- Barragán -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 uppercase">Obligatoria</span>
+                            <h4 class="font-bold text-slate-900 text-base mt-2">Barragán, H.</h4>
+                            <p class="text-xs text-amber-700 font-medium mb-2">Epistemología</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Distingue entre <i>doxa</i> (opinión/conocimiento espontáneo) y <i>episteme</i> (conocimiento riguroso y fundamentado).
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200 text-[11px] text-slate-500">
+                            <strong>Pregunta clave:</strong> ¿Cuándo una medición pasa de ser una mera opinión a un dato científico?
+                        </div>
+                    </div>
+
+                    <!-- Aguilar Marín -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase">Complementaria</span>
+                            <h4 class="font-bold text-slate-900 text-base mt-2">Aguilar Marín, P.</h4>
+                            <p class="text-xs text-blue-700 font-medium mb-2">Enfoques e Historia de las Ideas</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Explora el positivismo, falsacionismo de Popper y el enfoque cibernético-sistémico aplicado a redes complejas.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200 text-[11px] text-slate-500">
+                            <strong>Pregunta clave:</strong> ¿Cómo ayuda la cibernética a entender una Smart Grid?
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study Simulator: Callao Outage -->
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <h3 class="text-xl font-bold text-unac-blue mb-2 flex items-center gap-2">
+                    <span>⚡</span> 4.2 Taller de Discusión: El Caso del Apagón en la Subestación Callao
+                </h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    Una descarga atmosférica (rayo) provoca la salida de servicio de una subestación clave cerca del puerto del Callao. Selecciona un equipo para explorar la perspectiva epistemológica de trabajo:
+                </p>
+
+                <!-- Role Selector Buttons -->
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <button onclick="setCaseRole('teamA')" id="btn-teamA" class="px-4 py-2.5 rounded-lg border-2 border-blue-600 bg-blue-50 font-bold text-blue-900 text-xs sm:text-sm hover:shadow transition">
+                        🔬 Equipo A: Enfoque Científico
+                    </button>
+                    <button onclick="setCaseRole('teamB')" id="btn-teamB" class="px-4 py-2.5 rounded-lg border-2 border-slate-200 bg-slate-50 text-slate-700 text-xs sm:text-sm hover:border-amber-500 transition">
+                        🛠️ Equipo B: Enfoque Ingenieril
+                    </button>
+                </div>
+
+                <!-- Dynamic Role Display Box -->
+                <div id="role-display-box" class="bg-slate-900 text-white p-6 rounded-xl border-t-4 border-blue-500">
+                    <h4 id="role-title" class="text-lg font-bold text-blue-400 mb-2">Equipo A: Investigadores Científicos</h4>
+                    <p id="role-focus" class="text-xs text-slate-300 mb-4 leading-relaxed">
+                        Su objetivo es comprender el fenómeno físico de la rigidez dieléctrica del aire y la ionización provocada por el rayo.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                            <strong class="text-amber-400 block mb-1">🔍 Tareas Principales:</strong>
+                            <ul id="role-tasks" class="list-disc list-inside text-slate-300 space-y-1">
+                                <li>Modelar la ecuación del frente de onda electromagnético.</li>
+                                <li>Analizar el tiempo de ruptura del aislamiento del aire.</li>
+                                <li>Publicar el hallazgo teórico en una revista indexada.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                            <strong class="text-amber-400 block mb-1">🏁 Criterio de Éxito:</strong>
+                            <p id="role-[success]" class="text-slate-300">
+                                Exactitud en el modelo matemático del rayo y verificación empírica de la hipótesis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 5: AUTOEVALUACIÓN -->
+        <section id="mod5" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <h3 class="text-xl font-bold text-unac-blue mb-2 flex items-center gap-2">
+                    <span>🎯</span> 5.1 Comprueba tu Comprensión Epistemológica
+                </h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    Responde estas preguntas interactivas diseñadas para consolidar los conceptos clave de tu primera semana universitaria en la UNAC:
+                </p>
+
+                <!-- Interactive Quiz Container -->
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                        <p class="font-bold text-slate-900 mb-3">1. ¿Cuál es la principal diferencia entre el criterio de éxito científico y el ingenieril?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 p-2 rounded bg-white border border-slate-200 hover:bg-amber-50 cursor-pointer">
+                                <input type="radio" name="q1" value="a" class="text-amber-600">
+                                <span>La ciencia busca el beneficio económico; la ingeniería busca publicaciones teóricas.</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded bg-white border border-slate-200 hover:bg-amber-50 cursor-pointer">
+                                <input type="radio" name="q1" value="b" class="text-amber-600">
+                                <span>La ciencia busca la verdad explicativa; la ingeniería busca la utilidad, eficiencia y seguridad bajo restricciones.</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded bg-white border border-slate-200 hover:bg-amber-50 cursor-pointer">
+                                <input type="radio" name="q1" value="c" class="text-amber-600">
+                                <span>Ambos métodos son idénticos y solo se diferencian en las herramientas usadas.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                        <p class="font-bold text-slate-900 mb-3">2. Si un estudiante simula un circuito en SPICE usando Leyes de Kirchhoff sin tocar hardware, ¿qué enfoque está aplicando?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 p-2 rounded bg-white border border-slate-200 hover:bg-amber-50 cursor-pointer">
+                                <input type="radio" name="q2" value="a" class="text-amber-600">
+                                <span>Empirismo puro.</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded bg-white border border-slate-200 hover:bg-amber-50 cursor-pointer">
+                                <input type="radio" name="q2" value="b" class="text-amber-600">
+                                <span>Racionalismo (Modelamiento lógico-matemático deducido).</span>
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded bg-white border border-slate-200 hover:bg-amber-50 cursor-pointer">
+                                <input type="radio" name="q2" value="c" class="text-amber-600">
+                                <span>Doxa u opinión infundada.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button onclick="evaluateQuiz()" class="px-6 py-3 bg-unac-gold text-white font-bold text-sm rounded-lg hover:bg-amber-600 shadow transition">
+                        Validar Respuestas 🚀
+                    </button>
+
+                    <div id="quiz-result" class="hidden p-4 rounded-lg font-medium text-xs sm:text-sm"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC)</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica • Escuela Profesional de Ingeniería Eléctrica</p>
+            </div>
+            <p class="text-slate-500">Curso: Epistemología de la Ingeniería Eléctrica • Material Didáctico Interactivo</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // State Management
+        const state = {
+            activeTab: 'mod1',
+            spectrumIndex: 0,
+            caseRole: 'teamA'
+        };
+
+        // Spectrum Data
+        const spectrumData = [
+            {
+                title: "1. Dato Bruto 📊",
+                badge: "Nivel Observacional",
+                desc: "Una lectura aislada instantánea capturada por un multímetro digital. No posee contexto ni interpretación por sí sola.",
+                example: "220.4 V (Medición instantánea en laboratorio)"
+            },
+            {
+                title: "2. Información ℹ️",
+                badge: "Nivel Contextualizado",
+                desc: "El dato organizado en un marco espaciotemporal con parámetros nominales esperados.",
+                example: "Tensión de la red eléctrica doméstica en el Callao: 220 V alternos a 60 Hz nominales."
+            },
+            {
+                title: "3. Conocimiento Científico 🔬",
+                badge: "Nivel Explicativo",
+                desc: "Comprensión de los principios físicos subyacentes mediante ecuaciones de Maxwell, inductancia y leyes electromagnéticas.",
+                example: "Ecuaciones diferenciales del campo electromagnético que explican la onda sinusoidal de tensión."
+            },
+            {
+                title: "4. Conocimiento Ingenieril 🛠️",
+                badge: "Nivel Artefacto / Aplicado",
+                desc: "Capacidad de diseñar sistemas seguros, rentables y operativos para transformar la realidad humana.",
+                example: "Sistema de protección con relés digitales que aislan cortocircuitos en 15 milisegundos en la subestación."
+            }
+        ];
+
+        // Case Role Data
+        const caseData = {
+            teamA: {
+                title: "Equipo A: Enfoque Científico",
+                focus: "Su objetivo es comprender la naturaleza física del rayo y la rigidez dieléctrica del medio ionizado.",
+                tasks: [
+                    "Analizar las ecuaciones diferenciales de propagación de onda por la descarga.",
+                    "Estudiar la ruptura dieléctrica molecular del aire bajo alta tensión.",
+                    "Publicar un paper científico sobre comportamiento del plasma atmosférico."
+                ],
+                success: "Verificación experimental de la hipótesis física y exactitud del modelo teórico."
+            },
+            teamB: {
+                title: "Equipo B: Enfoque Ingenieril",
+                focus: "Su objetivo es reestablecer el suministro eléctrico seguro en el menor tiempo y costo posible.",
+                tasks: [
+                    "Seleccionar e instalar pararrayos de Óxido de Zinc (ZnO) normados.",
+                    "Diseñar el sistema de puesta a tierra y coordinación de aislamiento.",
+                    "Evaluar pérdidas económicas del corte de servicio y definir protocolo de reconexión."
+                ],
+                success: "Continuidad del servicio eléctrico, costo-eficiencia, seguridad humana y cumplimiento normativo."
+            }
+        };
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            state.activeTab = tabId;
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).classList.add('tab-active');
+
+            // Trigger chart resize on visibility switch
+            if(tabId === 'mod2' && radarChartInstance) {
+                radarChartInstance.resize();
+            }
+            if(tabId === 'mod3' && paradigmChartInstance) {
+                paradigmChartInstance.resize();
+            }
+        }
+
+        // Spectrum Step Handler
+        function setSpectrumStep(index) {
+            state.spectrumIndex = index;
+            const data = spectrumData[index];
+
+            document.getElementById('spec-title').textContent = data.title;
+            document.getElementById('spec-badge').textContent = data.badge;
+            document.getElementById('spec-desc').textContent = data.desc;
+            document.getElementById('spec-example').textContent = data.example;
+
+            document.querySelectorAll('.spec-btn').forEach((btn, idx) => {
+                if(idx === index) {
+                    btn.className = "spec-btn p-3 text-left rounded-lg border-2 border-amber-500 bg-amber-50 font-bold text-amber-900 text-sm hover:shadow transition";
+                } else {
+                    btn.className = "spec-btn p-3 text-left rounded-lg border-2 border-slate-200 bg-slate-50 text-slate-700 text-sm hover:border-amber-400 transition";
+                }
+            });
+        }
+
+        // Role Selector Handler
+        function setCaseRole(roleKey) {
+            state.caseRole = roleKey;
+            const data = caseData[roleKey];
+
+            document.getElementById('role-title').textContent = data.title;
+            document.getElementById('role-focus').textContent = data.focus;
+            
+            const taskList = document.getElementById('role-tasks');
+            taskList.innerHTML = '';
+            data.tasks.forEach(t => {
+                const li = document.createElement('li');
+                li.textContent = t;
+                taskList.appendChild(li);
+            });
+
+            document.getElementById('role-[success]').textContent = data.success;
+
+            if(roleKey === 'teamA') {
+                document.getElementById('btn-teamA').className = "px-4 py-2.5 rounded-lg border-2 border-blue-600 bg-blue-50 font-bold text-blue-900 text-xs sm:text-sm hover:shadow transition";
+                document.getElementById('btn-teamB').className = "px-4 py-2.5 rounded-lg border-2 border-slate-200 bg-slate-50 text-slate-700 text-xs sm:text-sm hover:border-amber-500 transition";
+                document.getElementById('role-display-box').className = "bg-slate-900 text-white p-6 rounded-xl border-t-4 border-blue-500";
+                document.getElementById('role-title').className = "text-lg font-bold text-blue-400 mb-2";
+            } else {
+                document.getElementById('btn-teamA').className = "px-4 py-2.5 rounded-lg border-2 border-slate-200 bg-slate-50 text-slate-700 text-xs sm:text-sm hover:border-blue-500 transition";
+                document.getElementById('btn-teamB').className = "px-4 py-2.5 rounded-lg border-2 border-amber-600 bg-amber-50 font-bold text-amber-900 text-xs sm:text-sm hover:shadow transition";
+                document.getElementById('role-display-box').className = "bg-slate-900 text-white p-6 rounded-xl border-t-4 border-amber-500";
+                document.getElementById('role-title').className = "text-lg font-bold text-amber-400 mb-2";
+            }
+        }
+
+        // Quiz Evaluation Logic
+        function evaluateQuiz() {
+            const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+            const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+            const resultBox = document.getElementById('quiz-result');
+
+            if(!q1 || !q2) {
+                resultBox.className = "p-4 rounded-lg font-medium text-xs sm:text-sm bg-red-100 text-red-800 border border-red-200";
+                resultBox.textContent = "Por favor responde todas las preguntas antes de validar.";
+                resultBox.classList.remove('hidden');
+                return;
+            }
+
+            let score = 0;
+            if(q1 === 'b') score++;
+            if(q2 === 'b') score++;
+
+            resultBox.classList.remove('hidden');
+            if(score === 2) {
+                resultBox.className = "p-4 rounded-lg font-medium text-xs sm:text-sm bg-emerald-100 text-emerald-900 border border-emerald-300";
+                resultBox.innerHTML = "🎉 <strong>¡Excelente! (2/2)</strong> Has comprendido perfectamente la diferencia entre métodos epistemológicos y el rol del racionalismo en el modelamiento eléctrico.";
+            } else {
+                resultBox.className = "p-4 rounded-lg font-medium text-xs sm:text-sm bg-amber-100 text-amber-900 border border-amber-300";
+                resultBox.innerHTML = `⚠️ <strong>Puntaje: ${score}/2.</strong> Revisa el Módulo 2 y Módulo 3 para reforzar los conceptos de rigor teórico vs. decisiones de diseño ingenieril.`;
+            }
+        }
+
+        // Chart Instances
+        let radarChartInstance = null;
+        let paradigmChartInstance = null;
+
+        // Initialize Charts on Window Load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Chart 1: Radar Chart (Science vs Engineering Priorities)
+            const ctxRadar = document.getElementById('radarChart').getContext('2d');
+            radarChartInstance = new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['Verdad Teórica', 'Costo-Eficiencia', 'Seguridad Humana', 'Utilidad Práctica', 'Rigor Deductivo'],
+                    datasets: [
+                        {
+                            label: 'Método Científico',
+                            data: [95, 20, 50, 40, 90],
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderColor: 'rgba(37, 99, 235, 1)',
+                            pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Método Ingenieril',
+                            data: [60, 90, 95, 95, 75],
+                            backgroundColor: 'rgba(217, 119, 6, 0.2)',
+                            borderColor: 'rgba(217, 119, 6, 1)',
+                            pointBackgroundColor: 'rgba(217, 119, 6, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e2e8f0' },
+                            grid: { color: '#cbd5e1' },
+                            pointLabels: {
+                                font: { size: 10, weight: 'bold' },
+                                color: '#334155'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Paradigm Transmission Efficiency Chart
+            const ctxParadigm = document.getElementById('paradigmChart').getContext('2d');
+            paradigmChartInstance = new Chart(ctxParadigm, {
+                type: 'bar',
+                data: {
+                    labels: ['DC Edison (1880s)', 'AC Tesla (Siglo XX)', 'Smart Grid (Actual)'],
+                    datasets: [
+                        {
+                            label: 'Eficiencia de Transmisión a Larga Distancia (%)',
+                            data: [35, 88, 97],
+                            backgroundColor: [
+                                'rgba(239, 68, 68, 0.7)',
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(16, 185, 129, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(239, 68, 68, 1)',
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(16, 185, 129, 1)'
+                            ],
+                            borderWidth: 1.5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: { display: true, text: 'Eficiencia %', font: { size: 11 } }
+                        },
+                        x: {
+                            ticks: {
+                                callback: function(val, index) {
+                                    const label = this.getLabelForValue(index);
+                                    return label.length > 16 ? label.substr(0, 16) + '...' : label;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Eficiencia: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
