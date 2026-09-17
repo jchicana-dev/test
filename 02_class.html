@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 2 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 2:</span>
+                <span class="text-slate-200">EE305 Epistemología de la Ingeniería Eléctrica (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 2 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🔬 Experiencia vs. Evidencia
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📝 2 Miniinvestigaciones (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi')" id="tab-sec-pi" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🚀 Avance e Incentivo PI (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 2 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Guía Docente de Aula y Laboratorio Teórico
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 2: ¿Ciencia, experiencia o evidencia? ¿Cómo se construye la verdad en ingeniería eléctrica?
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (150 minutos = 3 horas académicas)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    Unidad I: Fundamentos Epistemológicos
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 2 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia didáctica por competencias (Modelo Educativo UNAC Res. CU N° 318-2024-CU). Se transita desde el conflicto vivencial hasta la sistematización formal del método científico, la metrología y la contrastabilidad experimental.
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Enigma del Transformador Ruidoso en el Puerto del Callao: ¿La Experiencia Engaña?
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Contexto presentado por el docente:</strong> En una empresa pesquera e industrial en la Av. Néstor Gambetta (Callao), un transformador en baño de aceite de 500 kVA vibra fuertemente, emite un zumbido agudo y opera a 88°C (sobrecalentamiento anómalo).
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700">
+                                <em>• <strong>Diagnóstico empírico (Técnico con 25 años de experiencia):</strong> "Ingeniero, por mi experiencia, el transformador zumba porque está sobrecargado por los compresores de congelación. Hay que reemplazarlo por uno de 800 kVA inmediatamente."<br>
+                                • <strong>Inspección metrológica inicial:</strong> La pinza amperimétrica marca 420 A (la corriente nominal es 650 A; es decir, opera apenas al 64% de su capacidad).</em>
+                            </div>
+                            <p>
+                                <strong>Preguntas socráticas al aula:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>Si el transformador no está sobrecargado en corriente RMS, ¿por qué la *experiencia acumulada* del técnico falló rotundamente?</li>
+                                <li>¿Qué diferencia epistemológica existe entre una <strong>sensación perceptual</strong> (ruido/vibración) y una <strong>evidencia física medible</strong> (distorsión armónica total THD-V y THD-I, resonancia ferromagnética o saturación del núcleo)?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Desmitificar la creencia de que "la experiencia empírica basta en ingeniería" y demostrar que sin instrumental metrológico y modelos teóricos, la experiencia puede inducir a diagnósticos erróneos y costosos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Desarrollo Teórico y Dialógico (60 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            La Cadena Epistemológica: De la Experiencia a la Evidencia y los 4 Pilares de la Ciencia
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. Experiencia vs. Evidencia (20 min)</strong>
+                                    <p>• La <em>experiencia</em> es subjetiva, acumulativa, no estructurada y propensa a sesgos cognitivos.<br>
+                                    • La <em>evidencia</em> es contrastable, obtenida mediante observación controlada o medición trazable según patrones de metrología (ISO/IEC 17025).</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. Observación, Medición y Explicación (20 min)</strong>
+                                    <p>• <em>Observar</em>: Percibir el fenómeno bajo un marco conceptual.<br>
+                                    • <em>Medir</em>: Asignar magnitudes numéricas con incertidumbre ( 2206 &plusmn; &Delta;x).<br>
+                                    • <em>Explicar</em>: Subsumir los datos bajo leyes científicas (Transformada de Fourier, Ecuaciones de Maxwell).</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. Los 4 Pilares del Saber Científico (20 min)</strong>
+                                    <p>• <strong>Sistematicidad:</strong> Métodos organizados, no azarosos.<br>
+                                    • <strong>Racionalidad:</strong> Coherencia lógica y deducción formal.<br>
+                                    • <strong>Contrastabilidad:</strong> Falsabilidad popperiana y prueba empírica.<br>
+                                    • <strong>Comunicabilidad:</strong> Lenguaje técnico estandarizado y verificable.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (45 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:25 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Dinámica Grupal: "El Tribunal Metrológico de la Evidencia"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Dinámica:</strong> Se organiza al aula en 6 grupos de trabajo. Cada grupo asume el rol de un comité de peritaje técnico de la FIEE frente a tres afirmaciones contradictorias sobre un banco de condensadores que explotó en una planta industrial de Ventanilla:
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1 font-mono text-[11px] text-slate-700">
+                                <p>1. <em>"El técnico afirma que explotó porque hacía mucho calor en el tablero eléctrico esa tarde (32 °C)."</em></p>
+                                <p>2. <em>"El proveedor del condensador alega que la instalación sufrió un rayo (sin registros de sobretensión en la zona)."</em></p>
+                                <p>3. <em>"El analizador de redes clase A registró antes del estallido una resonancia paralelo en el 5° armónico (300 Hz) con una tasa THD-V del 14.8%, sobrepasando el límite de 5% de la norma IEEE Std 519."</em></p>
+                            </div>
+                            <p>
+                                <strong>Tarea de los estudiantes:</strong> Aplicar los conceptos de <em>observación, medición, evidencia contrastable y sistematicidad</em> para dictaminar cuál afirmación califica como conocimiento científico/técnico justificado y elaborar un cuadro comparativo de refutación epistemológica.
+                            </p>
+                            <p>
+                                <strong>Intercambio plenario (15 min):</strong> Dos grupos exponen y el docente sintetiza la regla de oro: *"En ingeniería eléctrica, lo que no se puede medir con incertidumbre conocida ni modelar físicamente, es una hipótesis sin evidencia"*.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre, Metacognición y Conexión con el PI (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Metacognición Epistémica y Lanzamiento del Reto Semanal para el Producto Integrador
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Reflexión final del docente:</strong> <em>"Mario Bunge nos enseñó que la ciencia no busca simplemente acumular hechos, sino estructurar teorías contrastables. Si la ingeniería prescinde de la evidencia metrológica, retrocede a la brujería técnica"</em>.
+                            </p>
+                            <p>
+                                <strong>Enlace con el Producto Integrador (IA):</strong> <em>"Cuando un modelo de IA predice el estado de salud de una línea de transmisión en base a miles de datos históricos, ¿la IA tiene 'experiencia' o produce 'evidencia'? Si la IA no conoce las leyes de Kirchhoff, ¿sus predicciones son científicas o son correlaciones inductivas ciegas?"</em>
+                            </p>
+                            <p>
+                                <strong>Instrucciones para la semana:</strong> Activación en el SGA-UNAC de las 2 propuestas de Miniinvestigación Epistemológica y asignación del incentivo formativo.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 2 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fundamentos Teóricos de la Cátedra</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🔬</span> Ciencia, Experiencia y Evidencia: Del Empirismo Ingenuo a la Medición Trazable
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Desarrollo conceptual riguroso sustentado en Bunge (2009), Moulines (Teoría del conocimiento), la Stanford Encyclopedia of Philosophy (2024) y las directrices de la UNESCO (2017).
+                    </p>
+                </div>
+
+                <!-- BLOQUE 1 -->
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. La Ruptura Epistemológica: Experiencia Sensible vs. Evidencia Controlada
+                        </h4>
+                        <p class="mb-3">
+                            En el sentido común y en la práctica artesanal, se confía en la <em>experiencia cotidiana</em> (el hábito, la costumbre y la repetición no controlada). Sin embargo, en la ciencia y la ingeniería moderna existe una ruptura cualitativa fundamental:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-amber-800 text-sm block mb-1">Conocimiento Basado en la Experiencia</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Origen:</strong> Vivencia subjetiva singular ("A mí me funcionó una vez").</li>
+                                    <li><strong>Alcance:</strong> Inducción incompleta; no garantiza universalidad ni necesidad causal.</li>
+                                    <li><strong>Vulnerabilidad:</strong> Sujeto a ilusiones sensoriales, sesgos de confirmación y factores ambientales no registrados.</li>
+                                    <li><strong>Ejemplo eléctrico:</strong> Ajustar los bornes de un transformador "al pulso y al ojo" del instalador sin torquímetro calibrado.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-emerald-800 text-sm block mb-1">Conocimiento Basado en Evidencia</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Origen:</strong> Metodología explícita, protocolos estandarizados e instrumentos contrastados.</li>
+                                    <li><strong>Alcance:</strong> Intersubjetivo; cualquier ingeniero bajo iguales condiciones obtiene el mismo resultado con un margen de incertidumbre cuantificado.</li>
+                                    <li><strong>Validez:</strong> Contrastable empíricamente y refutable frente a la comunidad científica (Popper).</li>
+                                    <li><strong>Ejemplo eléctrico:</strong> Ajuste a 45 N.m con torquímetro certificado por INACAL y verificación termográfica con cámara infrarroja calibrada.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: CADENA METROLÓGICA -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. La Estructura Epistémica de la Medición: De la Observación a la Explicación
+                        </h4>
+                        <p class="mb-3">
+                            La ingeniería eléctrica no interactúa con entidades perceptibles a simple vista; los campos electromagnéticos, las reactancias y las densidades de flujo son conceptos teóricos inferidos a través de la instrumentación.
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Nivel Epistémico</th>
+                                        <th class="p-2.5">Operación Conceptual</th>
+                                        <th class="p-2.5">Exigencia Metrológica</th>
+                                        <th class="p-2.5">Ejemplo en Ingeniería Eléctrica (FIEE)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">1. Observación</td>
+                                        <td class="p-2.5">Focalización intencional guiada por teoría.</td>
+                                        <td class="p-2.5">Condiciones ambientales (temperatura, humedad en el Callao).</td>
+                                        <td class="p-2.5">Detectar calentamiento anómalo en un cable alimentador.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-indigo-900 bg-indigo-50/50">2. Medición</td>
+                                        <td class="p-2.5">Cuantificación con patrón trazable e incertidumbre.</td>
+                                        <td class="p-2.5">Calibración vigente, resolución, clase de exactitud.</td>
+                                        <td class="p-2.5">Registro: I = (215.4 &plusmn; 1.2%) A; <p>T = (78.3 &plusmn; 0.5)°C.</p> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">3. Evidencia</td>
+                                        <td class="p-2.5">Dato contrastado frente a límites normativos o modelos.</td>
+                                        <td class="p-2.5">Confrontación con tablas CNE / normas IEEE/IEC.</td>
+                                        <td class="p-2.5">El conductor supera la temperatura máxima de operación continua (75°C) para aislamiento THW.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-emerald-900 bg-emerald-50/50">4. Explicación</td>
+                                        <td class="p-2.5">Articulación causal mediante leyes físico-matemáticas.</td>
+                                        <td class="p-2.5">Deducción de principios generales <p>P = I<sup>2</sup> &middot; R</p> disipación térmica.</td>
+                                        <td class="p-2.5">El sobrecalentamiento se debe al incremento de resistencia efectiva por efecto Joule agravado por armónicos de orden 3.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: LOS 4 PILARES -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            3. Las Cuatro Características del Conocimiento Científico según Mario Bunge
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+                            <div class="p-3 bg-white rounded border border-slate-200">
+                                <span class="text-blue-900 font-bold block mb-1">🔗 Sistematicidad</span>
+                                <p class="text-[11px] text-slate-600">No es una suma inconexa de datos. Las proposiciones forman sistemas lógicos coherentes (teorías de circuitos, electromagnetismo clásico) interconectadas entre sí.</p>
+                            </div>
+                            <div class="p-3 bg-white rounded border border-slate-200">
+                                <span class="text-blue-900 font-bold block mb-1">📐 Racionalidad</span>
+                                <p class="text-[11px] text-slate-600">Se funda en conceptos, juicios y deducciones matemáticas rigurosas, no en impresiones emotivas, dogmas de autoridad o tradiciones de taller.</p>
+                            </div>
+                            <div class="p-3 bg-white rounded border border-slate-200">
+                                <span class="text-blue-900 font-bold block mb-1">⚖️ Contrastabilidad</span>
+                                <p class="text-[11px] text-slate-600">Debe poder ser sometido a prueba empírica y falsación (Popper). Si un modelo teórico no puede ser refutado por mediciones de laboratorio, no califica como científico.</p>
+                            </div>
+                            <div class="p-3 bg-white rounded border border-slate-200">
+                                <span class="text-blue-900 font-bold block mb-1">📢 Comunicabilidad</span>
+                                <p class="text-[11px] text-slate-600">Es público, expresado en símbolos claros (SI de unidades, normas IEEE) para que cualquier profesional competente en cualquier parte del mundo pueda replicar el ensayo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: DOS ACTIVIDADES NO LECTIVAS COMPLETAS (COLUMNA 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividades No Lectivas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📝</span> Dos Propuestas de "Miniinvestigación Epistemológica" (SGA-Moodle)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Trabajo autónomo asincrónico para ser alojado en el aula virtual de la FIEE-UNAC. Diseñado con situaciones técnicas del entorno chalaco e interconectado nacional para contrastar la <em>experiencia tradicional</em> frente a la <em>evidencia metrológica y normativa</em>.
+                    </p>
+                </div>
+
+                <!-- ACTIVIDAD NO LECTIVA 1 -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-blue-200 mb-8 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-600 text-white">
+                            Miniinvestigación Epistemológica 1 (Individual / Entrega Virtual)
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ Estudio de Caso: "La Falacia del Tratamiento Empírico de Puesta a Tierra en Suelos Salinos del Callao"
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-2 leading-relaxed">
+                        <p><strong>1. Contexto Problemático:</strong></p>
+                        <p>
+                            En el distrito de Ventanilla y la zona portuaria del Callao, la presencia de sales marinas y napa freática alta crea terrenos complejos. Durante la recepción de obra de un centro de cómputo municipal, un maestro de obras presenta un pozo de tierra y declara: <em>"Ingeniero, le echamos 3 bolsas de carbón, sal marina y 50 litros de agua; por mi experiencia de 20 años en obras del Callao, eso siempre da menos de 5 Ohms. No gaste en contratar telurómetro"</em>.
+                        </p>
+
+                        <p><strong>2. Material de Consulta en SGA-UNAC:</strong></p>
+                        <ul class="list-disc list-inside pl-2 space-y-1 text-slate-600">
+                            <li>Código Nacional de Electricidad (CNE) - Regla 060-712: Métodos de medición de resistencia a tierra.</li>
+                            <li>Extracto de la norma <strong>IEEE Std 81</strong>: <em>IEEE Guide for Measuring Earth Resistivity, Ground Impedance, and Earth Surface Potentials of a Grounding System</em>.</li>
+                            <li>Artículo técnico sobre corrosión acelerada de electrodos de cobre por adición de cloruro de sodio en suelos costeros.</li>
+                        </ul>
+
+                        <p><strong>3. Consigna de Miniinvestigación para el Estudiante:</strong></p>
+                        <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-1.5 font-medium">
+                            <p>🔹 <strong>Análisis Epistemológico:</strong> Desmontar la afirmación del maestro de obras: ¿Por qué su "experiencia de 20 años" no constituye evidencia científica ni técnica válida?</p>
+                            <p>🔹 <strong>Diseño de la Evidencia:</strong> Detallar qué método metrológico normado (ej. método de caída de potencial de 3 puntos o método de Wenner de 4 picas) debe emplearse, qué instrumento calibrado se requiere y qué fuentes de incertidumbre deben controlarse.</p>
+                            <p>🔹 <strong>Consecuencias Ético-Técnicas:</strong> Explicar qué ocurre con la "evidencia temporal" de la sal cuando el agua se evapora o llueve, y por qué aceptar esa experiencia empírica genera una falsa sensación de seguridad que puede electrocutar personas o quemar servidores.</p>
+                        </div>
+
+                        <p><strong>4. Formato de Entrega:</strong></p>
+                        <p class="text-slate-600">
+                            Informe analítico de 2 carillas en PDF. Incluir diagrama metodológico de medición. Nomenclatura: <code>Apellido_Nombre_Miniinvestigacion1.pdf</code>.
+                        </p>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-3 pt-3 border-t border-blue-200">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong>Diferenciación Epistémica (6 pts):</strong> Contrasta con solvencia la creencia empírica frente al dato metrológico.
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong>Rigor Normativo IEEE/CNE (6 pts):</strong> Explica el procedimiento técnico de medición reproducible y trazable.
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong>Pensamiento Crítico y Riesgo (5 pts):</strong> Argumenta el fenómeno físico de corrosión y pérdida de disipación.
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong>Claridad y Formato (3 pts):</strong> Redacción técnica precisa, citas adecuadas y ortografía impecable.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTIVIDAD NO LECTIVA 2 -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-emerald-200 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white">
+                            Miniinvestigación Epistemológica 2 (En parejas / Foro Colaborativo)
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        📊 Auditoría Científica: "Contrastabilidad y Falsación en un Reporte de Calidad de Suministro Eléctrico (Osinergmin)"
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-2 leading-relaxed">
+                        <p><strong>1. Contexto Problemático:</strong></p>
+                        <p>
+                            Una fábrica de plásticos del Parque Industrial de Ventanilla presenta un reclamo a la empresa distribuidora alegando que sus variadores de frecuencia se queman semanalmente debido a "mala calidad de la luz que envía la empresa". La distribuidora responde con un informe escueto indicando: <em>"Nuestra tensión de barra se encuentra en 10 kV conforme a ley; el problema es de las máquinas del cliente"</em>.
+                        </p>
+
+                        <p><strong>2. Material de Entrada (Provisto en SGA-UNAC):</strong></p>
+                        <ul class="list-disc list-inside pl-2 space-y-1 text-slate-600">
+                            <li>Extracto de la <strong>Norma Técnica de Calidad de los Servicios Eléctricos (NTCSE)</strong> de Osinergmin.</li>
+                            <li>Estándar <strong>IEC 61000-4-30 Clase A</strong> para medición de parámetros de calidad de energía (huecos de tensión, flicker y armónicos).</li>
+                            <li>Gráfica de registro oscilográfico de 7 días capturada por un registrador analizador trifásico.</li>
+                        </ul>
+
+                        <p><strong>3. Consigna de Trabajo en Parejas:</strong></p>
+                        <p>
+                            El equipo debe responder a las preguntas de la miniinvestigación en el Foro del curso:
+                        </p>
+                        <ol class="list-decimal list-inside pl-2 space-y-1 font-medium">
+                            <li><strong>Auditoría de Sistematicidad y Racionalidad:</strong> ¿Por qué el argumento de la distribuidora carece de sistematicidad si solo midió la tensión eficaz en barra y no los microcortes, armónicos o transitorios rápidos?</li>
+                            <li><strong>Principio de Falsación (Popper):</strong> ¿Cómo se formula una prueba de contrastabilidad empírica que permita falsear la hipótesis de la distribuidora o la hipótesis del cliente fabril?</li>
+                            <li><strong>Dictamen de Evidencia:</strong> Redactar una propuesta de protocolo de medición conjunta de 7 días que cumpla con los 4 pilares de la ciencia (sistemática, racional, contrastable y comunicable).</li>
+                        </ol>
+
+                        <p><strong>4. Formato de Entrega:</strong></p>
+                        <p class="text-slate-600">
+                            Publicación en el Foro de Debate del SGA-UNAC + Réplica técnica argumentada al dictamen de otra pareja de estudiantes.
+                        </p>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-3 pt-3 border-t border-emerald-200">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Criterios de Calificación:</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong>Aplicación de Falsabilidad (6 pts):</strong> Diseña condiciones experimentales claras para refutar hipótesis técnicas.
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong>Manejo de Estándares IEC/NTCSE (6 pts):</strong> Identifica perturbaciones eléctricas más allá del valor eficaz simple.
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong>Protocolo Metrológico (5 pts):</strong> La solución propuesta es sistemática, neutral y reproducible.
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong>Co-evaluación en Foro (3 pts):</strong> Debate académico riguroso sin falacias ad hominem.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: AVANCE E INCENTIVO DEL PRODUCTO INTEGRADOR (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Avance del Producto Integrador (PI)</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🚀</span> Reforzamiento Semana 2: Datos vs. Evidencia en Algoritmos de IA
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        El Producto Integrador exige elaborar un <em>"Protocolo para el uso responsable de IA en ingeniería eléctrica"</em>. En esta segunda semana, los estudiantes deben vincular los conceptos de <strong>experiencia empírica (datos de entrenamiento)</strong> vs. <strong>evidencia física demostrada</strong>.
+                    </p>
+                </div>
+
+                <!-- CONEXIÓN EPISTEMOLÓGICA CLAVE CON LA IA -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-amber-500 mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">💡 La Tensión Epistémica Central para la IA en Ingeniería:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Unidad I • Hito 1</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        Un algoritmo de Inteligencia Artificial (red neuronal, LLM, regresión de bosque aleatorio) <strong>no conoce las leyes de la física ni las Ecuaciones de Maxwell</strong>. Lo único que posee es <em>experiencia acumulada en forma de millones de datos estadísticos históricos</em>.
+                    </p>
+                    <div class="p-3 bg-slate-800 rounded border border-slate-700 font-mono text-[11px] text-amber-200">
+                        ⚠️ <strong>Peligro para el Ingeniero:</strong> Confundir una predicción matemática de alta correlación estadística R<sup>2</sup> = 0.99 con una <strong>evidencia física causal</strong>. Si la red eléctrica entra en un régimen transitorio no previsto en el dataset de entrenamiento, la IA alucinará soluciones que pueden violar la conservación de la energía y fundir equipos.
+                    </div>
+                </div>
+
+                <!-- IDEAS E INCENTIVOS PEDAGÓGICOS CONCRETOS -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- TARJETA DE PROPUESTA METODOLÓGICA -->
+                    <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">📋</span>
+                            <h4 class="font-extrabold text-blue-900 text-sm">
+                                Tarea Semanal para el Portafolio del PI: "La Ficha de Auditoría de Datos de Entrada"
+                            </h4>
+                        </div>
+                        <p class="text-slate-700 leading-relaxed">
+                            Para su problema eléctrico elegido (ej. predicción de generación solar en Carabayllo o pérdidas no técnicas en Ventanilla), el equipo debe redactar el apartado <strong>3. Datos Utilizados</strong> del protocolo respondiendo a tres filtros de evidencia:
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 bg-white p-3 rounded border border-blue-200 font-medium">
+                            <li><strong>Trazabilidad:</strong> ¿Con qué instrumentos físicos se capturaron los datos del dataset? ¿Tienen calibración conocida?</li>
+                            <li><strong>Representatividad:</strong> ¿Los datos representan la física del sistema o están sesgados por periodos de baja demanda?</li>
+                            <li><strong>Falsabilidad:</strong> ¿Qué valores de salida de la IA serían físicamente imposibles y deberían activar una alerta de rechazo automático?</li>
+                        </ul>
+                    </div>
+
+                    <!-- TARJETA DE INCENTIVO Y GAMIFICACIÓN -->
+                    <div class="p-4 rounded-xl border border-amber-200 bg-amber-50/40 space-y-3 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">🏆</span>
+                            <h4 class="font-extrabold text-amber-900 text-sm">
+                                Incentivo Pedagógico: "El Reto Cazadores de Alucinaciones FIEE"
+                            </h4>
+                        </div>
+                        <p class="text-slate-700 leading-relaxed">
+                            Para motivar a los estudiantes a no aceptar acríticamente las respuestas de modelos de IA generalistas (ChatGPT, Claude, Gemini, DeepSeek), el docente lanza el siguiente incentivo evaluativo:
+                        </p>
+                        <div class="bg-white p-3 rounded border border-amber-200 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-amber-800">⭐ Bonificación a la Investigación Formativa (IU1):</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900">+1.5 Puntos</span>
+                            </div>
+                            <p class="text-slate-600">
+                                Aquel equipo que formule un prompt técnico de circuitos eléctricos a una IA comercial donde la IA entregue un resultado que parece coherente pero que <strong>viola una ley física fundamental (Leyes de Kirchhoff o el teorema de Thévenin)</strong>, y lo documente con su demostración analítica de refutación epistemológica, obtendrá una bonificación directa en su entrega del Hito 1.
+                            </p>
+                        </div>
+                        <p class="text-slate-500 italic text-[11px]">
+                            *Este incentivo transforma al estudiante de un mero consumidor pasivo de IA en un auditor epistémico vigilante y riguroso.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- MATRIZ DE CRITERIOS SEMANA 2 PARA EL PROTOCOLO -->
+                <div class="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <span class="font-bold text-slate-800 block mb-2">Checklist de Control Epistemológico de la IA (Entregable acumulativo para Semana 3):</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-0.5">1. Estado del Problema</strong>
+                            <span class="text-slate-600">Problema delimitado en una red eléctrica peruana real con especificaciones de tensión y potencia.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-0.5">2. Origen de Datos</strong>
+                            <span class="text-slate-600">Diferencia entre datos sintéticos generados y datos reales medidos por SCADA/COES.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-0.5">3. Regla de Falsación</strong>
+                            <span class="text-slate-600">Criterio estricto de rechazo humano cuando la IA entregue factores de potencia fuera del intervalo [0, 1].</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes de Información y Normalización</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 2 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas y fuentes normalizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos de ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [2] M. Steup y R. Neta, "Epistemology," en <em>The Stanford Encyclopedia of Philosophy</em>, E. N. Zalta y U. Nodelman, Eds., Stanford University, 2024. [En línea]. Disponible en: <span class="text-blue-600 underline">https://plato.stanford.edu/entries/epistemology/</span>
+                    </p>
+                    <p>
+                        [3] UNESCO, "Recommendation on Science and Scientific Researchers," United Nations Educational, Scientific and Cultural Organization, París, Francia, Res. 39 C/85, 2017.
+                    </p>
+                    <p>
+                        [4] C. U. Moulines, <em>El Desarrollo Moderno de la Filosofía de la Ciencia (1890-2000)</em>, 1.ª ed. México D.F., México: Instituto de Investigaciones Filosóficas, UNAM, 2006.
+                    </p>
+                    <p>
+                        [5] IEEE, <em>IEEE Guide for Measuring Earth Resistivity, Ground Impedance, and Earth Surface Potentials of a Grounding System</em>, IEEE Standard 81-2012, Piscataway, NJ, EE. UU., 2012. doi: 10.1109/IEEESTD.2012.6398078.
+                    </p>
+                    <p>
+                        [6] International Electrotechnical Commission, <em>Electromagnetic Compatibility (EMC) - Part 4-30: Testing and Measurement Techniques - Power Quality Measurement Methods</em>, IEC Standard 61000-4-30:2015, Ginebra, Suiza, 2015.
+                    </p>
+                    <p>
+                        [7] Ministerio de Energía y Minas del Perú, <em>Código Nacional de Electricidad (CNE) - Suministro y Utilización</em>, Dirección General de Electricidad, Lima, Perú, 2020.
+                    </p>
+                    <p>
+                        [8] Organismo Supervisor de la Inversión en Energía y Minería (Osinergmin), <em>Norma Técnica de Calidad de los Servicios Eléctricos (NTCSE)</em>, D.S. N° 020-97-EM, Lima, Perú, 2021.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Quitar clase activa de botones
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            // Mostrar sección seleccionada
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            // Activar botón correspondiente
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            // Scroll suave hacia arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
