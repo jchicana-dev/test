@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 4 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            purple: '#7C3AED',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 4:</span>
+                <span class="text-slate-200">Apertura Unidad II • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 4 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🔬 El Positivismo y la Ciencia Eléctrica
+                </button>
+                <button onclick="switchTab('sec-detectives')" id="tab-sec-detectives" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🕵️ Actividad: "Detectives Epistemológicos"
+                </button>
+                <button onclick="switchTab('sec-pi-u2')" id="tab-sec-pi-u2" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🚀 Avance PI Unidad II (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 4 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Apertura • Unidad de Aprendizaje II: Enfoques epistemológicos de la ciencia y su aplicación en la ingeniería
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 4: ¿Existe una única forma de hacer ciencia?
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-blue-100 text-blue-900 border border-blue-300">
+                    Foco: Positivismo, Verificación y Medición
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 4 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista estructurada según el Modelo Educativo UNAC (Res. CU N° 318-2024-CU). Se pasa del cuestionamiento del monismo metodológico a la contrastación experimental del positivismo lógico en circuitos eléctricos.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Mito del Método Único y el "Colapso" de la Ley de Ohm en el Alumbrado del Callao
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Provocación socrática del docente:</strong> El profesor inicia mostrando dos gráficas de laboratorio en pantalla proyectada:
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>Ensayo A (Resistor bobinado de Constantán a 25 °C):</strong> Al variar el voltaje de 0 a 100 V, la corriente crece en línea recta exacta ($I = V/R$). El estudiante afirma: <em>"La ciencia eléctrica es exacta, acumulativa y universal; basta medir y verificar empíricamente para tener una verdad irrefutable"</em>.</p>
+                                <p>• <strong>Ensayo B (Lámpara de vapor de sodio / arco eléctrico en la Av. Elmer Faucett):</strong> Al subir el voltaje, el gas se ioniza violentamente, la resistencia se vuelve negativa y la corriente se dispara en una curva caótica no lineal que no obedece la proporcionalidad V/I = constante.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas orientadoras al plenario:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>Si la Ley de Ohm no se cumple en un diodo de potencia de carburo de silicio (SiC) ni en un arco eléctrico, ¿la ley de Ohm es "falsa" o es un modelo acotado a un paradigma reduccionista?</li>
+                                <li>¿Existe un único "Método Científico" monolítico (observar &rarr; medir &rarr; verificar inductivamente) para toda la ciencia e ingeniería, o las distintas disciplinas construyen sus conocimientos bajo marcos epistemológicos diferenciados?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Desestabilizar la ilusión positivista ingenua del estudiante de tercer ciclo de que "toda la electricidad es lineal y medible con una sola regla universal". Introducir la noción de enfoque o paradigma epistemológico.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Desarrollo Teórico y Dialógico (60 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Paradigmas Epistemológicos y la Matriz del Positivismo Lógico en Ingeniería
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. Enfoques y Paradigmas (20 min)</strong>
+                                    <p>• Concepto de enfoque epistemológico: El marco de supuestos sobre qué es la realidad (ontología), cómo se accede a ella (epistemología) y qué herramientas son válidas (metodología).
+                                    <br>• Relación dialéctica: <em>Concepción de Ciencia &harr; Método Empleado &harr; Validez del Conocimiento Producido</em>.</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. Positivismo y Neopositivismo (20 min)</strong>
+                                    <p>• Auguste Comte y el Círculo de Viena (Carnap, Schlick, Ayer).
+                                    <br>• El <strong>Principio de Verificación Empírica</strong>: Solo tiene sentido científico lo que puede ser constatado por observación o demostrado por lógica formal.
+                                    <br>• Rechazo de la metafísica y entelequias no medibles.</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. La Práctica Eléctrica Positivista (20 min)</strong>
+                                    <p>• La ingeniería eléctrica experimental nace como la encarnación positivista perfecta: magnitudes medibles (V, I, f, B), sensores calibrados y ajuste de curvas por mínimos cuadrados.
+                                    <br>• <strong>El talón de Aquiles:</strong> La inducción incompleta. Medir 10,000 transformadores sin fallar no prueba que el siguiente no colapsará.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (45 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:25 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Taller de Aula: "Medición de Variables Eléctricas y Validación de una Relación Experimental"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Equipos de 3 estudiantes. Se distribuye una ficha con una serie de 12 mediciones experimentales obtenidas de un ensayo de laboratorio en la FIEE: corriente de magnetización (I<sub>&mu; </sub>) vs. flujo en el núcleo magnético (&Phi;) de un transformador de 10 kVA.
+                            </p>
+                            <p>
+                                <strong>Desafío Epistemológico Operativo:</strong>
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1 font-medium text-slate-700">
+                                <li><strong>Ajuste Positivista Inicial:</strong> Los alumnos aplican una regresión lineal en la zona de flujo bajo y obtienen  R<sup>2</sup> = 0.998. Un enfoque positivista lineal concluye que la inductancia es estrictamente constante.</li>
+                                <li><strong>La Aparición de la Anomalía:</strong> Al incorporar los últimos 4 datos correspondientes a saturación ferromagnética, la recta colapsa y el error relativo supera el 35%.</li>
+                                <li><strong>Reflexión Crítica:</strong> Los grupos responden por escrito: <em>"¿Qué demuestra este ensayo sobre la verdad empírica? ¿La verificación de los primeros 8 puntos validaba científicamente la hipótesis lineal, o solo demostraba que la inducción empírica es ciega a los límites del régimen de operación?"</em></li>
+                            </ol>
+                            <p>
+                                <strong>Sustentación relámpago (15 min):</strong> Tres grupos defienden su postura ante el plenario del aula.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre Metacognitivo y Lanzamiento de Unidad II (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Síntesis de Apertura y Lanzamiento de la Actividad "Detectives Epistemológicos"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Conclusión de la Cátedra:</strong> No existe un método científico único ni sacrosanto. El positivismo lógico aportó el rigor de la medición contrastable y el lenguaje fisicalista a la ingeniería, pero su obsesión con la verificación inductiva lo vuelve vulnerable ante eventos transitorios e imprevistos.
+                            </p>
+                            <p>
+                                <strong>Puente hacia la Semana 5:</strong> El docente introduce la necesidad del método hipotético-deductivo y la revolución de Karl Popper: *"La ciencia avanza no buscando confirmar lo que creemos, sino intentando refutarlo desesperadamente"*.
+                            </p>
+                            <p>
+                                <strong>Consigna de la semana en SGA-UNAC:</strong> Se presenta y activa la actividad asincrónica no lectiva <strong>"Detectives Epistemológicos"</strong> para ser resuelta durante la semana.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 4 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico de Cátedra</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🔬</span> Positivismo, Lógico-Positivismo y la Construcción Experimental de la Ingeniería Eléctrica
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Fundamentación teórica especializada sustentada en Mario Bunge (2009), C. Ulises Moulines (2006) y la Stanford Encyclopedia of Philosophy (2024).
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: CONCEPTO DE ENFOQUE O PARADIGMA -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. ¿Qué es un Enfoque Epistemológico? La Tríada Ontología-Epistemología-Metodología
+                        </h4>
+                        <p class="mb-3">
+                            Un enfoque epistemológico no es una simple preferencia metodológica o una receta de cálculo. Es un sistema estructurado de presupuestos que responde a tres cuestiones inseparables:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Nivel Ontológico</strong>
+                                <p class="text-slate-600"><em>"¿Qué se asume que existe?"</em>
+                                <br>Para el positivista, solo existen entidades directamente observables o medibles mediante aparatos (tensiones en bornes, corrientes de línea, calentamiento térmico). Las esencias metafísicas o entidades no observables son descartadas como pseudoproblemas.</p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Nivel Epistemológico</strong>
+                                <p class="text-slate-600"><em>"¿Cómo conocemos y qué es la verdad?"</em>
+                                <br>El conocimiento es concebido como el reflejo fiel y objetivo de la realidad observable. La verdad se define por el <strong>criterio de correspondencia verificacionista</strong>: un enunciado es verdadero si y solo si es contrastable y verificado experimentalmente.</p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Nivel Metodológico</strong>
+                                <p class="text-slate-600"><em>"¿Qué procedimientos son legítimos?"</em>
+                                <br>El método inductivo-experimental estricto: protocolos de laboratorio estandarizados, calibración de instrumentos contra patrones, análisis cuantitativo de errores, regresión estadística y formulación matemática de leyes empíricas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: POSITIVISMO CLÁSICO Y LÓGICO-POSITIVISMO -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. Del Positivismo Comtiano al Círculo de Viena: El Criterio Empirista de Significado
+                        </h4>
+                        <p class="mb-3">
+                            En el siglo XIX, <strong>Auguste Comte</strong> propuso la "Ley de los Tres Estados" (teológico, metafísico y positivo o científico), postulando que la madurez de la razón humana consiste en abandonar la búsqueda de las causas últimas y limitarse a descubrir las leyes invariantes de los fenómenos mediante la observación.
+                        </p>
+                        <p class="mb-3">
+                            En la década de 1920, el <strong>Círculo de Viena (Moritz Schlick, Rudolf Carnap, Otto Neurath)</strong> combinó el empirismo de David Hume con el rigor formal de la lógica matemática de Bertrand Russell y Gottlob Frege, fundando el <strong>Positivismo Lógico (o Neopositivismo)</strong>:
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Postulado Central</th>
+                                        <th class="p-2.5">Significado Filosófico</th>
+                                        <th class="p-2.5">Traducción a la Ingeniería Eléctrica</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">Verificacionismo Estricto</td>
+                                        <td class="p-2.5">El significado de una proposición radica en su método de verificación empírica. Si no se puede verificar por los sentidos o instrumentos, carece de sentido cognitivo.</td>
+                                        <td class="p-2.5">Afirmar que un motor eléctrico tiene "eficiencia del 94%" no tiene valor a menos que se presente el protocolo de ensayo de pérdidas estandarizado según norma IEEE Std 112.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-indigo-900 bg-indigo-50/50">Fisicalismo y Lenguaje Unificado</td>
+                                        <td class="p-2.5">Toda proposición científica legítima debe ser reducible a enunciados observacionales expresados en términos de magnitudes espacio-temporales medibles.</td>
+                                        <td class="p-2.5">El Sistema Internacional de Unidades (SI): voltios, amperios, teslas, vatios, hercios. La eliminación de cualquier lenguaje ambiguo o cualitativo no traducible a escalas métricas.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">Rechazo de la Metafísica</td>
+                                        <td class="p-2.5">Toda discusión sobre "la esencia oculta de las cosas" es pseudociencia estéril. Solo interesa cómo se comportan las relaciones funcionales entre variables observables.</td>
+                                        <td class="p-2.5">Al ingeniero no le preocupa "la naturaleza metafísica del electrón", sino resolver la caída de tensión fasorial &Delta; V = I &middot; Z y mantener la red de 60 kV dentro de la tolerancia regulatoria de &plusmn; 5%.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: LÍMITES EN LA INGENIERÍA ELÉCTRICA MODERNA -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            3. Luces y Sombras del Positivismo en la Ingeniería Eléctrica
+                        </h4>
+                        <p class="mb-2">
+                            Como analiza <strong>Mario Bunge (2009)</strong>, el positivismo le dio a la ciencia aplicada su armadura de objetividad y disciplina metrológica. Sin embargo, en la práctica ingenieril avanzada exhibe profundas limitaciones:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-emerald-50/60 p-3.5 rounded-lg border border-emerald-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Aportes Indispensables del Positivismo:</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li>Erradicación del pensamiento mágico y de la "opinión de taller" no verificable.</li>
+                                    <li>Institucionalización de la trazabilidad metrológica y la normalización internacional (IEC, IEEE, ISO).</li>
+                                    <li>Desarrollo de métodos rigurosos para la caracterización de materiales conductores, magnéticos y aislantes mediante pruebas destructivas y no destructivas controladas.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-rose-50/60 p-3.5 rounded-lg border border-rose-200">
+                                <strong class="text-rose-900 block font-bold mb-1">Ciegas Epistémicas y Riesgos de la Ingenuidad Positivista:</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                    <li><strong>Operacionalismo reduccionista:</strong> Creer que la realidad de una red eléctrica es únicamente lo que capturan los sensores SCADA instalados, ignorando fenómenos fuera del rango de muestreo (ej. sobretensiones transitorias de nanosegundos).</li>
+                                    <li><strong>La trampa inductiva:</strong> Confundir "he medido esto 500 veces y no ha fallado" con una garantía de seguridad futura permanente (el problema de la contingencia catastrófica N-1).</li>
+                                    <li><strong>Incapacidad frente al diseño creativo:</strong> Los artefactos de ingeniería no existían en la naturaleza para ser "observados e inducidos"; surgen de síntesis conceptual, conjeturas matemáticas heurísticas y toma de decisiones ético-económicas que escapan al positivismo puro.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA: "DETECTIVES EPISTEMOLÓGICOS" (COLUMNA 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-detectives" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🕵️</span> Actividad: "Detectives Epistemológicos: La Trampa del Verificacionismo en el Alimentador Industrial"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa para el <strong>SGA-UNAC (Moodle)</strong>. Pone al estudiante de tercer ciclo en el rol de un perito auditor que debe descubrir vicios lógicos, sesgos verificacionistas e inducciones ciegas en informes técnicos reales.
+                    </p>
+                </div>
+
+                <!-- FICHA DEL CASO PERICIAL -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>🔍</span> Expediente Técnico de Auditoría Pericial N° FIEE-2026-04
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ El Misterio de los Transformadores de Medición Explosivos en la Zona Industrial de Ventanilla
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>1. El Hecho Fáctico (El Siniestro):</strong></p>
+                        <p>
+                            En una subestación de media tensión (10 kV) que alimenta una planta de harina de pescado en Ventanilla (Callao), los Transformadores de Corriente (TC) de protección de la celda de llegada estallaron violentamente a las 03:15 a.m., dejando a la planta sin energía y paralizando la producción con pérdidas de $80,000 USD.
+                        </p>
+
+                        <p><strong>2. Los Informes Confrontados (El Escenario de Investigación):</strong></p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Informe A -->
+                            <div class="bg-white p-3.5 rounded-lg border-2 border-amber-300 shadow-2xs space-y-2">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 uppercase">
+                                    Informe Técnico A (Enfoque Positivista Ingenuo / Verificacionista)
+                                </span>
+                                <p class="text-slate-700 italic font-mono text-[11px]">
+                                    "El perito firmante realizó mediciones continuas de corriente y tensión durante los 7 días previos al siniestro usando un registrador convencional clase 0.5. Todas las lecturas de corriente RMS se mantuvieron entre 180 A y 240 A (por debajo de la corriente nominal del TC que es de 300 A). La ley de Ohm y balances de potencia se verificaron perfectamente con error menor a 1.2%. Por lo tanto, el informe dictamina que 'está empíricamente demostrado y verificado que el alimentador operaba sin sobrecorriente'. El estallido se cataloga como 'falla impredecible por defecto de fábrica del aislador epóxico'."
+                                </p>
+                            </div>
+                            <!-- Informe B -->
+                            <div class="bg-white p-3.5 rounded-lg border-2 border-emerald-300 shadow-2xs space-y-2">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-900 uppercase">
+                                    Informe Técnico B (Enfoque Crítico Epistemológico y Físico-Sistémico)
+                                </span>
+                                <p class="text-slate-700 italic font-mono text-[11px]">
+                                    "El equipo pericial de la FIEE cuestiona la validez epistemológica del Informe A. Al desarmar el TC destruido y analizar los registros oscilográficos de alta frecuencia de la subestación troncal de 60 kV, descubren que a las 03:14:58 a.m. se conectó un banco de compensación reactiva automático. La maniobra provocó una corriente de irrupción de alta frecuencia (inrush) de 12 kA durante 4 milisegundos con una componente continua (DC offset). El núcleo del TC se saturó ferromagnéticamente al instante; al saturarse, la inductancia colapsó a cero, la tensión inducida en el secundario alcanzó 4,500 V pico y el aislamiento se perforó térmicamente."
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Las Cuatro Misiones del "Detective Epistemológico":</strong></p>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 space-y-2.5 font-medium">
+                            <div>
+                                <span class="text-unac-blue font-bold block">Misión 1: Rastrear el Vicio Positivista en el Informe A (4 pts)</span>
+                                <p class="text-slate-600 font-normal">Identificar y explicar en qué consistió la <em>trampa del verificacionismo inductivo</em> en el Informe A. ¿Por qué haber medido 7 días de valores RMS normales no demostraba científicamente que el equipo estaba a salvo de sobretensiones transitorias?</p>
+                            </div>
+                            <div>
+                                <span class="text-unac-blue font-bold block">Misión 2: El Reduccionismo del Instrumento y el Sesgo Observacional (4 pts)</span>
+                                <p class="text-slate-600 font-normal">El positivismo sostiene que "solo lo observado y medido existe". Explicar cómo el tiempo de respuesta del registrador (muestreo a 50 Hz en lugar de microsegundos) operó como una "anteojera epistemológica" que ocultó la realidad física del transitorio destructivo.</p>
+                            </div>
+                            <div>
+                                <span class="text-unac-blue font-bold block">Misión 3: Desmontar la "Ley Experimental" frente a Modelos No Lineales (6 pts)</span>
+                                <p class="text-slate-600 font-normal">Analizar la relación entre el modelo lineal del transformador ideal frente a la curva de saturación B-H real del núcleo magnético. ¿Por qué la afirmación positivista de que "el transformador sigue una relación de transformación constante K<sub>t</sub> = N<sub>1</sub>/N<sub>2</sub>" colapsa cuando se entra en saturación magnética profunda?</p>
+                            </div>
+                            <div>
+                                <span class="text-unac-blue font-bold block">Misión 4: El Dictamen del Detective para la Práctica Profesional de la FIEE (6 pts)</span>
+                                <p class="text-slate-600 font-normal">Redactar un decálogo pericial de 3 principios epistemológicos que todo ingeniero electricista colegiado del CIP debe aplicar para no caer en la negligencia de "creer que la realidad es únicamente lo que mide un instrumento promedio".</p>
+                            </div>
+                        </div>
+
+                        <p><strong>4. Formato y Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                            <li><strong>Entregable:</strong> Documento estructurado en formato PDF de 2 a 3 páginas (Plantilla SGA-UNAC).</li>
+                            <li><strong>Plataforma:</strong> Tarea en línea en el aula virtual SGA-Moodle de la asignatura.</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>Apellido_Nombre_Semana4_DetectivesEpistemologicos.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas antes del inicio de la Sesión Lectiva 5.</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-4 pt-3 border-t border-unac-blue/30">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Crítica al Verificacionismo (5 pts)</strong>
+                                <span class="text-slate-600">Desmonta con precisión filosófica la falacia inductiva del Informe A usando conceptos de Comte y el Círculo de Viena.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Rigor Metrológico y Físico (5 pts)</strong>
+                                <span class="text-slate-600">Explica la saturación ferromagnética, transitorios de maniobra y límites de frecuencia de muestreo de instrumentos.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Contraste de Paradigmas (5 pts)</strong>
+                                <span class="text-slate-600">Diferencia con solvencia entre el empirismo reduccionista y el modelamiento sistémico multivariable.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Dictamen Profesional CIP (5 pts)</strong>
+                                <span class="text-slate-600">Propone criterios ético-técnicos sólidos para el ejercicio profesional de peritaje en ingeniería eléctrica.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: AVANCE DEL PRODUCTO INTEGRADOR EN UNIDAD II (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u2" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Hito de la Unidad de Aprendizaje II</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🗺️</span> Producto Integrador Unidad II: "Mapa Epistemológico de un Problema de Ingeniería Eléctrica"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        En la Unidad I se delimitó el problema técnico real. En la Unidad II (Semanas 4 a 6), los equipos deben auditar y deconstruir los fundamentos epistemológicos del problema seleccionado y de las herramientas algorítmicas de Inteligencia Artificial que pretenden utilizar.
+                    </p>
+                </div>
+
+                <!-- LA CONEXIÓN EPISTEMOLÓGICA SEMANA 4 CON LA INTELIGENCIA ARTIFICIAL -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-amber-500 mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">💡 La Tensión Epistémica de la Semana 4 para el Protocolo de IA:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Ponderación: PU2 (15%) + IU2 (5%)</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        ¿Es la Inteligencia Artificial moderna (redes neuronales, transformadores, modelos de regresión profunda) la <strong>máxima expresión del positivismo lógico radical</strong>?
+                    </p>
+                    <div class="p-3 bg-slate-800 rounded border border-slate-700 font-mono text-[11px] text-amber-200 space-y-1">
+                        <p>• <strong>La Naturaleza Positivista de la IA:</strong> La IA se alimenta exclusivamente de datos observados (vectores numéricos de sensores, mediciones históricas). Al igual que el positivista extremo, el modelo no busca comprender las causas metafísicas ni la física profunda del fenómeno; se limita a encontrar correlaciones estadísticas y verificar que la función de costo minimice el error cuadrático en el dataset de entrenamiento (Loss &rarr; 0).</p>
+                        <p>• <strong>El Peligro Fatal en Ingeniería:</strong> Si el dataset de entrenamiento nunca experimentó una falla transitoria grave (ej. un cortocircuito trifásico franco a tierra en una barra del SEIN), el modelo de IA verificará un rendimiento del 99.9% en su entorno cerrado de datos, pero fallará catastróficamente en la operación real.</p>
+                    </div>
+                </div>
+
+                <!-- TAREAS DE AVANCE SEMANA 4 PARA LOS EQUIPOS -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                        <span>📋</span> Directrices para el Avance Semanal del Protocolo (Apartado 3: "Datos Utilizados y Matriz de Verificación")
+                    </h4>
+                    <p class="text-slate-700 leading-relaxed">
+                        Cada equipo de trabajo debe integrar en su portafolio de avance del PI la siguiente ficha analítica:
+                    </p>
+                    <div class="bg-white p-4 rounded-lg border border-indigo-200 space-y-3">
+                        <div>
+                            <strong class="text-indigo-900 block font-bold">1. Identificación de Paradigmas en el Problema:</strong>
+                            <p class="text-slate-600">Explicar si el problema eléctrico elegido (ej. pronóstico de generación solar en Moquegua, monitoreo de transformadores en el Callao) es abordado actualmente mediante el paradigma mecanicista clásico (ecuaciones diferenciales analíticas) o mediante el paradigma conexionista/estadístico de datos masivos (IA).</p>
+                        </div>
+                        <div>
+                            <strong class="text-indigo-900 block font-bold">2. Auditoría del "Verificacionismo de Entrenamiento":</strong>
+                            <p class="text-slate-600">Detallar: ¿Cómo se verificaron empíricamente los datos de entrada? ¿Qué clase de exactitud metrológica poseen los sensores que los capturaron? ¿Existen zonas ciegas o sesgos de muestreo donde el modelo no cuenta con verificación empírica?</p>
+                        </div>
+                        <div>
+                            <strong class="text-indigo-900 block font-bold">3. Criterio de Falsación Preliminar:</strong>
+                            <p class="text-slate-600">Formular al menos un caso de frontera donde una respuesta matemáticamente verificable por la IA violaría los principios físicos inviolables de Kirchhoff o la conservación de la energía, exigiendo el rechazo humano inmediato.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 4 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo los lineamientos del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [2] C. U. Moulines, <em>El Desarrollo Moderno de la Filosofía de la Ciencia (1890-2000)</em>, 1.ª ed. México D.F., México: Instituto de Investigaciones Filosóficas, Universidad Nacional Autónoma de México, 2006.
+                    </p>
+                    <p>
+                        [3] R. Carnap, <em>La Estructura Lógica del Mundo</em>, trad. L. M. Valdés Villanueva, Madrid, España: Editorial Alianza, 1988.
+                    </p>
+                    <p>
+                        [4] T. S. Uebel, "Vienna Circle," en <em>The Stanford Encyclopedia of Philosophy</em>, E. N. Zalta y U. Nodelman, Eds., Stanford University, 2024. [En línea]. Disponible en: <span class="text-blue-600 underline">https://plato.stanford.edu/entries/vienna-circle/</span>
+                    </p>
+                    <p>
+                        [5] IEEE, <em>IEEE Standard Requirements for Instrument Transformers</em>, IEEE Std C57.13-2016, Piscataway, NJ, EE. UU., 2016. doi: 10.1109/IEEESTD.2016.7566440.
+                    </p>
+                    <p>
+                        [6] IEEE, <em>IEEE Standard Test Procedure for Polyphase Induction Motors and Generators</em>, IEEE Std 112-2017, Piscataway, NJ, EE. UU., 2018. doi: 10.1109/IEEESTD.2018.8299878.
+                    </p>
+                    <p>
+                        [7] Organismo Supervisor de la Inversión en Energía y Minería (Osinergmin), <em>Procedimiento de Supervisión de la Operación de los Sistemas de Transmisión Eléctrica</em>, Res. N° 083-2019-OS/CD, Lima, Perú, 2019.
+                    </p>
+                    <p>
+                        [8] UNESCO, "Recommendation on Science and Scientific Researchers," United Nations Educational, Scientific and Cultural Organization, París, Francia, Res. 39 C/85, 2017.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
