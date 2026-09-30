@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 5 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            purple: '#7C3AED',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 5:</span>
+                <span class="text-slate-200">Unidad II • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 5 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🧠 Popper vs. Kuhn en Ingeniería
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🤖 Debate Epistemológico con IA (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-u2')" id="tab-sec-pi-u2" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🗺️ Avance PI Unidad II: Falsación en IA (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 5 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Unidad de Aprendizaje II • Sesión 5
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 5: Del Método Hipotético-Deductivo a los Paradigmas Científicos
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-purple-100 text-purple-900 border border-purple-300">
+                    Foco: Popper, Kuhn, Anomalías y Transición Tecnológica
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 5 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista alineada a la Res. CU N° 318-2024-CU. Se supera el positivismo estático de la Semana 4 para adentrarse en la dinámica de la contrastación severa (Popper) y las crisis revolucionarias de paradigmas (Kuhn) en la ingeniería de potencia.
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            La Anomalía de la Inercia Cero en el SEIN: Cuando el Paradigma Clásico de Generación Entra en Crisis
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Provocación socrática del docente:</strong> El docente proyecta el registro de frecuencia del Sistema Eléctrico Interconectado Nacional (SEIN) ante el disparo intempestivo de una central térmica:
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>Escenario Tradicional (Paradigma de Máquinas Síncronas):</strong> Durante 100 años, las redes eléctricas dependieron de las gigantescas masas rotatorias de turbinas hidráulicas y térmicas (como las del Mantaro). Si la carga subía repentinamente, la energía cinética almacenada en los rotores ($E_c = \frac{1}{2} J \omega^2$) amortiguaba la caída de frecuencia naturalmente gracias a la <em>Ecuación de Oscilación de Swing</em>. La "ciencia normal" consistía en resolver flujos de potencia y ajustes de relés bajo este supuesto universal.</p>
+                                <p>• <strong>La Anomalía Contemporánea (Integración de Energías Renovables RER):</strong> Al incorporar parques solares y eólicos masivos en Ica y Moquegua acoplados mediante inversores electrónicos (electrónica de potencia estática), la red pierde inercia física rotacional ($J \rightarrow 0$). Ante una contingencia, la tasa de cambio de frecuencia ($RoCoF = df/dt$) se vuelve brutalmente rápida, los relés de subfrecuencia convencionales operan mal y el sistema roza el apagón sistémico.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas orientadoras al aula:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>¿Por qué este problema no se resuelve simplemente "midiendo más y mejor" como proponía el positivismo inductivo?</li>
+                                <li>¿Constituye la pérdida de inercia una simple "falla técnica de rutina" o representa una <strong>anomalía kuhniana</strong> que desestabiliza las bases teóricas de la ingeniería eléctrica clásica, obligando a cambiar de paradigma hacia inversores formadores de red (<em>Grid-Forming Inverters</em>)?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Despertar la conciencia de que las teorías y normas de ingeniería no son eternas; entran en crisis cuando la realidad física presenta anomalías que el paradigma vigente no puede absorber.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Desarrollo Teórico y Dialógico (60 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Método Hipotético-Deductivo (Popper) y la Estructura de las Revoluciones Científicas (Kuhn)
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. Karl Popper y la Falsación (20 min)</strong>
+                                    <p>• La asimetría lógica fundamental: Ningún número finito de verificaciones puede demostrar la verdad universal de una hipótesis ($A \rightarrow B$), pero un solo caso en contra ($B$ falso) demuestra con certeza deductiva que la hipótesis es falsa (*Modus Tollens*).
+                                    <br>• En ingeniería eléctrica: Un sistema de protección no se considera seguro porque funcionó bien durante 1,000 días de operación normal; se considera robusto únicamente si sobrevive a la <strong>prueba de falsación severa</strong> (ensayo de cortocircuito trifásico franco a tierra en barras).</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. Thomas Kuhn y los Paradigmas (20 min)</strong>
+                                    <p>• <strong>Paradigma:</strong> Conjunto articulado de compromisos teóricos, instrumentales, ontológicos y normativos que rigen a una comunidad profesional.
+                                    <br>• <strong>Ciencia Normal y "Resolución de Acertijos" (*Puzzle-Solving*):</strong> Trabajo cotidiano del ingeniero aplicando fórmulas consagradas y tablas del CNE sin cuestionar los supuestos de fondo.
+                                    <br>• <strong>Anomalía $\rightarrow$ Crisis $\rightarrow$ Revolución Científica:</strong> La emergencia de un nuevo paradigma incompatible (inconmensurable) con el anterior.</p>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. Tensión Popper vs. Kuhn (20 min)</strong>
+                                    <p>• Popper es <em>normativo</em>: enseña cómo el ingeniero *debe* actuar (ser un crítico tenaz que busca el punto débil de su diseño).
+                                    <br>• Kuhn es <em>descriptivo e histórico</em>: muestra cómo los ingenieros *realmente* actúan (se resisten a abandonar sus normas y métodos establecidos hasta que el colapso operativo o económico vuelve insostenible el paradigma vigente).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (45 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:25 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Taller de Aula: "Diseño de la Prueba de Falsación Severa de un Relé Digital de Protección"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Equipos de 3 estudiantes. Se distribuye la ficha técnica de un fabricante internacional que promociona un *Relé Digital de Distancia Multifunción (Función ANSI 21)*, afirmando: <em>"Algoritmo infalible con 100% de selectividad en la detección de fallas de impedancia en líneas de transmisión de 220 kV"</em>.
+                            </p>
+                            <p>
+                                <strong>Consigna Operativa de Cátedra:</strong>
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1 font-medium text-slate-700">
+                                <li><strong>Actitud de Ciencia Normal (Enfoque Aceptado):</strong> Los grupos identifican cómo el manual del fabricante resuelve "acertijos" rutinarios (cálculo de impedancia de secuencia positiva $Z_1 = R_1 + jX_1$, ajuste de zona 1 al 85% de la línea).</li>
+                                <li><strong>Diseño del Experimento de Falsación Popperiana:</strong> El equipo debe formular un escenario electromagnético crítico específico (ej. oscilación de potencia pendular inter-áreas tras la desconexión de una central + resistencia de falla por arco eléctrico de alto valor) diseñado intencionalmente para **intentar hacer fracasar al algoritmo y disparar indebidamente la línea**.</li>
+                                <li><strong>Formulación del Contraejemplo Deductivo:</strong> Escribir la relación lógica formal: Si la hipótesis es verdadera, el relé no debe operar ante oscilaciones estables; si dispara, la afirmación comercial queda rigurosamente **falsada**.</li>
+                            </ol>
+                            <p>
+                                <strong>Debate plenario (15 min):</strong> Dos equipos presentan su caso de falsación. El docente enfatiza: *"Un ingeniero responsable no diseña para comprobar que su máquina funciona; diseña ensayos para averiguar exactamente bajo qué condiciones colapsará"*.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre Metacognitivo y Lanzamiento del Debate con IA (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Síntesis de Cátedra y Lanzamiento de la Actividad No Lectiva Oficial
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Conclusión Epistemológica:</strong> Ni el inductivismo puro ni el apego ciego a las recetas técnicas garantizan el avance de la ingeniería. Popper nos enseña a ser cazadores de fallas mediante hipótesis audaces y pruebas implacables; Kuhn nos advierte que somos parte de una comunidad sujeta a paradigmas históricos que tarde o temprano deberán ser transformados.
+                            </p>
+                            <p>
+                                <strong>Lanzamiento en el SGA-UNAC (Moodle):</strong> Se presenta la actividad no lectiva de la Columna 4: <strong>"Debate Epistemológico con IA: ¿Puede una Inteligencia Artificial falsar hipótesis o está atrapada para siempre en la ciencia normal kuhniana?"</strong>.
+                            </p>
+                            <p>
+                                <strong>Articulación con el Hito 2 del PI:</strong> Orientaciones para incorporar el criterio de falsabilidad popperiana en el protocolo de uso responsable de IA.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 5 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico Especializado</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🧠</span> Popper, Kuhn y la Evolución Dinámica del Conocimiento en Ingeniería Eléctrica
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Sustentado en Karl Popper (<em>La lógica de la investigación científica</em>), Thomas S. Kuhn (<em>La estructura de las revoluciones científicas</em>, 2012) y C. Ulises Moulines (2006).
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: POPPER Y EL FALSACIONISMO -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. Karl Popper y la Demarcación por Falsabilidad: El Fin de la Ilusión Inductiva
+                        </h4>
+                        <p class="mb-3">
+                            En 1934, Karl Popper asestó un golpe definitivo al inductivismo del Círculo de Viena. Argumentó que ningún enunciado universal ("Todos los transformadores operan linealmente" o "Toda línea en 220 kV es estable") puede ser verificado concluyentemente por la observación empírica, ya que jamás podremos observar todos los casos pasados, presentes y futuros.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-rose-900 text-sm block mb-1">La Asimetría Lógica de la Falsación</strong>
+                                <p class="text-slate-600 mb-2">
+                                    Existe una asimetría lógica insalvable entre verificar y falsar:
+                                </p>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700 font-mono text-[11px]">
+                                    <li>Verificación: Millones de casos a favor $\rightarrow$ No demuestran la verdad absoluta de la teoría.</li>
+                                    <li>Falsación: Un solo caso reproducible en contra $\rightarrow$ Demuestra formalmente la falsedad de la teoría.</li>
+                                </ul>
+                                <p class="text-[11px] text-slate-600 mt-2">
+                                    Formalización mediante <em>Modus Tollens</em>:
+                                    <br>$$[ (H \rightarrow C) \land \neg C ] \rightarrow \neg H$$
+                                    Donde $H$ es la hipótesis de diseño y $C$ es la consecuencia observable prevista.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-blue-900 text-sm block mb-1">El Método Hipotético-Deductivo en Ingeniería</strong>
+                                <p class="text-slate-600 mb-2">
+                                    El avance técnico no surge de acumular datos pasivos, sino del ciclo continuo:
+                                </p>
+                                <ol class="list-decimal list-inside space-y-1 text-slate-700">
+                                    <li><strong>Problema:</strong> Una falla de aislamiento, una oscilación o una exigencia de potencia.</li>
+                                    <li><strong>Conjetura audaz (Hipótesis):</strong> Un nuevo modelo de compensación serie o un algoritmo adaptativo.</li>
+                                    <li><strong>Deducción lógica:</strong> Pronóstico de variables ($V, I, \delta$) ante perturbaciones.</li>
+                                    <li><strong>Contrastación severa:</strong> Ensayos extremos en laboratorio o simuladores de tiempo real (RTDS).</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: KUHN Y LOS PARADIGMAS -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. Thomas Kuhn: Paradigmas, Ciencia Normal y Revoluciones en las Redes de Energía
+                        </h4>
+                        <p class="mb-3">
+                            Frente a la visión de Popper de una ciencia en permanente revolución crítica, Thomas Kuhn demostró en 1962 que los científicos e ingenieros rara vez intentan refutar sus teorías. Por el contrario, trabajan durante décadas dentro de un marco incuestionado denominado <strong>Paradigma</strong>.
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Fase Kuhniana</th>
+                                        <th class="p-2.5">Dinámica Epistemológica</th>
+                                        <th class="p-2.5">Manifestación en Ingeniería Eléctrica</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">1. Ciencia Normal (*Puzzle-Solving*)</td>
+                                        <td class="p-2.5">La comunidad comparte un paradigma incuestionado. Se resuelven problemas rutinarios bajo reglas conocidas. Si un cálculo falla, la culpa se atribuye a la impericia del operador, jamás al modelo.</td>
+                                        <td class="p-2.5">Cálculo clásico de flujos de carga en redes de transmisión usando el algoritmo de Newton-Raphson, suponiendo que las barras son infinitas y la frecuencia es exactamente 60 Hz fija.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">2. Emergencia de Anomalías</td>
+                                        <td class="p-2.5">Hechos experimentales rebeldes que no pueden ser explicados ni absorbidos por el paradigma vigente a pesar de los esfuerzos de ajuste.</td>
+                                        <td class="p-2.5">Resonancia subsíncrona y oscilaciones inter-áreas no amortiguadas provocadas por compensadores de potencia estáticos que desconectan generadores sin que exista falla física aparente.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-rose-900 bg-rose-50/50">3. Estado de Crisis</td>
+                                        <td class="p-2.5">La proliferación de anomalías destruye la confianza de la comunidad en los métodos estándar. Surgen debates ontológicos y escuelas en pugna.</td>
+                                        <td class="p-2.5">Incapacidad de los códigos de red tradicionales para garantizar la estabilidad frente a penetraciones de renovables superiores al 40% (pérdida crítica de inercia del sistema).</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-emerald-900 bg-emerald-50/50">4. Revolución y Cambio de Paradigma</td>
+                                        <td class="p-2.5">Adopción de una nueva matriz conceptual incompatible e inconmensurable con la anterior. Nueva cosmovisión técnica.</td>
+                                        <td class="p-2.5">Transición de la red pasiva centralizada a la *Smart Grid* digital descentralizada y al paradigma de Inversores Formadores de Red (<em>Grid-Forming Inverters</em> con inercia sintética virtual).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: CONVERGENCIA POOPER-KUHN EN EL EJERCICIO PROFESIONAL -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            3. Lecciones para el Futuro Ingeniero Electricista de la UNAC
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-3 bg-white rounded border border-blue-200">
+                                <strong class="text-blue-900 block font-bold mb-1">El Mandato Popperiano: La Ética de la Falsación</strong>
+                                <p class="text-slate-600">
+                                    En ingeniería eléctrica, confiar ciegamente en una simulación o en una garantía de fábrica es una irresponsabilidad. Todo estudio de coordinación de protecciones o estabilidad transitoria debe diseñarse buscando sistemáticamente el <strong>peor escenario de falsación</strong> (contingencia $N-1$, falla trifásica en máxima demanda). Si el diseño resiste la falsación severa, se considera temporalmente confiable.
+                                </p>
+                            </div>
+                            <div class="p-3 bg-white rounded border border-purple-200">
+                                <strong class="text-purple-900 block font-bold mb-1">La Advertencia Kuhniana: Superar el Dogmatismo Profesional</strong>
+                                <p class="text-slate-600">
+                                    Las normas técnicas (CNE, IEEE, IEC) y los procedimientos del COES representan la "ciencia normal" de nuestra profesión: son útiles y necesarias para la estandarización, pero son construcciones históricas provisionales. Ante la transición energética y la inteligencia artificial, el ingeniero de la UNAC debe estar preparado para identificar cuándo el paradigma ha entrado en obsolescencia y liderar el cambio tecnológico.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: "DEBATE EPISTEMOLÓGICO CON IA" (COLUMNA 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🤖</span> Actividad: "Debate Epistemológico con IA: ¿Puede una Máquina Falsar Hipótesis o Solo Reproduce Ciencia Normal Kuhniana?"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa individual para el <strong>SGA-UNAC (Moodle)</strong>. El estudiante asume el rol de un auditor socrático que somete a un modelo de IA generativa (ChatGPT, Claude, Gemini o DeepSeek) a un interrogatorio epistemológico sobre fallas transitorias en el SEIN peruano.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DE LA ACTIVIDAD -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-purple-300 mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-700 text-white flex items-center gap-1">
+                            <span>⚡</span> Reto Asincrónico SGA-UNAC • Semana 5
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación estimada: 3 horas no lectivas</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        🔬 El Experimento del Interrogatorio Socrático a la Inteligencia Artificial
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>1. Fundamento Epistemológico del Reto:</strong></p>
+                        <p>
+                            Los Grandes Modelos de Lenguaje (LLMs) y los algoritmos predictivos son entrenados mediante aprendizaje estadístico sobre millones de textos y códigos preexistentes. Desde la filosofía de la ciencia, esto significa que la IA es el **epítome de la "ciencia normal" de Thomas Kuhn**: está programada para predecir el siguiente token más probable dentro del consenso estadístico dominante del paradigma actual. ¿Puede entonces una IA formular una hipótesis falsable al estilo de Popper o detectar una anomalía que rompa el paradigma?
+                        </p>
+
+                        <p><strong>2. Protocolo de Ejecución del Debate (3 Fases Obligatorias):</strong></p>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Fase 1: Inducción a la "Ciencia Normal" (El Problema Estándar)</strong>
+                                <p class="text-slate-600">
+                                    El estudiante ingresa a una herramienta de IA y le plantea un problema clásico de despacho o compensación en el sistema eléctrico peruano:
+                                    <br><em>Prompt sugerido: "Actúa como un ingeniero especialista en sistemas de potencia. Diseña una estrategia para regular la tensión en una barra de 220 kV en la costa peruana ante variaciones de carga usando equipos convencionales".</em>
+                                    <br>$\rightarrow$ El estudiante documenta cómo la IA responde aplicando recetas estándar del paradigma vigente (transformadores con cambiador de tomas bajo carga - LTC, bancos de condensadores o compensadores estáticos clásicos).
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Fase 2: El Ataque Popperiano (La Prueba de Falsación Severa)</strong>
+                                <p class="text-slate-600">
+                                    El estudiante confronta a la IA introduciendo una <strong>anomalía disruptiva</strong> que desafíe los supuestos de su respuesta anterior:
+                                    <br><em>Prompt de ataque: "¿Qué ocurre con tu solución si la barra se conecta repentinamente a un parque solar de 300 MW con inversores sin inercia y se produce una falla monofásica a tierra con resonancia armónica en el 5° armónico? Demuestra si tu diseño anterior no colapsa en una condición de sobretensión destructiva".</em>
+                                    <br>$\rightarrow$ El estudiante evalúa críticamente: ¿Reconoció la IA los límites de su modelo previo (falsabilidad) o intentó justificar una solución inválida mediante alucinaciones estadísticas?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-purple-900 block font-bold mb-1">Fase 3: El Veredicto Epistemológico del Estudiante (Dictamen Analítico)</strong>
+                                <p class="text-slate-600">
+                                    El estudiante redacta un informe analítico respondiendo:
+                                    <br>a) ¿Operó la IA como un científico normal kuhniano o demostró capacidad de pensamiento crítico popperiano?
+                                    <br>b) ¿Por qué delegar el diseño de contingencias críticas de la red a una IA sin supervisión humana viola el principio de contrastación empírica?
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Formato y Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                            <li><strong>Entregable:</strong> Documento estructurado en formato PDF de 2 a 3 páginas con captura/transcripción del diálogo con la IA y análisis crítico.</li>
+                            <li><strong>Plataforma:</strong> Aula virtual SGA-UNAC (Moodle) en la sección "Tareas Semana 5".</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>Apellido_Nombre_Semana5_DebateEpistemologicoIA.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas antes del inicio de la Sesión Lectiva 6.</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-4 pt-3 border-t border-purple-200">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Diseño del Prompt y Caso (5 pts)</strong>
+                                <span class="text-slate-600">Formula un problema eléctrico peruano riguroso con parámetros técnicos cuantitativos ($V, P, Q, f$).</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-purple-900 block mb-0.5">Estrategia de Falsación (5 pts)</strong>
+                                <span class="text-slate-600">Aplica con solvencia el criterio de Popper, introduciendo una anomalía electromagnética capaz de poner a prueba el modelo.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-amber-900 block mb-0.5">Auditoría Crítica de la IA (5 pts)</strong>
+                                <span class="text-slate-600">Identifica con precisión si la respuesta de la IA constituye ciencia normal, alucinación probabilística o deducción válida.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-emerald-900 block mb-0.5">Conclusión Epistemológica (5 pts)</strong>
+                                <span class="text-slate-600">Articula los conceptos de Kuhn y Popper con la responsabilidad ética profesional del ingeniero colegiado del CIP.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: AVANCE DEL PRODUCTO INTEGRADOR EN UNIDAD II (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u2" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Hito de la Unidad de Aprendizaje II</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🗺️</span> Producto Integrador Unidad II: "Mapa Epistemológico de un Problema de Ingeniería Eléctrica"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Hacia el cierre de la Unidad II (Semana 6), los equipos presentarán el <strong>Hito 2 del Protocolo para el uso responsable de IA</strong>. En esta Semana 5 se debe integrar la directriz epistemológica decisiva: la **Matriz de Falsabilidad y Prueba de Esfuerzo (*Stress-Testing*)**.
+                    </p>
+                </div>
+
+                <!-- LA CONEXIÓN EPISTÉMICA SEMANA 5 CON LA IA -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-amber-500 mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">💡 La Exigencia Popperiana para el Protocolo del PI:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Apartado 4 del Protocolo: Verificación de Resultados</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        Un protocolo de ingeniería no puede limitarse a decir: *"Verificaremos el resultado revisando que el error cuadrático sea bajo ($RMSE < 0.05$)"*. Eso es mero verificacionismo inductivo. Para que el protocolo sea confiable, debe incorporar la regla de **Falsación de Popper**:
+                    </p>
+                    <div class="p-3 bg-slate-800 rounded border border-slate-700 font-mono text-[11px] text-amber-200 space-y-1">
+                        <p>• <strong>Regla de Rechazo Automático por Violación Física:</strong> Todo algoritmo de IA debe estar subordinado a un filtro computacional inquebrantable basado en las leyes de conservación de Kirchhoff y límites térmicos de conductores. Si el modelo predice un flujo de potencia con tensiones fuera del rango normativo de la NTCSE ($0.95 \le V_{pu} \le 1.05$) o rendimientos mayores al 100%, la salida de la IA queda formalmente **falsada y bloqueada** de manera automática.</p>
+                        <p>• <strong>Ensayos de Esfuerzo (Contingencia N-1):</strong> El equipo debe especificar al menos dos condiciones meteorológicas o electromagnéticas anómalas no presentes en el dataset histórico con las cuales se pondrá a prueba la robustez del modelo algorítmico.</p>
+                    </div>
+                </div>
+
+                <!-- TAREAS DE AVANCE SEMANA 5 PARA LOS EQUIPOS -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                        <span>📋</span> Tareas de Avance Semanal para el Equipo de Trabajo (Hito 2 en Desarrollo)
+                    </h4>
+                    <p class="text-slate-700 leading-relaxed">
+                        Durante esta semana, cada grupo de 3 integrantes debe redactar y anexar en su portafolio colaborativo:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-1.5">
+                            <strong class="text-indigo-900 block font-bold">1. La Matriz de Contrastación del Algoritmo:</strong>
+                            <p class="text-slate-600">Definir qué ensayos computacionales (simulaciones in silico en software como OpenDSS, PowerFactory o MATLAB) se emplearán como banco de pruebas de falsación antes de que la IA sea autorizada para operar en la red.</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-1.5">
+                            <strong class="text-indigo-900 block font-bold">2. Análisis de Anomalías Kuhnianas en el Problema:</strong>
+                            <p class="text-slate-600">Describir qué anomalía del sistema eléctrico peruano (ej. calentamiento solar extremo en el sur, salinidad y corrosión marina en el Callao, armónicos producidos por hornos de inducción) podría inducir a la IA a cometer errores sistemáticos.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 5 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] K. R. Popper, <em>La Lógica de la Investigación Científica</em>, 2.ª ed. Madrid, España: Editorial Tecnos, 1980.
+                    </p>
+                    <p>
+                        [2] T. S. Kuhn, <em>La Estructura de las Revoluciones Científicas</em>, 4.ª ed. México D.F., México: Fondo de Cultura Económica, 2012.
+                    </p>
+                    <p>
+                        [3] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [4] C. U. Moulines, <em>El Desarrollo Moderno de la Filosofía de la Ciencia (1890-2000)</em>, 1.ª ed. México D.F., México: Instituto de Investigaciones Filosóficas, Universidad Nacional Autónoma de México, 2006.
+                    </p>
+                    <p>
+                        [5] J. A. Schumpeter y H. Andersen, "Kuhn's Philosophy of Science," en <em>The Stanford Encyclopedia of Philosophy</em>, E. N. Zalta y U. Nodelman, Eds., Stanford University, 2024. [En línea]. Disponible en: <span class="text-blue-600 underline">https://plato.stanford.edu/entries/thomas-kuhn/</span>
+                    </p>
+                    <p>
+                        [6] IEEE, <em>IEEE Guide for Protective Relay Applications to Power Transformers</em>, IEEE Std C37.91-2021, Piscataway, NJ, EE. UU., 2021. doi: 10.1109/IEEESTD.2021.9447333.
+                    </p>
+                    <p>
+                        [7] Comité de Operación Económica del Sistema Interconectado Nacional (COES-Perú), <em>Procedimiento Técnico PR-20: Criterios y Metodología para la Evaluación de la Seguridad Operativa del SEIN</em>, Lima, Perú, 2022.
+                    </p>
+                    <p>
+                        [8] UNESCO, "Recommendation on Science and Scientific Researchers," United Nations Educational, Scientific and Cultural Organization, París, Francia, Res. 39 C/85, 2017.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
