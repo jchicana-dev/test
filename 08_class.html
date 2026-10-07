@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 8 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            purple: '#7C3AED',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 8:</span>
+                <span class="text-slate-200">Unidad III • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 8 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📐 Modelo, Simulación, Experimento y Realidad
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📑 Validación de un Modelo (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-u3')" id="tab-sec-pi-u3" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🚀 Avance PI Unidad III: Validación de IA (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 8 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Unidad de Aprendizaje III • Sesión 8: Epistemología del Diseño e Instrumentación
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 8: Diseño, modelos y experimentación en ingeniería eléctrica
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-purple-100 text-purple-900 border border-purple-300">
+                    Foco: Modelo vs. Simulación vs. Experimento vs. Realidad
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 8 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista alineada al Modelo Educativo UNAC (Res. CU N° 318-2024-CU). Tras examinar la tipología de saberes en la Semana 7, los estudiantes de tercer ciclo exploran la anatomía del diseño como forma autónoma de producir conocimiento, discriminando con rigor epistemológico entre el modelo teórico, la simulación computacional (*in silico*), el experimento controlado y la realidad física en operación continua.
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo Real (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            La Catástrofe de la Ferroresonancia Inadvertida: Cuando la Simulación Aprueba y el Transformador Estalla
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Presentación del caso por el docente:</strong> El profesor proyecta dos pantallas simultáneas de una subestación elevadora de 220 kV conectada a un parque de generación en la costa central peruana:
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>Pantalla A (El Reporte de Simulación del Software de Potencia):</strong> Un estudio computacional de transitorios electromagnéticos modeló la energización en vacío de un tramo de cable subterráneo aislado de $12\text{ km}$ conectado a un transformador de tensión inductivo (TT). El software arrojó convergencia numérica perfecta: tensiones senoidales limpias dentro del rango normativo ($1.02\text{ p.u.}$) y factor de distorsión armónica menor al $1.5\%$. El informe técnico concluía: <em>"Maniobra computacionalmente validada y segura"</em>.</p>
+                                <p>• <strong>Pantalla B (El Registro Oscilográfico del Incidente Real):</strong> Al realizar la maniobra física real en campo a las 11:40 h, la capacitancia del cable interactuó de forma no lineal con la saturación ferromagnética del núcleo del transformador de tensión. Se desató un fenómeno de **ferroresonancia subarmónica** caótica; la tensión de fase escaló instantáneamente a $3.4\text{ p.u.}$, la corriente de excitación se multiplicó por 40 y el transformador de medición estalló en llamas proyectando restos de porcelana y aceite a 25 metros de distancia.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas socráticas al plenario:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>¿Por qué el software de simulación no detectó el fenómeno a pesar de que resolvió con precisión de diez decimales las ecuaciones matemáticas que se le suministraron?</li>
+                                <li>¿En qué momento confundió el ingeniero diseñador **la convergencia matemática del algoritmo** con **la validez física del modelo**?</li>
+                                <li>¿Qué supuestos simplificadores (por ejemplo, modelar la inductancia del núcleo magnético como constante lineal $L$ o despreciar la curva de histéresis no lineal profunda $B-H$) transformaron una simulación "exitosa" en un desastre material y operativo?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Despertar en los estudiantes de tercer ciclo el principio de alerta epistemológica: *el mapa no es el territorio; el código computacional calcula exactamente lo que se le programa, no lo que físicamente ocurre cuando se violan las fronteras del modelo*.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Estructuración y Marco Dialógico (55 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:20</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Diseño Ingenieril como Producción de Conocimiento y la Cuádruple Frontera Ontológica
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <p>
+                                El docente desarrolla en pizarra la jerarquía epistemológica que diferencia cuatro entidades fundamentales que los estudiantes frecuentemente confunden en su formación temprana:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-2.5">
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. Modelo</strong>
+                                    <p class="text-slate-600">Construcción mental y formal que aísla deliberadamente variables clave (ej. circuito equivalente $\pi$ con parámetros concentrados $R, L, C$). Es siempre una simplificación intencional de la naturaleza.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. Simulación</strong>
+                                    <p class="text-slate-600">Experimento numérico *in silico* que calcula la evolución temporal o frecuencial del modelo mediante algoritmos discretos (ej. integración trapezoidal en EMTP/ATP). Depende de la precisión del solver.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. Experimento</strong>
+                                    <p class="text-slate-600">Interacción física intencional y controlada en banco de pruebas o laboratorio (ej. inyección de corriente secundaria a un relé con maleta Omicron certificada con trazabilidad metrológica).</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">4. Realidad</strong>
+                                    <p class="text-slate-600">La infraestructura instalada operando en el entorno físico complejo (red eléctrica sujeta a brisa marina corrosiva, sismos, temperatura no homogénea y maniobras humanas impredecibles).</p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 mt-2 space-y-1.5">
+                                <strong class="text-slate-900 font-bold block text-xs">La Doble Dimensión de la Calidad del Conocimiento (V&V según IEEE Std 1012):</strong>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] pt-1">
+                                    <div class="bg-white p-2 rounded border border-slate-200">
+                                        <strong class="text-indigo-900 block font-bold">Verificación (*Verification*):</strong>
+                                        <span class="text-slate-600">"¿Estamos resolviendo las ecuaciones correctamente?" Asegura la consistencia lógica y matemática del software, ausencia de errores de redondeo o inestabilidades numéricas del paso de integración $\Delta t$.</span>
+                                    </div>
+                                    <div class="bg-white p-2 rounded border border-slate-200">
+                                        <strong class="text-emerald-900 block font-bold">Validación (*Validation*):</strong>
+                                        <span class="text-slate-600">"¿Estamos resolviendo las ecuaciones correctas para el problema real?" Contrasta los resultados del modelo contra mediciones físicas instrumentales reales bajo condiciones operativas de frontera.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (50 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:20 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Taller de Casuística: "Validación Cruzada del Modelo Térmico de Alimentadores Subterráneos en el Callao"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Equipos de 3 estudiantes (mismos grupos del Producto Integrador). Se les entrega una ficha técnica con un problema real de distribución en media tensión:
+                            </p>
+                            <p>
+                                <strong>El Escenario del Taller:</strong> Una terna subterránea de cable seco tipo N2XSY de $3\times 240\text{ mm}^2$ (10 kV) alimenta una planta congeladora en la zona industrial de Ventanilla.
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5 font-medium text-slate-700">
+                                <li><strong>El Modelo Ideal del Catálogo (Norma IEC 60287):</strong> El software de diseño calculó una capacidad de conducción (ampacidad) de $465\text{ A}$ bajo el supuesto estándar de temperatura ambiente del terreno de $20^\circ\text{C}$ y resistividad térmica del suelo de $1.0\text{ K}\cdot\text{m/W}$. El alimentador opera a $390\text{ A}$ (supuestamente al $84\%$ de su carga admisible).</li>
+                                <li><strong>La Revelación Metrológica Experimental:</strong> Mediciones mediante sensores de fibra óptica distribuida (DTS) y termografía en buzones registran que la temperatura del aislamiento alcanza $94^\circ\text{C}$ (el límite máximo para polietileno reticulado XLPE es $90^\circ\text{C}$, con riesgo inminente de perforación dieléctrica y cortocircuito).</li>
+                                <li><strong>Consigna para los Equipos:</strong> Deconstruir por qué falló el modelo inicial. Identificar variables de la realidad no modeladas (suelo arenoso seco con salitre de resistividad $2.5\text{ K}\cdot\text{m/W}$, adyacencia de una tubería de vapor no señalizada en planos, y pérdidas dieléctricas por armónicos). Proponer una matriz de **calibración y validación experimental del modelo** para reajustar los factores de corrección de ampacidad.</li>
+                            </ol>
+                            <p>
+                                <strong>Sustentación relámpago (15 min):</strong> Dos equipos exponen su propuesta de validación del modelo y defienden su dictamen ante los cuestionamientos socráticos del aula y del docente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre Metacognitivo y Lanzamiento del Informe (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Síntesis Epistemológica y Directrices para la Actividad No Lectiva
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Conclusión Epistemológica de Cátedra:</strong> Todo modelo en ingeniería eléctrica es una simplificación necesaria para hacer los problemas computacionalmente tratables. Sin embargo, un modelo no validado empíricamente contra datos físicos trazables es una conjetura teórica sin valor operativo. La responsabilidad del ingeniero de la UNAC radica en conocer exactamente **dónde termina la validez del modelo y dónde comienza el riesgo del sistema real**.
+                            </p>
+                            <p>
+                                <strong>Lanzamiento en el SGA-UNAC (Moodle):</strong> Se publican las bases para la entrega no lectiva de la Columna 4: <strong>"Informe breve de validación de un modelo"</strong> y se dan las directrices para articular la validación de simulaciones dentro del Hito 3 del Producto Integrador (PI).
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 8 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico Especializado</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📐</span> La Estructura del Diseño y la Validación de Modelos en Ingeniería Eléctrica
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Sustentado en Walter Vincenti (1990), Mario Bunge (2009), Roman Frigg & Stephan Hartmann (2024) y estándares de verificación y validación IEEE Std 1012.
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: EL DISEÑO COMO GENERACIÓN DE CONOCIMIENTO -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. El Diseño Ingenieril como Producción Epistemológica Autónoma
+                        </h4>
+                        <p class="mb-3">
+                            En la epistemología tradicional de la ciencia pura, el conocimiento se genera descubriendo leyes o verdades de lo preexistente. En contraste, como demostró <strong>Walter Vincenti</strong>, el **diseño ingenieril** constituye una forma autónoma y diferenciada de producción de conocimiento:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-blue-900 text-sm block mb-1">El Proceso de Síntesis bajo Restricciones</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Naturaleza prescriptiva:</strong> El diseño no dice <em>cómo es</em> el mundo, sino <em>cómo debe configurarse</em> un artefacto para operar con seguridad, rendimiento y costo aceptables.</li>
+                                    <li><strong>Generación iterativa de conocimiento:</strong> Al diseñar un transformador o una subestación GIS, el ingeniero genera conocimiento procedimental, tablas de compromiso y heurísticas que no existían previamente en la física teórica.</li>
+                                    <li><strong>Coexistencia con la incertidumbre:</strong> El diseño avanza aun cuando los fenómenos físicos exactos (como la turbulencia del plasma del arco en interruptores) no tengan soluciones analíticas cerradas.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-emerald-900 text-sm block mb-1">La Anatomía del Problema de Diseño</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Requisitos funcionales:</strong> Potencia a transmitir, nivel de tensión nominal, tiempo de despeje de fallas ($< 100\text{ ms}$).</li>
+                                    <li><strong>Restricciones no negociables:</strong> Normativas (CNE, NTCSE), espacio físico disponible, presupuesto de inversión y límites de impacto ambiental.</li>
+                                    <li><strong>Juicio heurístico:</strong> La selección ponderada de la mejor solución entre alternativas mutuamente excluyentes (*trade-offs*).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: MODELOS, SIMULACIONES Y REALIDAD -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. La Jerarquía Ontológica Cuádruple en Sistemas Eléctricos de Potencia
+                        </h4>
+                        <p class="mb-3">
+                            Para evitar errores de diagnóstico o fallas operativas graves, el ingeniero electricista debe tener plena claridad sobre las diferencias categoriales entre las cuatro dimensiones de la práctica técnica:
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Nivel Epistémico</th>
+                                        <th class="p-2.5">Estatuto Ontológico</th>
+                                        <th class="p-2.5">Operación en Ingeniería Eléctrica</th>
+                                        <th class="p-2.5">Límite o Falacia Común</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">1. Modelo</td>
+                                        <td class="p-2.5">Abstracción matemática selectiva.</td>
+                                        <td class="p-2.5">Circuito equivalente de parámetros concentrados $R-L-C$, modelo de línea de transmisión $\pi$ nominal, ecuaciones fasoriales de generador síncrono.</td>
+                                        <td class="p-2.5"><em>Reduccionismo ontológico:</em> Creer que el circuito equivalente contiene toda la física del fenómeno e ignorar efectos térmicos o parásitos de alta frecuencia.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-indigo-900 bg-indigo-50/50">2. Simulación</td>
+                                        <td class="p-2.5">Experimento numérico *in silico*.</td>
+                                        <td class="p-2.5">Resolución iterativa por integración numérica en software (OpenDSS, PowerFactory, MATLAB/Simulink, ATP/EMTP).</td>
+                                        <td class="p-2.5"><em>Dogmatismo computacional:</em> Confundir la convergencia matemática del solver numérico ($\text{Error} < 10^{-6}$) con la fidelidad física del modelo frente al mundo real.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">3. Experimento</td>
+                                        <td class="p-2.5">Interacción física controlada y medible.</td>
+                                        <td class="p-2.5">Ensayos en laboratorio o patio de llaves: prueba de vacío y cortocircuito a transformadores, inyección de corriente secundaria a relés de protección.</td>
+                                        <td class="p-2.5"><em>Aislamiento artificial:</em> Suponer que los resultados obtenidos a $20^\circ\text{C}$ en laboratorio se mantendrán inalterables bajo radiación solar, humedad y vibraciones de campo.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-emerald-900 bg-emerald-50/50">4. Realidad</td>
+                                        <td class="p-2.5">El sistema físico instalado en operación.</td>
+                                        <td class="p-2.5">Red de distribución y transmisión interconectada (SEIN) sometida a fluctuaciones de carga, fallas atmosféricas, armónicos y degradación temporal.</td>
+                                        <td class="p-2.5"><em>Incertidumbre irreductible:</em> La realidad física siempre presenta contingencias que escapan al modelo más sofisticado; por ello se requieren márgenes normados de seguridad.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: LA METODOLOGÍA DE VALIDACIÓN BASADA EN EVIDENCIA -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            3. El Protocolo de Validación de Modelos Basado en Evidencia (V&V)
+                        </h4>
+                        <p class="mb-3">
+                            La toma de decisiones en ingeniería exige un puente metodológico estricto entre el modelo computacional y la realidad observable. Este proceso se articula en cuatro etapas interconectadas:
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 text-[11px]">
+                            <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Paso 1: Delimitación de Supuestos</strong>
+                                <span class="text-slate-600">Hacer explícitas todas las simplificaciones asumidas: linealidad, régimen permanente, temperatura constante, simetría trifásica, tierra ideal de impedancia nula.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Paso 2: Verificación Numérica</strong>
+                                <span class="text-slate-600">Comprobar que el software no introduce distorsiones por paso de cálculo ($\Delta t$), que las matrices son estables y que se satisfacen las leyes de Kirchhoff en cada nodo.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Paso 3: Contrastación Experimental</strong>
+                                <span class="text-slate-600">Comparar cuantitativamente las predicciones de la simulación con datos metrológicos reales registrados en campo (sensores SCADA, oscilogramas o analizadores clase A).</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Paso 4: Calibración y Dictamen</strong>
+                                <span class="text-slate-600">Ajustar los parámetros del modelo hasta acotar la discrepancia dentro del margen de tolerancia normado, o dictaminar el rechazo del modelo si viola principios físicos.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: INFORME BREVE DE VALIDACIÓN (COL. 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📑</span> Actividad: "Informe Breve de Validación de un Modelo: Auditoría del Sistema de Puesta a Tierra ante Transitorios"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa individual o en parejas para el <strong>SGA-UNAC (Moodle)</strong>. El estudiante debe ponerse en el rol de un ingeniero auditor de peritaje y elaborar un informe técnico de validación epistemológica, confrontando un modelo computacional estandarizado frente a datos experimentales reales capturados en el Sistema Eléctrico Interconectado Nacional.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DEL INFORME DE VALIDACIÓN -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>📋</span> Expediente de Validación Pericial FIEE-SEMANA-8
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ El Caso de Auditoría: "La Falla del Modelo Estático de Puesta a Tierra en la Subestación Ventanilla ante Descargas Atmosféricas"
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>1. El Contexto Técnico del Expediente:</strong></p>
+                        <p>
+                            Durante el diseño de la ampliación de una subestación de maniobra de 60 kV en la zona de Ventanilla (Callao), la empresa consultora utilizó un software comercial de cálculo de mallas de puesta a tierra basado en las fórmulas clásicas de la norma **IEEE Std 80**.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-1">
+                                <strong class="text-blue-900 block font-bold">El Modelo y la Simulación Teórica:</strong>
+                                <p class="text-slate-600">
+                                    El software modeló el terreno como un suelo homogéneo estático con resistividad de $35\ \Omega\cdot\text{m}$ y calculó una resistencia de puesta a tierra a frecuencia industrial ($60\text{ Hz}$) de $R = 2.1\ \Omega$, con tensiones de paso y contacto de $180\text{ V}$ y $290\text{ V}$ respectivamente (dentro de los límites de seguridad de la norma). El expediente dio el diseño por formalmente "aprobado".
+                                </p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-1">
+                                <strong class="text-rose-900 block font-bold">La Evidencia Experimental de Campo:</strong>
+                                <p class="text-slate-600">
+                                    Tras la caída de un rayo de $25\text{ kA}$ con frente de onda escarpado ($1.2/50\ \mu\text{s}$), se produjo una perforación destructiva de las tarjetas electrónicas del sistema SCADA en la sala de control. Los ensayos de impulso posteriores revelaron que a alta frecuencia, la reactancia inductiva de los conductores de la malla elevó la **impedancia de impulso ($Z_{\text{impulso}}$)** a más de $18.5\ \Omega$, multiplicando por ocho la elevación de potencial del suelo (GPR).
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>2. Las Cuatro Secciones Obligatorias del Informe Breve de Validación:</strong></p>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Sección 1: Deconstrucción Epistemológica del Modelo (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Identificar y explicar los supuestos simplificadores del modelo de la norma IEEE Std 80 empleado en el diseño. ¿Por qué tratar a la malla de tierra como una resistencia puramente disipativa a 60 Hz es una abstracción válida para fallas a frecuencia industrial, pero un modelo epistemológicamente ciego e inválido ante transitorios rápidos de rayos?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Sección 2: Discriminación entre Verificación y Validación (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Explicar formalmente por qué el software de simulación estuvo **verificado** (las ecuaciones de Schwarz se resolvieron sin errores numéricos de cálculo), pero el modelo **no estuvo validado** para las condiciones electromagnéticas reales del régimen impulsivo transitorio.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Sección 3: Protocolo Experimental de Validación Cruzada (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Diseñar una propuesta metodológica para calibrar el modelo: ¿Qué mediciones experimentales en campo (ensayos de inyección de impulsos de corriente de alta frecuencia según IEEE Std 81) e instrumentación trazable se debieron contrastar con la simulación antes de energizar la subestación?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Sección 4: Dictamen Pericial Colegiado de Toma de Decisiones (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Redactar la resolución técnica y ética (200 palabras) como futuro ingeniero electricista colegiado de la UNAC: ¿Qué modificaciones de diseño deben ordenarse (electrodos profundos, descargadores de sobretensión tipo 1 coordinados, blindaje equipotencial) y por qué un ingeniero jamás puede eludir su responsabilidad legal amparándose en que *"el software dio OK"*?
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Formato y Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                            <li><strong>Entregable:</strong> Informe técnico estructurado en formato PDF de 2 a 3 páginas (Plantilla oficial SGA-UNAC).</li>
+                            <li><strong>Plataforma:</strong> Aula virtual SGA-UNAC (Moodle) en la sección "Tareas Semana 8: Informe de Validación de un Modelo".</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>Apellido_Nombre_Semana8_ValidacionModelo.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas antes del inicio de la Sesión Lectiva 9.</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-4 pt-3 border-t border-unac-blue/30">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Supuestos del Modelo (5 pts)</strong>
+                                <span class="text-slate-600">Identifica con rigor físico y matemático los límites del modelo estático a 60 Hz frente a transitorios.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-indigo-900 block mb-0.5">Diferenciación V&V (5 pts)</strong>
+                                <span class="text-slate-600">Distingue con solvencia teórica entre la verificación del código del software y la validación física del modelo.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-amber-900 block mb-0.5">Protocolo Experimental (5 pts)</strong>
+                                <span class="text-slate-600">Propone un protocolo metrológico estructurado basado en la norma IEEE Std 81 para contrastar la simulación.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-emerald-900 block mb-0.5">Dictamen y Ética CIP (5 pts)</strong>
+                                <span class="text-slate-600">Formula recomendaciones correctivas sólidas fundamentando la responsabilidad ética del ingeniero firmante.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: AVANCE DEL PRODUCTO INTEGRADOR EN UNIDAD III (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u3" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Hito de la Unidad de Aprendizaje III</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🚀</span> Hito 3 del Producto Integrador: Protocolo de Validación Físico-Estadística de Modelos de IA
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        A lo largo de la Unidad III, los equipos avanzan hacia la consolidación del **Hito 3** del <em>Protocolo para el uso responsable de IA en ingeniería eléctrica</em>. En esta Semana 8 se incorpora la directriz epistemológica clave: **La validación cruzada entre modelos de aprendizaje automático (*machine learning*) y la física del sistema eléctrico**.
+                    </p>
+                </div>
+
+                <!-- LA TENSIÓN EPISTÉMICA SEMANA 8 CON LA IA -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-amber-500 mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">💡 La Tensión Epistemológica Central de la Semana 8:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Apartados 4, 6 y 7 del Protocolo</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        Un modelo de IA generativa o una red neuronal profunda es, desde el punto de vista ontológico, un **meta-modelo puramente estadístico**: no conoce ecuaciones diferenciales, ni la ley de conservación de la energía, ni los límites térmicos del cobre. Su entrenamiento consiste únicamente en optimizar una función de pérdida matemática (*loss function*):
+                    </p>
+                    <div class="p-3 bg-slate-800 rounded border border-slate-700 font-mono text-[11px] text-amber-200 space-y-1">
+                        <p>• <strong>La Falsa Verificación por Pérdida Cuadrática:</strong> Un modelo de predicción de despacho o diagnóstico de transformadores puede mostrar un coeficiente de determinación sobresaliente ($R^2 = 0.995$) en el conjunto de prueba computacional (*test set*), pero al ser puesto en operación en tiempo real en una subestación del SEIN, puede sugerir consignas que provocarían colapso por inestabilidad de tensión.</p>
+                        <p>• <strong>El Principio de Validación Físico-Estadística:</strong> En ingeniería eléctrica, una simulación o recomendación de IA **jamás se considera validada por métricas puramente matemáticas** (como MSE o $R^2$). Su validación exige someter los resultados a un motor de consistencia física (*Physics-Informed Consistency Engine*) que verifique las Leyes de Kirchhoff y las normas de calidad NTCSE antes de cualquier acción operativa.</p>
+                    </div>
+                </div>
+
+                <!-- TAREAS DE AVANCE SEMANA 8 PARA LOS EQUIPOS -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                            <span>📋</span> Directrices para el Portafolio del Producto Integrador (Hito 3 en Consolidación)
+                        </h4>
+                        <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-indigo-200 text-indigo-900">Entrega Hito 3: Semana 9</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed">
+                        Durante esta semana, los equipos deben redactar y formalizar en su portafolio colaborativo:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">1. La Matriz de Validación del Modelo de IA</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Especificar cómo se valida el modelo algorítmico elegido frente a datos empíricos:
+                            </p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li>Qué porcentaje de datos corresponde a condiciones anómalas o fallas críticas del sistema eléctrico peruano.</li>
+                                <li>Cómo se distingue entre un error del modelo matemático y un error proveniente del sensor instrumental de campo.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">2. El Diagrama de Decisión Humana (*Human-in-the-Loop*)</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Diagramar el flujo de control donde se establece la frontera inviolable:
+                            </p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li>En qué paso del algoritmo se bloquea la ejecución automática y se exige la firma digital o autorización manual del ingeniero de guardia colegiado del CIP.</li>
+                                <li>Qué prueba experimental o de simulación de respaldo debe correr el ingeniero antes de aceptar la recomendación del algoritmo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHECKLIST DE AUTOEVALUACIÓN -->
+                <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <span class="font-bold text-slate-800 block mb-2">Checklist de Control Epistemológico de la Semana 8:</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[10px]">
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-1">1. Frontera Modelo-Realidad</strong>
+                            <span>Diferencia con precisión entre la abstracción conceptual del modelo, el cálculo de la simulación y la realidad física.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-indigo-900 block mb-1">2. Protocolo V&V</strong>
+                            <span>Aplica las definiciones de verificación y validación conforme a los estándares de ingeniería eléctrica (IEEE).</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-emerald-900 block mb-1">3. Criterio de Salvaguarda</strong>
+                            <span>Subordina los resultados algorítmicos a la comprobación de principios físicos y la responsabilidad ética profesional.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 8 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] W. G. Vincenti, <em>What Engineers Know and How They Know It: Analytical Studies from Aeronautical History</em>, Baltimore, MD, EE. UU.: The Johns Hopkins University Press, 1990.
+                    </p>
+                    <p>
+                        [2] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [3] R. Frigg y S. Hartmann, "Models in Science," en <em>The Stanford Encyclopedia of Philosophy</em>, E. N. Zalta y U. Nodelman, Eds., Stanford University, 2024. [En línea]. Disponible en: <span class="text-blue-600 underline">https://plato.stanford.edu/entries/models-science/</span>
+                    </p>
+                    <p>
+                        [4] National Academy of Engineering, <em>The Engineer of 2020: Visions of Engineering in the New Century</em>, Washington, D.C., EE. UU.: The National Academies Press, 2004. doi: 10.17226/10999.
+                    </p>
+                    <p>
+                        [5] IEEE, <em>IEEE Standard for System, Software, and Hardware Verification and Validation</em>, IEEE Std 1012-2016, Piscataway, NJ, EE. UU., 2017. doi: 10.1109/IEEESTD.2017.8055462.
+                    </p>
+                    <p>
+                        [6] IEEE, <em>IEEE Guide for Safety in AC Substation Grounding</em>, IEEE Std 80-2013, Piscataway, NJ, EE. UU., 2015. doi: 10.1109/IEEESTD.2015.7109000.
+                    </p>
+                    <p>
+                        [7] IEEE, <em>IEEE Guide for Measuring Earth Resistivity, Ground Impedance, and Earth Surface Potentials of a Grounding System</em>, IEEE Std 81-2012, Piscataway, NJ, EE. UU., 2012. doi: 10.1109/IEEESTD.2012.6398078.
+                    </p>
+                    <p>
+                        [8] International Electrotechnical Commission, <em>Electric cables - Calculation of the current rating - Part 1-1: Current rating equations (100 % load factor) and calculation of losses - General</em>, IEC Std 60287-1-1:2023, Ginebra, Suiza, 2023.
+                    </p>
+                    <p>
+                        [9] Comité de Operación Económica del Sistema Interconectado Nacional (COES-Perú), <em>Procedimiento Técnico PR-20: Criterios y Metodología para la Evaluación de la Seguridad Operativa del SEIN</em>, Lima, Perú, 2022.
+                    </p>
+                    <p>
+                        [10] Colegio de Ingenieros del Perú, <em>Código Deontológico del Colegio de Ingenieros del Perú</em>, Consejo Nacional del CIP, Lima, Perú, 2019.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

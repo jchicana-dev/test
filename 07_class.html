@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 7 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            purple: '#7C3AED',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 7:</span>
+                <span class="text-slate-200">Apertura Unidad III • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 7 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🧠 Los 4 Saberes Ingenieriles
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    ⚖️ Actividad: "Ciencia o Ingeniería" (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-u3')" id="tab-sec-pi-u3" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🚀 Avance PI Unidad III: Human-in-the-Loop (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 7 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Apertura • Unidad de Aprendizaje III: El conocimiento y el quehacer profesional del ingeniero eléctrico
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 7: ¿Qué conocimiento utiliza un ingeniero eléctrico?
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-blue-100 text-blue-900 border border-blue-300">
+                    Foco: Orientación a Problemas, Restricciones y Decisiones
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 7 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista alineada al Modelo Educativo UNAC (Res. CU N° 318-2024-CU). Tras examinar las corrientes de la ciencia en la Unidad II, los estudiantes descubren la especificidad de los saberes que moviliza el ingeniero electricista en ejercicio: la confluencia entre leyes científicas, herramientas tecnológicas, técnicas de taller y heurísticas prácticas para resolver problemas bajo restricciones no negociables.
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo Real (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Dilema de la Subestación del Megapuerto de Chancay: ¿Física Teórica, Rutina de Taller o Juicio de Diseño?
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Presentación del caso por el docente:</strong> Se proyecta el esquema unifilar y las condiciones ambientales extremas de la nueva subestación de 220/22.9 kV construida para el complejo portuario de Chancay (situada a escasos 150 metros del océano Pacífico, sujeta a niebla marina salina constante y sismicidad severa).
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>La Postura del Físico Teórico:</strong> Plantea modelar exhaustivamente mediante dinámica de fluidos y ecuaciones de Maxwell la deposición iónica de cloruro de sodio sobre la superficie de los aisladores poliméricos, proponiendo un cálculo de campo electrostático diferencial punto a punto para predecir la descarga disruptiva.</p>
+                                <p>• <strong>La Postura del Técnico Liniero Empírico:</strong> Recomienda instalar aisladores cerámicos sobredimensionados convencionales y lavarlos manualmente con chorro de agua desmineralizada cada 15 días: <em>"Así lo hacemos desde hace 30 años en las líneas de la costa de Huacho y nunca ha fallado"</em>.</p>
+                                <p>• <strong>La Realidad Operativa del Proyecto:</strong> El consorcio operador exige 99.99% de disponibilidad continua (un corte interrumpe grúas pórtico automatizadas generando penalidades de 100,000 USD/hora), el espacio físico disponible es sumamente reducido y el presupuesto financiero tiene un tope fijado por contrato.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas socráticas al plenario:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>¿Por qué la solución del físico, siendo matemáticamente exacta, es inaplicable en la práctica inmediata de un proyecto de ingeniería?</li>
+                                <li>¿Por qué la propuesta del técnico empírico es inaceptable para una infraestructura de clase mundial del siglo XXI?</li>
+                                <li>¿Qué tipo de conocimiento específico debe movilizar el **ingeniero electricista colegiado** para dirimir esta disyuntiva entre tecnología encapsulada en gas SF6 (GIS) vs. subestación convencional exterior aislada en aire (AIS)?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Despertar en el estudiante de tercer ciclo la comprensión de que la ingeniería eléctrica no es pura física ni simple oficio artesanal: es la disciplina de la síntesis y la toma de decisiones óptimas bajo compromisos en conflicto (*trade-offs*).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Estructuración y Marco Dialógico (55 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:20</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            La Cuádruple Tipología del Saber Ingenieril y la Toma de Decisiones Bajo Restricciones
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <p>
+                                El docente desarrolla en pizarra el mapa conceptual que define la arquitectura epistemológica del conocimiento en ingeniería eléctrica, articulando cuatro dimensiones interdependientes:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-2.5">
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. Científico</strong>
+                                    <p class="text-slate-600">Leyes universales de conservación de la energía, Ecuaciones de Maxwell, Leyes de Kirchhoff y física del estado sólido.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. Tecnológico</strong>
+                                    <p class="text-slate-600">Herramientas estructuradas, software de simulación (DIgSILENT, ETAP), algoritmos y normas estandarizadas (IEEE, IEC).</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. Técnico</strong>
+                                    <p class="text-slate-600">Destrezas procedimentales, protocolos de calibración de relés, montaje de terminales y maniobras seguras con pértiga.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">4. Práctico / Heurístico</strong>
+                                    <p class="text-slate-600">Juicio cualitativo, reglas de pulgar (*rules of thumb*), intuición experta y factores de sobredimensionamiento por experiencia local.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 mt-2 space-y-1.5">
+                                <strong class="text-slate-900 font-bold block text-xs">La Naturaleza del Problema Ingenieril según Walter Vincenti:</strong>
+                                <p class="text-slate-700">
+                                    A diferencia del científico que indaga libremente la verdad en sistemas cerrados o aislados, el ingeniero eléctrico resuelve problemas **orientados a fines específicos** y definidos por una constelación de cinco restricciones simultáneas:
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 text-[11px] font-mono text-center pt-1">
+                                    <div class="bg-white p-1.5 rounded border border-slate-200"><strong>Físicas:</strong> Pérdidas Joule, límites térmicos</div>
+                                    <div class="bg-white p-1.5 rounded border border-slate-200"><strong>Normativas:</strong> CNE, NTCSE, COES PR-20</div>
+                                    <div class="bg-white p-1.5 rounded border border-slate-200"><strong>Económicas:</strong> CAPEX, OPEX, VAN/TIR</div>
+                                    <div class="bg-white p-1.5 rounded border border-slate-200"><strong>Ambientales:</strong> Niebla salina, sismos, calor</div>
+                                    <div class="bg-white p-1.5 rounded border border-slate-200 font-bold text-amber-800"><strong>Éticas:</strong> Seguridad de vidas humanas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (50 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:20 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Taller de Casuística: "Matriz Multicriterio de Decisión para la Electrificación de una Planta Petroquímica en el Callao"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Equipos de 3 estudiantes (mismos grupos del Producto Integrador). Se les distribuye una ficha técnica con un requerimiento industrial real: dimensionar la alimentación de fuerza en 10 kV para dos compresores de gas de 3,500 kW en una refinería adyacente a la costa chalaca.
+                            </p>
+                            <p>
+                                <strong>Consigna Operativa de Aula:</strong>
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5 font-medium text-slate-700">
+                                <li><strong>Despiece Epistemológico:</strong> Identificar y clasificar en una matriz de 4 columnas qué partes del expediente corresponden a conocimiento científico (cálculo de impedancias de cortocircuito), tecnológico (uso de tablas IEEE Std 141 y simulación ETAP), técnico (radio de curvatura de cables secos N2XSY) y práctico (factor de sobretensión por arranques directos).</li>
+                                <li><strong>Evaluación de Trade-Offs (Compromisos en Conflicto):</strong> Contrastar dos opciones de arranque: Arranque suave por variador de frecuencia de media tensión (alta eficiencia, costo elevado, inyección de armónicos) vs. Arranque por reactor en serie (bajo costo, robustez probada, caída transitoria de tensión del 12%).</li>
+                                <li><strong>Formulación de la Decisión Ingenieril:</strong> Redactar el acta de decisión técnica fundamentando por qué la opción elegida no es la más barata ni la teóricamente más sofisticada, sino la más **resiliente, segura y económicamente viable** para el contexto del Callao.</li>
+                            </ol>
+                            <p>
+                                <strong>Sustentación relámpago (15 min):</strong> Dos equipos exponen su matriz de decisión y defienden su dictamen ante los cuestionamientos socráticos del aula y del docente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre Metacognitivo y Lanzamiento del Reto (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Síntesis de Apertura de la Unidad III y Lanzamiento de la Actividad No Lectiva
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Conclusión Epistemológica de Cátedra:</strong> La ingeniería eléctrica es la ciencia de la decisión responsable. Ninguna ecuación matemática ni ningún modelo de inteligencia artificial toma decisiones éticas ni asume responsabilidades legales ante un colapso o un incendio. Esa frontera indelegable constituye el corazón del quehacer profesional del ingeniero electricista egresado de la UNAC.
+                            </p>
+                            <p>
+                                <strong>Lanzamiento en el SGA-UNAC (Moodle):</strong> Se publican las pautas de la actividad no lectiva de la Columna 4: <strong>"Actividad: Ciencia o Ingeniería"</strong> y se dan las directrices para iniciar el **Hito 3 del Producto Integrador (PI)** sobre validación humana (*Human-in-the-loop*).
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 7 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico de Cátedra</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🧠</span> La Estructura del Conocimiento en Ingeniería Eléctrica: Más Allá de la Ciencia Aplicada
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Sustentado en Walter Vincenti (1990), Mario Bunge (2009), Z. Gasparini (2018) y los informes de la National Academy of Engineering (2004).
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: LA NATURALEZA DEL CONOCIMIENTO INGENIERIL -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. Delimitación de los Cuatro Saberes del Ingeniero Electricista
+                        </h4>
+                        <p class="mb-3">
+                            En el ejercicio profesional, el ingeniero no opera con una única categoría epistemológica. Su mente articula constantemente cuatro saberes con orígenes, lógicas y criterios de validación heterogéneos:
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Tipo de Conocimiento</th>
+                                        <th class="p-2.5">Naturaleza Ontológica</th>
+                                        <th class="p-2.5">Operación en la Ingeniería Eléctrica</th>
+                                        <th class="p-2.5">Criterio de Validación</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">1. Científico</td>
+                                        <td class="p-2.5">Leyes causales y universales invariantes de la naturaleza.</td>
+                                        <td class="p-2.5">Ecuaciones de campo de Maxwell, leyes circuitales de Kirchhoff, termodinámica del calentamiento por efecto Joule ($P = I^2 R$).</td>
+                                        <td class="p-2.5">Verdad explicativa formal, coherencia deductiva y contrastabilidad empírica libre de contexto económico.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-indigo-900 bg-indigo-50/50">2. Tecnológico</td>
+                                        <td class="p-2.5">Conjunto estructurado de herramientas, algoritmos y estándares normalizados.</td>
+                                        <td class="p-2.5">Software de simulación transitoria (EMTP/ATP, DIgSILENT), códigos de red (CNE, IEEE C37, IEC 60076) y protocolos SCADA/DNP3.</td>
+                                        <td class="p-2.5">Estandarización internacional, interoperabilidad de equipos, reproducibilidad industrial y cumplimiento normativo.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">3. Técnico</td>
+                                        <td class="p-2.5">Procedimientos operativos, destrezas de montaje y calibración física.</td>
+                                        <td class="p-2.5">Técnicas de conexionado de terminales termocontraíbles, uso de maletas de inyección secundaria de corriente para relés, ajuste de torquímetros.</td>
+                                        <td class="p-2.5">Destreza procedimental, apego estricto a manuales del fabricante y seguridad en la ejecución física en campo.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-emerald-900 bg-emerald-50/50">4. Práctico / Heurístico</td>
+                                        <td class="p-2.5">Juicio sintético acumulado, reglas empíricas (*rules of thumb*) y conocimiento tácito.</td>
+                                        <td class="p-2.5">Sobredimensionar la distancia de fuga en aisladores por la brisa marina corrosiva del Callao, estimar preliminarmente la caída de tensión en $1\text{ V}$ por cada $100\text{ m}$.</td>
+                                        <td class="p-2.5">Efectividad empírica probada, economía de tiempo en el anteproyecto y preservación de la vida útil del equipo.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: EL PROBLEMA DEL DISEÑO Y LAS RESTRICCIONES -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. El Diseño Ingenieril como Proceso Epistemológico de Síntesis
+                        </h4>
+                        <p class="mb-3">
+                            Como analiza <strong>Walter Vincenti (1990)</strong>, los científicos analizan lo que ya existe para comprenderlo; los ingenieros diseñan lo que nunca ha existido para resolver una necesidad humana. Esto convierte al <strong>diseño</strong> en una forma autónoma de producción de conocimiento:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-blue-900 text-sm block mb-1">La Anatomía del Problema de Ingeniería</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Planteamiento abierto:</strong> Rara vez existe una única solución correcta; existen múltiples alternativas viables con distintas compensaciones.</li>
+                                    <li><strong>Información incompleta:</strong> El ingeniero debe tomar decisiones vinculantes antes de contar con todos los datos meteorológicos, sísmicos o de demanda futura.</li>
+                                    <li><strong>Compromisos en conflicto (*Trade-offs*):</strong> Mejorar la confiabilidad incrementa el costo; abaratar el conductor eleva las pérdidas térmicas y la huella de carbono.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-emerald-900 text-sm block mb-1">La Decisión Basada en Evidencia y Restricciones</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>El límite ético y legal:</strong> El ingeniero asume responsabilidad civil y penal personal ante la sociedad mediante su firma y colegiatura en el CIP.</li>
+                                    <li><strong>El factor de seguridad:</strong> La coexistencia metodológica con la incertidumbre mediante factores normados de sobretensión y contingencia $N-1$.</li>
+                                    <li><strong>La jerarquía normativa:</strong> Ninguna optimización económica puede vulnerar las reglas del Código Nacional de Electricidad (CNE).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: "CIENCIA O INGENIERÍA" (COL. 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⚖️</span> Actividad: "Ciencia o Ingeniería: Auditoría Epistemológica de un Expediente Técnico de Potencia"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa individual para el <strong>SGA-UNAC (Moodle)</strong>. El estudiante debe ponerse en el rol de un perito del Colegio de Ingenieros del Perú (CIP) y auditar un expediente técnico controvertido, discriminando qué componentes corresponden a investigación científica pura, cuáles a herramientas tecnológicas, cuáles a técnicas artesanales y cómo se articulan en una decisión vinculante de ingeniería.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DE LA ACTIVIDAD -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>📋</span> Expediente Pericial FIEE-SEMANA-7
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ El Caso de la Controversia: "La Selección del Aislamiento de la Subestación Puerto del Callao (GIS vs. AIS)"
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>1. El Contexto Técnico del Expediente:</strong></p>
+                        <p>
+                            Para alimentar la ampliación de los muelles de contenedores del Terminal Portuario del Callao, se requiere construir una nueva subestación reductora de 220/22.9 kV con capacidad de 100 MVA. El terreno asignado se ubica en el litoral chalaco, en un ambiente clasificado según ISO 9223 como corrosión marina extrema (C5-M), con alto contenido de salinidad en el aire, humedad relativa promedio de 88% y espacio de terreno severamente restringido.
+                        </p>
+                        <p>
+                            En el plenario del consorcio constructor se presentan dos memorias técnicas rivales:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-1">
+                                <strong class="text-blue-900 block font-bold">Propuesta AIS (Aislamiento al Aire Exterior):</strong>
+                                <p class="text-slate-600">
+                                    Defendida por un contratista que alega menor costo de inversión inicial ($6.2\text{ M USD}$). Plantea aisladores cerámicos recubiertos de silicona hidrofóbica RTV y lavado periódico en caliente cada dos meses, basándose en la experiencia empírica de instalaciones tradicionales del norte de Lima.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-1">
+                                <strong class="text-indigo-900 block font-bold">Propuesta GIS (Encapsulada en Gas SF6):</strong>
+                                <p class="text-slate-600">
+                                    Defendida por el equipo de ingeniería de diseño con un costo de inversión mayor ($10.8\text{ M USD}$). Ocupa apenas el 15% del área física requerida por la AIS, es totalmente inmune a la corrosión salina exterior, garantiza 40 años de vida útil libre de mantenimiento exterior y tasa de falla transitoria 90% menor.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>2. Las Cuatro Misiones del Estudiante ("Ciencia o Ingeniería"):</strong></p>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Misión 1: Matriz de Despiece de los Cuatro Saberes (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Extraer y categorizar con precisión los elementos del caso: ¿Qué enunciados corresponden a <strong>conocimiento científico</strong> (química del SF6, ionización del aire salino), cuáles a <strong>tecnológico</strong> (normas IEC 62271-203 para GIS, software de coordinación de aislamiento), cuáles a <strong>técnico</strong> (lavado en caliente con pértiga, prueba de hermeticidad de gas) y cuáles a <strong>práctico/heurístico</strong> (factores de margen por ambiente chalaco)?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Misión 2: Análisis Epistemológico del Trade-Off (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Analizar el conflicto entre el costo inmediato de capital (CAPEX) frente al costo del ciclo de vida y riesgo operativo (OPEX). ¿Por qué un físico o un matemático puro se abstendría de tomar esta decisión y por qué el ingeniero está epistemológicamente obligado a resolverla?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Misión 3: Demarcación Ciencia vs. Ingeniería (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    A partir de Walter Vincenti y Mario Bunge, explicar: ¿Por qué la elección de la tecnología GIS no constituye un "descubrimiento científico" sino un acto de "diseño y decisión bajo restricciones"? ¿Cómo se relaciona esto con el Código Nacional de Electricidad y la Norma Técnica de Calidad de los Servicios Eléctricos (NTCSE)?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Misión 4: Dictamen Pericial Colegiado (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Redactar una resolución pericial vinculante de 200 palabras como futuro ingeniero electricista de la UNAC, dictaminando cuál de las dos alternativas debe ejecutarse y fundamentando por qué la seguridad pública del Callao y la continuidad operativa del puerto priman sobre el ahorro financiero inmediato.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Formato y Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                            <li><strong>Entregable:</strong> Documento estructurado en formato PDF de 2 a 3 páginas (según formato oficial SGA-UNAC).</li>
+                            <li><strong>Plataforma:</strong> Aula virtual SGA-UNAC (Moodle) en la sección "Tareas Semana 7: Actividad Ciencia o Ingeniería".</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>Apellido_Nombre_Semana7_CienciaOIngenieria.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas antes del inicio de la Sesión Lectiva 8.</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-4 pt-3 border-t border-unac-blue/30">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Despiece de Saberes (5 pts)</strong>
+                                <span class="text-slate-600">Clasifica con rigor conceptual los 4 tipos de saberes sin incurrir en confusiones reduccionistas.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-indigo-900 block mb-0.5">Análisis de Trade-Off (5 pts)</strong>
+                                <span class="text-slate-600">Examina con solvencia cuantitativa las tensiones entre costo, confiabilidad, espacio y vida útil.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-amber-900 block mb-0.5">Demarcación Vincenti/Bunge (5 pts)</strong>
+                                <span class="text-slate-600">Aplica la teoría epistemológica de la ingeniería diferenciando diseño, leyes y normas.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-emerald-900 block mb-0.5">Dictamen Pericial CIP (5 pts)</strong>
+                                <span class="text-slate-600">Fundamenta con madurez ético-profesional la solución elegida bajo criterios normativos peruanos.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: AVANCE DEL PRODUCTO INTEGRADOR EN UNIDAD III (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u3" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Hito de la Unidad de Aprendizaje III</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🚀</span> Hito 3 del Producto Integrador: Supervisión Humana y Validación de Decisiones (*Human-in-the-Loop*)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        A lo largo de la Unidad III (Semanas 7 a 9), los equipos deben avanzar hacia la consolidación del **Hito 3** del <em>Protocolo para el uso responsable de IA en ingeniería eléctrica</em>. En esta Semana 7 se incorpora el principio epistemológico decisivo: **La delimitación entre la recomendación algorítmica y la decisión profesional indelegable**.
+                    </p>
+                </div>
+
+                <!-- LA TENSIÓN EPISTÉMICA SEMANA 7 CON LA IA -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-amber-500 mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">💡 La Advertencia Epistemológica de la Unidad III:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Apartados 6 y 7 del Protocolo</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        Un algoritmo de IA (sea un modelo de optimización de despacho, un clasificador de fallas mediante redes neuronales o un sistema predictivo de demanda) opera mediante correlaciones estadísticas in silico. **Una máquina puede sugerir una acción técnica, pero jamás puede "tomar una decisión de ingeniería"** en el sentido epistemológico y deontológico:
+                    </p>
+                    <div class="p-3 bg-slate-800 rounded border border-slate-700 font-mono text-[11px] text-amber-200 space-y-1">
+                        <p>• <strong>Falta de Conciencia de Restricciones Contextuales:</strong> El algoritmo desconoce las condiciones físicas de frontera no digitalizadas (ej. corrosión atmosférica no modelada, tensiones sociales en comunidades campesinas por servidumbres de paso o antecedentes históricos de fallas del operador).</p>
+                        <p>• <strong>Inimputabilidad Legal y Ética:</strong> Si un algoritmo recomienda reconfigurar una red de distribución y esa maniobra provoca una sobretensión que incendia un hospital en Ventanilla, la red neuronal no comparece ante los tribunales de justicia ni ante el Tribunal de Ética del CIP. La responsabilidad legal, penal y civil recae exclusivamente sobre el **ingeniero electricista colegiado que autorizó la operación**.</p>
+                    </div>
+                </div>
+
+                <!-- TAREAS DE AVANCE SEMANA 7 PARA LOS EQUIPOS -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                            <span>📋</span> Directrices para el Avance Semanal del Protocolo (Apartados 6 y 7)
+                        </h4>
+                        <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-indigo-200 text-indigo-900">En Desarrollo (Hacia Semana 9)</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed">
+                        Cada equipo de trabajo debe redactar e incorporar en su portafolio colaborativo los siguientes dos apartados del protocolo:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">Apartado 6: Validación Humana (*Human-in-the-Loop*)</strong>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li><strong>Protocolo de Intervención:</strong> Establecer el diagrama de flujo donde se especifica en qué punto del proceso el ingeniero debe auditar la salida del software de IA antes de que se envíe una orden a los actuadores SCADA.</li>
+                                <li><strong>Mecanismo de Doble Chequeo Físico:</strong> Definir qué comprobación manual (ej. cálculo de cortocircuito mediante tablas CNE o prueba de aislamiento con megóhmetro) es obligatoria antes de validar la sugerencia algorítmica.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">Apartado 7: Criterio de Decisión Profesional</strong>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li><strong>Regla de Veto Profesional Incondicional:</strong> Formular la cláusula de salvaguarda que autoriza al ingeniero de guardia a apagar el sistema automatizado y operar en manual ante discrepancias con los procedimientos del COES.</li>
+                                <li><strong>Ponderación Multicriterio de Decisión:</strong> Demostrar cómo el criterio humano concilia el ahorro propuesto por la IA con la seguridad de la vida humana y la resiliencia de la infraestructura pública.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHECKLIST DE AUTOEVALUACIÓN -->
+                <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <span class="font-bold text-slate-800 block mb-2">Checklist de Control Epistemológico de la Unidad III (Avance Hito 3):</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[10px]">
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-1">1. Demarcación de la Decisión</strong>
+                            <span>Diferencia con nitidez entre una predicción probabilística de la máquina y una decisión vinculante humana.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-indigo-900 block mb-1">2. Protocolo de Veto</strong>
+                            <span>Diseña un mecanismo operativo para anular la IA si contradice los procedimientos técnicos del COES o el CNE.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-emerald-900 block mb-1">3. Responsabilidad CIP</strong>
+                            <span>Establece con precisión que la firma del expediente técnico es un acto ético indelegable de la persona humana.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 7 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] W. G. Vincenti, <em>What Engineers Know and How They Know It: Analytical Studies from Aeronautical History</em>, Baltimore, MD, EE. UU.: The Johns Hopkins University Press, 1990.
+                    </p>
+                    <p>
+                        [2] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [3] Z. Gasparini, <em>Epistemología de la Ingeniería</em>, Caracas, Venezuela: Facultad de Ingeniería, Universidad Central de Venezuela, 2018.
+                    </p>
+                    <p>
+                        [4] National Academy of Engineering, <em>The Engineer of 2020: Visions of Engineering in the New Century</em>, Washington, D.C., EE. UU.: The National Academies Press, 2004. doi: 10.17226/10999.
+                    </p>
+                    <p>
+                        [5] IEEE, <em>IEEE Recommended Practice for Electric Power Distribution for Industrial Plants (IEEE Red Book)</em>, IEEE Std 141-1993 (R1999), Piscataway, NJ, EE. UU., 1999. doi: 10.1109/IEEESTD.1994.121642.
+                    </p>
+                    <p>
+                        [6] International Electrotechnical Commission, <em>High-voltage switchgear and controlgear - Part 203: Gas-insulated metal-enclosed switchgear for rated voltages above 52 kV</em>, IEC Std 62271-203:2022, Ginebra, Suiza, 2022.
+                    </p>
+                    <p>
+                        [7] Ministerio de Energía y Minas del Perú, <em>Código Nacional de Electricidad (CNE) - Suministro 2011</em>, Dirección General de Electricidad, Lima, Perú, 2011.
+                    </p>
+                    <p>
+                        [8] Comité de Operación Económica del Sistema Interconectado Nacional (COES-Perú), <em>Procedimiento Técnico PR-20: Criterios y Metodología para la Evaluación de la Seguridad Operativa del SEIN</em>, Lima, Perú, 2022.
+                    </p>
+                    <p>
+                        [9] Colegio de Ingenieros del Perú, <em>Código Deontológico del Colegio de Ingenieros del Perú</em>, Consejo Nacional del CIP, Lima, Perú, 2019.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
