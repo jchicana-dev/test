@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 6 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            purple: '#7C3AED',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 6:</span>
+                <span class="text-slate-200">Cierre Unidad II • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 6 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🗺️ Proyectos SEIN y Deconstrucción Epistémica
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🧐 Reto: "Analiza como Epistemólogo" (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-u2')" id="tab-sec-pi-u2" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🏆 Cierre U2: Mapa Epistemológico & Hito 2 PI (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 6 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Semana de Síntesis y Evaluación • Unidad de Aprendizaje II
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 6: ¿Cómo se aplican los enfoques epistemológicos a la ingeniería eléctrica?
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-emerald-100 text-emerald-900 border border-emerald-300">
+                    Entregable: Evidencia Integradora U2 + Hito 2 PI
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 6 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista orientada a la transferencia y síntesis del conocimiento. Los estudiantes integran el positivismo experimental (Semana 4) y el debate Popper vs. Kuhn (Semana 5) para deconstruir la toma de decisiones en un megaproyecto real de transmisión y almacenamiento en el Sistema Eléctrico Interconectado Nacional (SEIN).
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo Real (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Dilema del Enlace 500 kV Mantaro – Nueva Yanango – Carabayllo: ¿Cálculo Teórico o Compromiso Paradigmático?
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Presentación del caso por el docente:</strong> Se proyecta el unifilar y el perfil geográfico del Enlace de 500 kV Mantaro – Nueva Yanango – Carabayllo, la columna vertebral que evacúa la hidroelectricidad del centro del país hacia el nodo de gran consumo Lima-Callao atravesando la Cordillera de los Andes a más de 4,500 m.s.n.m.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>La Tensión de Diseño:</strong> En la cordillera, la baja presión atmosférica reduce drásticamente la rigidez dieléctrica del aire ($V_{\text{crítico}} \propto \delta \cdot d$). Para transportar $1,000\text{ MVA}$ sin colapsar por efecto corona ni sobretensiones de maniobra ($2.5\text{ p.u.}$), no existe una única solución analítica cerrada derivada puramente de las Ecuaciones de Maxwell.</p>
+                                <p>• <strong>Los Enfoques en Pugna:</strong> Una escuela abogaba por sobredimensionar el aislamiento cerámico convencional y aumentar la distancia de fase (elevando exponencialmente el costo civil y el peso en las torres en zonas sísmicas); otra escuela propuso la adopción de compensadores estáticos síncronos (STATCOM) e hilos de guarda con tecnología de cables de fibra óptica compuestos (OPGW) junto a pararrayos poliméricos en línea.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas socráticas al plenario:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>¿Cómo se conectan en este proyecto las nociones de <em>dato metrológico</em> (mediciones de presión y descargas atmosféricas en la cordillera), <em>modelo simplificado</em> (parámetros concentrados $\pi$ de línea larga) y <em>decisión normativa</em> (criterios de estabilidad transitoria del Procedimiento COES PR-20)?</li>
+                                <li>¿Por qué la selección de la tecnología final no fue solo un ejercicio matemático, sino el triunfo de un **paradigma de ingeniería flexible** sobre la inercia conservadora de la ciencia normal tradicional?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Capacitar al alumno para ver que un expediente técnico de cientos de páginas no es un mero catálogo de números, sino una arquitectura epistémica jerarquizada donde cada especificación responde a un método y a un marco de justificación.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Estructuración y Marco Dialógico (55 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:20</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            La Deconstrucción Epistémica de un Proyecto Eléctrico: La Cadena Quíntuple
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <p>
+                                El docente desarrolla en pizarra el modelo analítico para auditar cualquier proyecto del sector eléctrico peruano (centrales RER, líneas de 220/500 kV, subestaciones GIS o bancos de baterías BESS), articulando cinco eslabones fundamentales:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-2.5">
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. Problema</strong>
+                                    <p class="text-slate-600">Déficit de capacidad de transmisión, congestión nodal o necesidad de estabilidad de tensión ante contingencias severas ($N-1$).</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. Variables y Datos</strong>
+                                    <p class="text-slate-600">Niveles ceráunicos, resistividad de suelos rocosos, curvas de demanda máxima horaria, registros SCADA de corriente y tensión.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. Modelos</strong>
+                                    <p class="text-slate-600">Ecuaciones diferenciales discretizadas en simuladores de transitorios electromagnéticos (ATP/EMTP, DigSILENT PowerFactory).</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">4. Método</strong>
+                                    <p class="text-slate-600">Enfoque hipotético-deductivo: se conjetura la coordinación de aislamiento y se somete a simulación severa de cortocircuitos francos.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">5. Decisión</strong>
+                                    <p class="text-slate-600">Selección vinculante bajo restricciones de costo de inversión, vida útil a 30 años, Código Nacional de Electricidad y seguridad humana.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (50 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:20 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Taller de Casuística: "Auditoría de un Proyecto de Almacenamiento BESS para Reserva Primaria de Frecuencia"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Equipos de 3 estudiantes (mismos grupos del Producto Integrador). Se les entrega un extracto del informe técnico de un sistema BESS de $50\text{ MW} / 50\text{ MWh}$ conectado a una barra de 220 kV de la costa central (nodo Chilca o Ventanilla).
+                            </p>
+                            <p>
+                                <strong>Consigna Operativa de Aula:</strong>
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1 font-medium text-slate-700">
+                                <li><strong>Identificación de Paradigmas:</strong> Contrastar el paradigma clásico de provisión de Reserva Primaria de Frecuencia (RPF) mediante corte de vapor en turbinas térmicas vs. el nuevo paradigma electroquímico ultrarrápido (baterías ion-litio con tiempo de respuesta inferior a $200\text{ ms}$).</li>
+                                <li><strong>Identificación de la Evidencia Metrológica:</strong> ¿Qué instrumentación de sincrofasores (PMUs bajo norma IEEE C37.118) se requiere para que el operador del COES valide que la inyección de potencia activa mitigó la tasa de cambio de frecuencia ($RoCoF$)?</li>
+                                <li><strong>Detección de Riesgos y Supuestos Ocultos:</strong> Señalar qué supuestos simplificadores asumió el diseñador en su simulación por software (ej. suponer temperatura de celdas constante a $25^\circ\text{C}$ sin considerar la degradación acelerada por salinidad y humedad del litoral del Callao).</li>
+                            </ol>
+                            <p>
+                                <strong>Sustentación relámpago (15 min):</strong> Dos equipos exponen su matriz de contrastación ante el aula con intervención evaluativa del docente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre Metacognitivo y Lanzamiento del Entregable (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Consolidación de la Unidad II y Lanzamiento del Reto "Analiza como Epistemólogo"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Conclusión Epistemológica de Unidad:</strong> La ingeniería eléctrica avanzada no consiste en aplicar mecánicamente fórmulas de manual. Todo ingeniero que firma un proyecto de potencia o aprueba un algoritmo predictivo está asumiendo una postura epistemológica: confía en ciertos datos, adopta un paradigma tecnológico y descarta hipótesis mediante pruebas severas.
+                            </p>
+                            <p>
+                                <strong>Lanzamiento en el SGA-UNAC:</strong> Se formalizan los requerimientos para el entregable no lectivo **"Reto: Analiza como Epistemólogo"** y la subida de la **Evidencia Integradora de la Unidad II: Mapa Epistemológico de un Problema de Ingeniería Eléctrica** que consolida el **Hito 2 del Producto Integrador (IU2 - 5%)**.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 6 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico de Cátedra</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🗺️</span> La Articulación Epistemológica en Proyectos del Sistema Eléctrico Interconectado Nacional (SEIN)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Sustentado en Mario Bunge (<em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>), Walter Vincenti (1990) y C. Ulises Moulines (2006).
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: LA ANATOMÍA DEL PROYECTO ELÉCTRICO -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. De la Abstracción Teórica a la Decisión Vinculante de Ingeniería
+                        </h4>
+                        <p class="mb-3">
+                            En un proyecto de potencia, el conocimiento no opera de forma lineal ni aislada. Se articula en un sistema multinivel donde los conceptos filosóficos analizados a lo largo de las semanas 4 y 5 cobran operatividad práctica:
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Componente Técnico</th>
+                                        <th class="p-2.5">Estatuto Epistemológico</th>
+                                        <th class="p-2.5">Operación en el SEIN Peruano</th>
+                                        <th class="p-2.5">Riesgo o Falacia Epistémica</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">1. Planteamiento del Problema</td>
+                                        <td class="p-2.5">Definición de necesidades objetivas bajo condiciones de frontera.</td>
+                                        <td class="p-2.5">Evacuación de $1,200\text{ MW}$ desde el Complejo Mantaro hacia Lima Metropolitana garantizando estabilidad de tensión ante pérdida de una terna.</td>
+                                        <td class="p-2.5"><em>Formulación reduccionista:</em> Resolver solo el flujo estático ignorando la dinámica transitoria electromagnética y los fenómenos atmosféricos de gran altura.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-indigo-900 bg-indigo-50/50">2. Variables y Medición Metrológica</td>
+                                        <td class="p-2.5">Positivismo experimental y captura de datos con incertidumbre acotada.</td>
+                                        <td class="p-2.5">Medición de resistividad aparente del terreno mediante método Wenner, registros de descargas de rayos por red de teledetección, temperatura ambiental extrema.</td>
+                                        <td class="p-2.5"><em>Ilusión empirista:</em> Suponer que los datos históricos de 5 años garantizan que jamás ocurrirá un evento meteorológico o sísmico superior.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">3. Modelos y Simulaciones</td>
+                                        <td class="p-2.5">Racionalismo deductivo: idealización computacional in silico.</td>
+                                        <td class="p-2.5">Modelamiento de líneas de parámetros distribuidos dependientes de la frecuencia (modelo de J. Marti en EMTP) y generadores síncronos con reguladores de tensión AVR/PSS.</td>
+                                        <td class="p-2.5"><em>Dogmatismo computacional:</em> Confundir la convergencia matemática del software con la estabilidad física real de la máquina instalada.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-purple-900 bg-purple-50/50">4. Método de Contrastación</td>
+                                        <td class="p-2.5">Falsacionismo popperiano: búsqueda sistemática de la falla crítica.</td>
+                                        <td class="p-2.5">Ensayos de cortocircuito trifásico a tierra en bornes de transformadores y desconexión intempestiva de la compensación serie en máxima demanda.</td>
+                                        <td class="p-2.5"><em>Verificacionismo complaciente:</em> Probar el modelo únicamente bajo régimen permanente y declarar el diseño "aprobado".</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-emerald-900 bg-emerald-50/50">5. Decisión y Norma Técnica</td>
+                                        <td class="p-2.5">Ciencia normal kuhniana, optimización pragmática y responsabilidad social.</td>
+                                        <td class="p-2.5">Fijación de especificaciones técnicas conforme al CNE Suministro, Procedimiento COES PR-20 y firma colegiada responsable ante Osinergmin.</td>
+                                        <td class="p-2.5"><em>Obsolescencia paradigmática:</em> Apegarse a normas redactadas para tecnologías de hace 40 años que bloquean la innovación en almacenamiento y redes activas.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: EL CASO PERUANO DE LA TRANSICIÓN ENERGÉTICA -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. El Choque de Paradigmas en el Sistema Eléctrico Interconectado Nacional
+                        </h4>
+                        <p class="mb-3">
+                            El SEIN peruano se encuentra actualmente en un estado de transición paradigmática en el sentido estricto de Thomas Kuhn:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-slate-900 text-sm block mb-1">El Paradigma Tradicional Centralizado (Siglo XX)</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Ontología:</strong> Flujo unidireccional de potencia desde grandes centros de generación hidráulica/térmica hacia los centros de consumo a través de líneas radiales y mallas de alta tensión.</li>
+                                    <li><strong>Supuesto Físico Clave:</strong> Estabilidad garantizada por la inercia sincrónica masiva de rotores pesados girando a 60 Hz en sincronismo.</li>
+                                    <li><strong>Metodología de Despacho:</strong> Programación lineal de costo marginal con máquinas despachables predecibles (agua y gas natural de Camisea).</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-emerald-900 text-sm block mb-1">El Nuevo Paradigma Distribuido y Descarbonizado (Siglo XXI)</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Ontología:</strong> Red bidireccional, activa, con generación intermitente renovable (solar en el sur, eólica en el norte) y recursos distribuidos en baja tensión.</li>
+                                    <li><strong>Ruptura Teórica:</strong> Inercia física tendiente a cero. La estabilidad ya no proviene de la mecánica rotatoria, sino de algoritmos de control electrónico ultrarrápido (inversores <em>Grid-Forming</em> y baterías BESS).</li>
+                                    <li><strong>Nueva Epistemología Operativa:</strong> Toma de decisiones probabilística basada en analítica predictiva e IA supervisada en tiempo real.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: RETO "ANALIZA COMO EPISTEMÓLOGO" (COL. 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🧐</span> Actividad: "Reto: Analiza como Epistemólogo un Proyecto Eléctrico Peruano"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa individual o en parejas para el <strong>SGA-UNAC (Moodle)</strong>. El estudiante debe ponerse las "gafas de epistemólogo" y auditar críticamente el expediente técnico o controversia pericial de un proyecto eléctrico real en el Perú.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DEL RETO -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>🔍</span> Expediente de Auditoría Epistemológica • Semana 6
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ El Caso de la Controversia Técnica: "La Desconexión en Cadena del Sur Peruano por Falta de Amortiguamiento"
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>1. El Contexto Técnico del Expediente:</strong></p>
+                        <p>
+                            En el nodo sur del SEIN (Moquegua – Arequipa), ante la rápida salida de servicio de una línea de 220 kV por impacto de rayo, se desataron oscilaciones inter-área de frecuencia subsíncrona ($0.35\text{ Hz}$). Las protecciones convencionales de sobrecorriente y distancia no discriminaron la naturaleza del fenómeno y ordenaron el disparo de dos parques solares fotovoltaicos, dejando sin suministro a más de 300,000 usuarios industriales y residenciales. El consorcio operador alegó "fuerza mayor imprevisible", mientras que el regulador (Osinergmin) impuso una penalidad por diseño defectuoso del sistema de amortiguamiento (estabilizadores de potencia PSS y sintonización de inversores).
+                        </p>
+
+                        <p><strong>2. Las Cuatro Misiones del Estudiante ("Analiza como Epistemólogo"):</strong></p>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Misión 1: Desglose del Problema, Variables y Datos (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Identificar con exactitud cuantitativa: ¿Cuál era el problema físico-eléctrico real? ¿Qué variables medibles estaban involucradas ($f, V, P, Q, \delta$)? ¿Qué datos metrológicos se tenían y cuáles faltaban en la toma de decisión previa al evento?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Misión 2: Auditoría del Modelo y Método Empleado (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Analizar el método de cálculo previo: ¿Qué modelo matemático se empleó para aprobar la conexión de los parques solares? ¿Asumió el diseñador un modelo lineal que ocultó las resonancias de baja frecuencia? ¿Se cumplió con el criterio popperiano de someter el diseño a una prueba severa de contingencia $N-1$ combinada?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Misión 3: El Conflicto de Paradigmas (Kuhn) (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Explicar cómo este apagón ilustra la crisis de la "ciencia normal" de protecciones eléctricas tradicionales cuando se enfrenta a una red dominada por electrónica de potencia. ¿Por qué insistir en regular este fenómeno únicamente con relés clásicos constituye un dogmatismo paradigmático?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Misión 4: Dictamen Pericial de Decisión de Ingeniería (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Redactar una propuesta vinculante de solución técnica y normativa (re-sintonización de controles en inversores, instalación de BESS con inercia virtual o revisión del Procedimiento COES PR-20), justificando por qué para un ingeniero de la UNAC la decisión final debe conciliar rigor metrológico, factibilidad económica y resiliencia pública.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Formato y Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                            <li><strong>Entregable:</strong> Informe estructurado de 2 a 3 páginas en formato PDF según plantilla oficial SGA-UNAC.</li>
+                            <li><strong>Plataforma:</strong> Aula virtual SGA-UNAC (Moodle) en la sección "Tareas Semana 6: Reto Analiza como Epistemólogo".</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>Apellido_Nombre_Semana6_AnalizaComoEpistemologo.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas antes del inicio de la Sesión Lectiva 7 (Unidad III).</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-4 pt-3 border-t border-unac-blue/30">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Identificación Técnica (5 pts)</strong>
+                                <span class="text-slate-600">Delimita con precisión el problema eléctrico, discriminando variables físicas y datos instrumentales.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-indigo-900 block mb-0.5">Auditoría del Modelo (5 pts)</strong>
+                                <span class="text-slate-600">Desmonta las limitaciones y supuestos simplificadores del software de simulación frente a la realidad.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-amber-900 block mb-0.5">Perspectiva Kuhniana (5 pts)</strong>
+                                <span class="text-slate-600">Explica con solvencia la crisis paradigmática entre máquinas rotatorias e inversores estáticos.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-emerald-900 block mb-0.5">Dictamen Ingenieril (5 pts)</strong>
+                                <span class="text-slate-600">Formula recomendaciones normativas y de diseño éticamente fundadas y alineadas al CIP/COES.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: CIERRE DE LA UNIDAD II: MAPA EPISTEMOLÓGICO Y HITO 2 DEL PI -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u2" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Evaluación de la Unidad II</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🏆</span> Producto Integrador de la Unidad II: "Mapa Epistemológico de un Problema de Ingeniería Eléctrica"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Conforme al sistema de evaluación del sílabo (Res. N° 102-2021-CU), la Semana 6 cierra la Unidad II con la presentación de la **Evidencia Integradora de Unidad** (`IU2` — peso 0.05 / 5%), articulada directamente como el **Hito 2 del Producto Integrador Final (PI)**: <em>Protocolo para el uso responsable de IA en ingeniería eléctrica</em>.
+                    </p>
+                </div>
+
+                <!-- ESTRUCTURA DEL MAPA EPISTEMOLÓGICO DE UNIDAD II -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-unac-gold mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">📐 Componente A: El Mapa Epistemológico del Problema Eléctrico Seleccionado</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Entregable Grupal (Equipos de 3)</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        A diferencia del mapa conceptual general de la Unidad I, el **Mapa Epistemológico de la Unidad II** debe estar centrado de manera específica en el problema técnico real que el equipo eligió para su ciclo. Debe graficar con claridad la relación de cinco eslabones:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 pt-2 text-[11px] font-mono text-center">
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-blue-300">
+                            <strong>1. Paradigma</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">¿Qué marco teórico y normativo rige el problema hoy?</p>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-indigo-300">
+                            <strong>2. Anomalía</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">¿Qué hecho o falla no puede resolver el modelo actual?</p>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-amber-300">
+                            <strong>3. Hipótesis / IA</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">¿Qué conjetura o algoritmo predictivo se postula?</p>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-purple-300">
+                            <strong>4. Falsación</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">¿Bajo qué prueba severa se intentará refutar el algoritmo?</p>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-emerald-300 font-bold">
+                            <strong>5. Decisión CIP</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">¿Qué regla de seguridad humana y legal prima?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMPONENTE B: HITO 2 DEL PROTOCOLO DE IA -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                            <span>🚀</span> Componente B: Hito 2 del Protocolo para el Uso Responsable de IA
+                        </h4>
+                        <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-indigo-200 text-indigo-900">Apartados 3 y 4 Completos</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed">
+                        Los equipos deben anexar al protocolo los dos apartados correspondientes a la Unidad II debidamente formalizados:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">Apartado 3: Datos Utilizados y Auditoría Metrológica</strong>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li><strong>Origen de los datos:</strong> Especificar si provienen de telemetría SCADA del COES, analizadores de redes clase A calibrados o bases de datos meteorológicas (SENAMHI/NASA).</li>
+                                <li><strong>Incertidumbre y representatividad:</strong> Márgenes de error de los sensores ($\pm \Delta x$), frecuencia de muestreo y justificación de que el dataset no está sesgado hacia condiciones exclusivamente estables.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">Apartado 4: Verificación de Resultados y Matriz de Falsación Popperiana</strong>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li><strong>Filtros Físicos Inviolables:</strong> Regla de bloqueo automático si la predicción de la IA viola las Leyes de Kirchhoff o los límites térmicos y de tensión de la NTCSE ($0.95 \le V_{\text{pu}} \le 1.05$).</li>
+                                <li><strong>Pruebas de Esfuerzo (*Stress-Testing*):</strong> Formulación de dos escenarios de contingencia extrema ($N-1$ y falla asimétrica) diseñados intencionalmente para evaluar la respuesta de la IA.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RÚBRICA INSTITUCIONAL DE CALIFICACIÓN IU2 -->
+                <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <span class="font-bold text-slate-800 block mb-2">Rúbrica Analítica de la Evidencia Integradora de Unidad II (`IU2` — Escala Vigesimal 0–20):</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-1">Articulación del Mapa (5 pts)</strong>
+                            <span>Conecta con solvencia lógica los 5 eslabones: Paradigma, Anomalía, Modelo IA, Falsación y Decisión Técnica.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-indigo-900 block mb-1">Auditoría de Datos - Apt. 3 (5 pts)</strong>
+                            <span>Describe la fuente de datos, su trazabilidad metrológica, frecuencia de muestreo e incertidumbre instrumental.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-amber-900 block mb-1">Falsación de la IA - Apt. 4 (5 pts)</strong>
+                            <span>Aplica rigurosamente a Popper estableciendo filtros físicos inquebrantables y pruebas de esfuerzo $N-1$.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-emerald-900 block mb-1">Fundamentación y Citas (5 pts)</strong>
+                            <span>Sustentación bibliográfica conforme a IEEE citando autores canónicos (Bunge, Kuhn, Popper) y normas (COES/CNE).</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 6 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [2] T. S. Kuhn, <em>La Estructura de las Revoluciones Científicas</em>, 4.ª ed. México D.F., México: Fondo de Cultura Económica, 2012.
+                    </p>
+                    <p>
+                        [3] K. R. Popper, <em>La Lógica de la Investigación Científica</em>, 2.ª ed. Madrid, España: Editorial Tecnos, 1980.
+                    </p>
+                    <p>
+                        [4] C. U. Moulines, <em>El Desarrollo Moderno de la Filosofía de la Ciencia (1890-2000)</em>, 1.ª ed. México D.F., México: Instituto de Investigaciones Filosóficas, Universidad Nacional Autónoma de México, 2006.
+                    </p>
+                    <p>
+                        [5] W. G. Vincenti, <em>What Engineers Know and How They Know It: Analytical Studies from Aeronautical History</em>, Baltimore, MD, EE. UU.: The Johns Hopkins University Press, 1990.
+                    </p>
+                    <p>
+                        [6] IEEE, <em>IEEE Standard for Synchrophasor Measurements for Power Systems</em>, IEEE Std C37.118.1-2011, Piscataway, NJ, EE. UU., 2011. doi: 10.1109/IEEESTD.2011.6111222.
+                    </p>
+                    <p>
+                        [7] Comité de Operación Económica del Sistema Interconectado Nacional (COES-Perú), <em>Procedimiento Técnico PR-20: Criterios y Metodología para la Evaluación de la Seguridad Operativa del SEIN</em>, Lima, Perú, 2022.
+                    </p>
+                    <p>
+                        [8] Organismo Supervisor de la Inversión en Energía y Minería (Osinergmin), <em>Plan de Transmisión 2023-2032: Diagnóstico del Sistema Eléctrico Interconectado Nacional</em>, División de Supervisión de Electricidad, Lima, Perú, 2022.
+                    </p>
+                    <p>
+                        [9] UNESCO, "Recommendation on Science and Scientific Researchers," United Nations Educational, Scientific and Cultural Organization, París, Francia, Res. 39 C/85, 2017.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
