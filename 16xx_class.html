@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 16 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            teal: '#0D9488',
+                            purple: '#7C3AED',
+                            rose: '#E11D48',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; font-size: 11pt; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 16:</span>
+                <span class="text-slate-200">Clausura • Sustentación Final IU4 (25%)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 16 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🧠 Sesgos, Deontología CIP y Ley 28858
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    ⚖️ Dictamen Ético-Epistemológico (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-final')" id="tab-sec-pi-final" class="tab-btn px-4 py-2.5 text-amber-300 hover:text-amber-200 font-bold transition">
+                    🏆 Sustentación Protocolo Final (IU4 - 25%)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 16 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Semana Culminante • Unidad de Aprendizaje V: Ética en la ingeniería
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 16: Sesgos, ética y responsabilidad profesional: Sustentación del Protocolo de IA
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-rose-100 text-rose-900 border border-rose-300">
+                    Evaluación Decisiva: IU4 (Peso 0.25 / 25%)
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 16 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista diseñada para el cierre y evaluación curricular de la asignatura conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU. Se analizan los sesgos algorítmicos en sistemas eléctricos, se formaliza la responsabilidad legal y ética del ingeniero colegiado frente al Colegio de Ingenieros del Perú (CIP) y se desarrolla la ronda de sustentación de los <em>Protocolos para el uso responsable de IA en ingeniería eléctrica</em> (**IU4 — 25%**).
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo Ético-Legal (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Apagón de la Zona Industrial del Callao: ¿A Quién Procesa la Fiscalía cuando Falla un Algoritmo?
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Presentación del caso por el docente:</strong> Se proyecta el dictamen pericial de un siniestro en una subestación de 60 kV en la Av. Argentina (Callao):
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>El Hecho Operativo:</strong> Un algoritmo autónomo de gestión de demanda y corte de carga (Smart Load Shedding) basado en aprendizaje profundo deslastra intempestivamente la barra de media tensión que alimenta una fábrica química y una clínica de emergencias durante una caída transitoria de tensión (&Delta;<i>V</i> = 12%). El corte detiene los extractores de gases tóxicos, provocando una fuga que intoxica a 24 trabajadores y paraliza el puerto.</p>
+                                <p>• <strong>La Coartada de la Empresa Contratista:</strong> En su descargo ante Osinergmin y el Ministerio Público, la empresa concesionaria alega: <em>"La maniobra fue ejecutada por un agente de Inteligencia Artificial de última generación con 99.4% de precisión histórica. El modelo sufrió una alucinación estocástica imprevisible ante un transitorio de red no visto en el dataset; por ende, se trata de una falla tecnológica inevitable sin dolo humano"</em>.</p>
+                                <p>• <strong>El Mandato de la Ley N° 28858 y el CIP:</strong> El Fiscal de Turno y la Comisión de Ética del CIP rechazan la coartada y citan al <strong>Ingeniero Electricista Residente Colegiado</strong> que autorizó y firmó la puesta en servicio comercial del sistema automatizado sin protocolos de validación humana.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas socráticas al plenario:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>¿Puede una red neuronal, un script de Python o un modelo generativo comparecer como imputado en un proceso judicial penal o civil?</li>
+                                <li>¿Por qué la afirmación <em>"el software tomó la decisión técnica"</em> es un fraude epistemológico y una infracción gravísima contra el Código Deontológico del CIP?</li>
+                                <li>¿Qué valor jurídico, moral y social tiene la **firma y sello del ingeniero electricista** de la UNAC en un expediente técnico de potencia?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Desterrar para siempre la ilusión de la "delegación de responsabilidad en la máquina" y consagrar en los estudiantes de tercer ciclo el principio de que la técnica es instrumental, mientras que la responsabilidad ética y legal es humana, personal e indelegable.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Estructuración y Marco Dialógico Final (50 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:15</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Sesgos Algorítmicos, Transparencia, Explicabilidad (XAI) y Deontología Profesional
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <p>
+                                El docente desarrolla en pizarra los tres tipos de sesgos que amenazan la confiabilidad de los sistemas eléctricos asistidos por IA y cómo los neutraliza la epistemología:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. Sesgos de Datos (Muestreo)</strong>
+                                    <p class="text-slate-600">
+                                        Subrepresentación de contingencias raras (como sismos, cortocircuitos francos o descargas atmosféricas directas). Al entrenar el modelo con 99.8% de datos en régimen normal, la IA aprende a ignorar los transitorios destructivos.
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-indigo-900 block font-bold mb-1">2. Sesgos de Función Objetivo</strong>
+                                    <p class="text-slate-600">
+                                        Optimización miope: cuando la función de recompensa del algoritmo minimiza exclusivamente pérdidas económicas o costos de combustible, sacrificando la vida útil del transformador o la confiabilidad de usuarios vulnerables.
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-purple-900 block font-bold mb-1">3. Sesgos de Automatización</strong>
+                                    <p class="text-slate-600">
+                                        Complacencia cognitiva humana: la tendencia del operador humano a confiar acríticamente en la sugerencia del software, relajando la vigilancia metrológica presencial en patio de llaves.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 mt-2 space-y-1.5">
+                                <strong class="text-slate-900 font-bold block text-xs">El Mandato de la Explicabilidad (XAI - Explainable AI) según NIST y UNESCO:</strong>
+                                <p class="text-slate-700">
+                                    En infraestructura crítica (SEIN), <strong>está éticamente prohibido implementar modelos de caja negra impenetrables</strong> para el disparo de interruptores o el deslastre de carga. El sistema debe contar con interfaces interpretables que permitan al ingeniero verificar en milisegundos qué variable física (corriente <i>I</i>, tensión <i>V</i>, temperatura o derivación temporal <i>df</i>/<i>dt</i>) activó la consigna, garantizando auditoría técnica completa.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Sustentación Oficial del Producto Integrador (60 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:15 - 2:15</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Ronda de Sustentación ante Jurado Socrático: "Protocolos para el Uso Responsable de IA"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Evaluación Culminante:</strong> Cada equipo dispone de **5 minutos de presentación ejecutiva formal + 3 minutos de interrogatorio socrático** por parte del docente y panel de pares.
+                            </p>
+                            <p>
+                                Los estudiantes defienden la solidez epistemológica de su protocolo frente a los 8 apartados canónicos, demostrando cómo su propuesta resuelve un reto eléctrico peruano real (CNE, Osinergmin, COES) sin abdicar jamás del principio de supervisión humana (*Human-in-the-Loop*).
+                            </p>
+                            <p>
+                                <strong>Preguntas de Esfuerzo Formuladas por el Tribunal:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700 font-mono text-[11px]">
+                                <li><em>"Si el modelo de IA propone una maniobra que ahorra 200,000 USD pero viola la distancia de seguridad de la Regla 232 del CNE, ¿dónde está exactamente programada la cláusula de veto en su protocolo?"</em></li>
+                                <li><em>"Si los datos del SCADA sufren una pérdida de enlace por 15 minutos, ¿cómo garantiza su protocolo que el algoritmo no alucine valores de tensión inexistentes?"</em></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Clausura de Cátedra y Balance Metacognitivo (15 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:15 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Consolidación de Calificaciones IU4 y el Perfil del Ingeniero Electricista de la UNAC
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Discurso de Cierre de Cátedra:</strong>
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-medium text-slate-800 italic leading-relaxed">
+                                "Estimados futuros ingenieros electricistas: A lo largo de estas 16 semanas hemos desarmado el mito de que la ingeniería es mera física aplicada o cálculo ciego de fórmulas. Han aprendido que toda medición tiene incertidumbre, que todo modelo es una aproximación con límites de frontera, que las simulaciones por software requieren validación empírica y que ninguna máquina posee conciencia moral. Cuando en los próximos ciclos diseñen líneas de 500 kV, calculen protecciones o programen sistemas de potencia en la FIEE, recuerden siempre la pregunta suprema de este curso: <strong>¿Qué saben, cómo lo saben, con qué evidencia lo sostienen y qué responsabilidad ética tienen frente a la sociedad peruana al utilizar ese conocimiento?</strong> Ese es el sello distintivo del ingeniero electricista de la Universidad Nacional del Callao."
+                            </div>
+                            <p>
+                                <strong>Publicación de Notas Finales:</strong> Consolidación del promedio promocional final de la asignatura conforme a la fórmula oficial del sílabo.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 16 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico Especializado</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🧠</span> Gobernanza de la Inteligencia Artificial, Explicabilidad y Estatuto Legal CIP
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Sustentado en el Marco de Gestión de Riesgos de IA del NIST (NIST AI RMF 1.0, 2023), las directrices de la UNESCO (2021), IEEE Ethically Aligned Design (2019), la Ley N° 28858 y el Código Deontológico del Colegio de Ingenieros del Perú.
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: EL MARCO NIST AI RMF Y LA UNESCO -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. Los Cuatro Pilares de Confiabilidad de la IA según el NIST (2023) y la UNESCO
+                        </h4>
+                        <p class="mb-3">
+                            En sistemas de infraestructura crítica (como las redes eléctricas nacionales), el despliegue de modelos algorítmicos no puede quedar al arbitrio de la experimentación comercial. Debe someterse a cuatro funciones de gobernanza técnica:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-2.5">
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-blue-900 block font-bold mb-1">Gobernanza (Govern)</strong>
+                                <span class="text-slate-600">Cultura de rendición de cuentas: políticas institucionales explícitas que definen quién autoriza el uso de un modelo y qué umbrales de riesgo son inaceptables.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-indigo-900 block font-bold mb-1">Mapeo (Map)</strong>
+                                <span class="text-slate-600">Identificación del contexto: delimitar qué sesgos geográficos o vacíos de telemetría existen en el SEIN peruano antes de entrenar el algoritmo.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-amber-900 block font-bold mb-1">Medición (Measure)</strong>
+                                <span class="text-slate-600">Evaluación cuantitativa rigurosa: contrastación contra pruebas de falsación popperiana, estabilidad ante contingencias <i>N</i>&minus;1 y auditoría de alucinaciones.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-emerald-900 block font-bold mb-1">Gestión (Manage)</strong>
+                                <span class="text-slate-600">Monitoreo continuo y planes de contingencia: botones de parada manual (<i>kill switch</i>) y transferencia inmediata de control a operadores humanos.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: EL ESTATUTO DE LA LEY 28858 Y EL CÓDIGO CIP -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. El Estatuto Jurídico y Deontológico del Ingeniero Colegiado en el Perú
+                        </h4>
+                        <p class="mb-3">
+                            En el ordenamiento jurídico peruano, la ingeniería no es un simple oficio técnico libre de ataduras legales. La **Ley N° 28858** y el **Código Deontológico del CIP** consagran preceptos vinculantes:
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Principio Jurídico / Deontológico</th>
+                                        <th class="p-2.5">Mandato Legal Vinculante</th>
+                                        <th class="p-2.5">Traducción a la Era de la Inteligencia Artificial</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">Habilitación Profesional Obligatoria</td>
+                                        <td class="p-2.5">Ley N° 28858, Art. 1°: Ningún proyecto, plano o dictamen de ingeniería puede ser suscrito sin título universitario a nombre de la Nación y condición de colegiado habilitado.</td>
+                                        <td class="p-2.5">Un algoritmo o software comercial no puede emitir dictámenes vinculantes; todo reporte algorítmico carece de valor jurídico si no está refrendado por un ingeniero colegiado habilitado.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-indigo-900 bg-indigo-50/50">Responsabilidad Personal e Indelegable</td>
+                                        <td class="p-2.5">Código Deontológico del CIP, Título II: El ingeniero asume la responsabilidad moral, civil y penal exclusiva por los cálculos, diseños y obras que autoriza con su firma y sello.</td>
+                                        <td class="p-2.5">El profesional no puede alegar "error del algoritmo" ante un colapso eléctrico. Quien firma valida el modelo como propio y responde civil y penalmente ante la sociedad.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">Primacía de la Seguridad Pública</td>
+                                        <td class="p-2.5">Estatuto CIP: El bienestar de la colectividad y la preservación de la vida priman de forma absoluta sobre intereses económicos o comerciales del cliente o empleador.</td>
+                                        <td class="p-2.5">Obligación de vetar cualquier recomendación algorítmica que reduzca costos a costa de infringir el Código Nacional de Electricidad o elevar el riesgo de electrocución e incendios.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: LA FRONTERA INFRANQUEABLE -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            3. La Frontera Infranqueable: Por qué el Ingeniero Nunca Será Sustituido por una Máquina
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-3 bg-white rounded border border-slate-200 space-y-1">
+                                <strong class="text-slate-900 block font-bold text-xs">La Computación Resuelve Ecuaciones</strong>
+                                <p class="text-[11px] text-slate-600">
+                                    Los sistemas algorítmicos procesan matrices de admitancia nodal [<i>Y</i><sub>barra</sub>], resuelven flujos de potencia en milisegundos y encuentran patrones estadísticos en millones de lecturas horarias. Son calculadoras extraordinarias que potencian la productividad técnica.
+                                </p>
+                            </div>
+                            <div class="p-3 bg-white rounded border border-blue-200 space-y-1">
+                                <strong class="text-blue-900 block font-bold text-xs">El Ingeniero Toma Decisiones Éticas</strong>
+                                <p class="text-[11px] text-slate-600">
+                                    El ingeniero comprende el contexto social, pondera la equidad de las tarifas, protege a las comunidades rurales vulnerables, evalúa el impacto ambiental de un tendido de alta tensión y asume el compromiso ético ante la patria de iluminar el desarrollo con justicia y seguridad.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: DICTAMEN ÉTICO (COLUMNA 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⚖️</span> Actividad: "Debate Socrático con IA / Dictamen Ético-Epistemológico sobre el Uso de IA en Ingeniería Eléctrica"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa individual para el <strong>SGA-UNAC (Moodle)</strong>. El estudiante asume el rol de un perito del Tribunal Departamental de Ética del Consejo Departamental del Callao del Colegio de Ingenieros del Perú (CIP-CDCallao), encargado de redactar una resolución pericial vinculante frente a un caso real de controversia técnica provocada por la delegación irresponsable de decisiones a sistemas de IA.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DEL DICTAMEN ÉTICO -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>📋</span> Expediente Pericial de Ética CIP-FIEE-SEMANA-16
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • Individual • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ El Caso de Controversia Deontológica: "El Despacho Autónomo que Desconectó la Cadena de Frío Pesquera en el Callao"
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>1. El Contexto Técnico del Expediente:</strong></p>
+                        <p>
+                            Una empresa concesionaria de distribución eléctrica en la provincia constitucional del Callao implementó un sistema de control autónomo en tiempo real basado en redes neuronales de aprendizaje reforzado (RL) para minimizar las pérdidas técnicas por efecto Joule (<i>P</i> = <i>I</i><sup>2</sup><i>R</i>) en un alimentador de 10 kV de la Av. Gambetta.
+                        </p>
+                        <div class="bg-white p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                            <p>• <strong>La Decisión Algorítmica:</strong> A las 13:10 h, para evitar que una terna subterránea operara al 98% de su capacidad térmica y reducir costos de pérdidas, el algoritmo conmutó interruptores y aisló un sector industrial donde operan plantas de congelado de pescado y harina.</p>
+                            <p>• <strong>El Daño Resultante:</strong> La maniobra provocó una caída violenta de tensión fasorial en los bornes industriales (&Delta;<i>V</i> &gt; 14%), disparando las protecciones de subtensión de los compresores de amoníaco. La pérdida de frío durante 4 horas arruinó 80 toneladas de producto hidrobiológico de exportación, con daños económicos de 340,000 USD y riesgo de escape de gas amoníaco tóxico.</p>
+                            <p>• <strong>La Justificación del Ingeniero de Control:</strong> Al ser citado ante el Tribunal de Ética del CIP, el ingeniero firmante declaró: <em>"Yo solo supervisaba el tablero SCADA; la decisión de conmutar fue ejecutada por el agente de IA en 18 milisegundos para optimizar el rendimiento del sistema conforme al contrato de concesión"</em>.</p>
+                        </div>
+
+                        <p><strong>2. Las Cuatro Secciones Obligatorias del Dictamen Pericial:</strong></p>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Sección 1: Identificación de Faltas al Código Deontológico del CIP (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Analizar las infracciones cometidas por el profesional colegiado conforme al Código Deontológico del CIP (Título sobre deberes con la sociedad, prohibición de delegar decisiones críticas a sistemas no auditados y omisión del deber de vigilancia técnica presencial).
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Sección 2: Deconstrucción Epistemológica de la Inimputabilidad Técnica (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Desmontar con rigor filosófico el argumento de que <em>"la culpa fue del algoritmo"</em>. Explicar por qué una red neuronal es un instrumento carente de personalidad jurídica y deber moral, demostrando que transferir la toma de decisiones sin supervisión humana viola el principio de causalidad técnica.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Sección 3: Auditoría del Sesgo de Optimización Miope (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Explicar cómo la función matemática de pérdida del algoritmo introdujo un sesgo destructivo al optimizar únicamente pérdidas de Joule (<i>I</i><sup>2</sup><i>R</i>) ignorando las restricciones operativas de continuidad de servicio exigidas por la Norma Técnica de Calidad de los Servicios Eléctricos (NTCSE).
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Sección 4: Resolución Vinculante y Salvaguardas Obligatorias (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Redactar la resolución formal vinculante del Tribunal de Ética (250 palabras): sanción disciplinaria recomendada, orden de desconexión del automatismo autónomo y exigencia de un protocolo de reingeniería con validación humana (*Human-in-the-Loop*) obligatoria.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Formato y Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                            <li><strong>Entregable:</strong> Documento estructurado en formato PDF de 3 páginas (Plantilla oficial SGA-UNAC) redactado con tono de resolución pericial colegiada.</li>
+                            <li><strong>Plataforma:</strong> Aula virtual SGA-UNAC (Moodle) en la sección "Tareas Semana 16: Dictamen Ético-Epistemológico".</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>Apellido_Nombre_Semana16_DictamenEticoCIP.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas después del término de la Sesión Lectiva 16.</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-4 pt-3 border-t border-unac-blue/30">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Tipificación CIP (5 pts)</strong>
+                                <span class="text-slate-600">Identifica con precisión los artículos del Código Deontológico y la Ley N° 28858 vulnerados.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-indigo-900 block mb-0.5">Crítica a la Técnica (5 pts)</strong>
+                                <span class="text-slate-600">Demuestra con solvencia teórica la inimputabilidad moral del software y el deber de control humano.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-amber-900 block mb-0.5">Auditoría de Sesgos (5 pts)</strong>
+                                <span class="text-slate-600">Deconstruye la optimización matemática miope frente a las normas de calidad NTCSE.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-emerald-900 block mb-0.5">Resolución Pericial (5 pts)</strong>
+                                <span class="text-slate-600">Formula una resolución vinculante rigurosa, orientada a la protección pública y la justicia técnica.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: SUSTENTACIÓN DEL PRODUCTO INTEGRADOR FINAL (IU4 - 25%) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-final" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border-2 border-unac-gold">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Evaluación Curricular Culminante</span>
+                        <span class="text-xs font-bold px-3 py-1 rounded bg-amber-100 text-amber-900 border border-amber-300">Evidencia IU4: Peso 0.25 (25% de la Nota Final)</span>
+                    </div>
+                    <h3 class="text-xl font-black text-unac-navy mt-1">
+                        🏆 Protocolo para el Uso Responsable de IA en Ingeniería Eléctrica: Estructura Canónica y Sustentación
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        La entrega formal y sustentación oral del protocolo constituye el producto integrador de la investigación formativa exigido por el sílabo institucional de la UNAC (Res. N° 102-2021-CU).
+                    </p>
+                </div>
+
+                <!-- ESTRUCTURA DETALLADA DE LOS 8 APARTADOS OBLIGATORIOS -->
+                <div class="space-y-4 text-xs">
+                    <span class="font-extrabold text-slate-900 block text-sm">📐 Los Ocho (8) Apartados Canónicos del Protocolo Final:</span>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                        <div class="p-3.5 rounded-lg border border-blue-200 bg-blue-50/30 space-y-1">
+                            <strong class="text-blue-900 block font-bold text-xs">1. Problema de Ingeniería Eléctrica</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Delimitación rigurosa de una necesidad concreta del sector eléctrico peruano (ej. predicción de demanda en alimentadores del Callao, estimación de gases disueltos en transformadores de potencia DGA, o estabilidad de tensión ante rampa solar en Moquegua). Magnitudes físicas cuantificadas (<i>V</i><sub>nom</sub> en kV, <i>P</i> en MW, frecuencia 60 Hz).
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-indigo-200 bg-indigo-50/30 space-y-1">
+                            <strong class="text-indigo-900 block font-bold text-xs">2. Uso Previsto de la Inteligencia Artificial</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Justificación epistemológica explícita: por qué las herramientas analíticas deterministas convencionales resultan computacionalmente insuficientes o lentas en tiempo real. Definición exacta de la tarea del modelo (clasificación, regresión, clustering u optimización) y delimitación de lo que la IA <strong>jamás estará autorizada a ejecutar autónomamente</strong>.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-teal-200 bg-teal-50/30 space-y-1">
+                            <strong class="text-teal-900 block font-bold text-xs">3. Datos Utilizados y Auditoría Metrológica</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Trazabilidad de las fuentes: repositorios oficiales del COES, Osinergmin, telemetría SCADA o estaciones meteorológicas del SENAMHI. Especificación de la clase de exactitud metrológica de los instrumentos captores, incertidumbre acotada (&plusmn; &Delta;<i>x</i>) y frecuencia de muestreo temporal (segundos, minutos u horas).
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-amber-200 bg-amber-50/30 space-y-1">
+                            <strong class="text-amber-900 block font-bold text-xs">4. Verificación de Resultados y Falsación Popperiana</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Diseño de filtros físicos inviolables que bloquean automáticamente cualquier salida algorítmica que viole las Leyes de Kirchhoff (&sum; <i>I</i> = 0, &sum; <i>V</i> = 0), los límites térmicos de conductores o las bandas de tensión normadas por la NTCSE (0.95 p.u. &le; <i>V</i> &le; 1.05 p.u.). Protocolo de pruebas de esfuerzo ante contingencias críticas <i>N</i>&minus;1.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-purple-200 bg-purple-50/30 space-y-1">
+                            <strong class="text-purple-900 block font-bold text-xs">5. Identificación de Sesgos e Incertidumbre</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Mapeo de sesgos geográficos (subrepresentación de redes rurales aisladas), sesgos temporales (falta de datos de eventos climáticos extremos como El Niño) y manejo de la no-estacionariedad de la red (<i>Concept Drift</i>). Obligatoriedad de entregar bandas de confianza estocástica (p10, p50, p90) y no valores deterministas únicos.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-emerald-200 bg-emerald-50/30 space-y-1">
+                            <strong class="text-emerald-900 block font-bold text-xs">6. Validación Humana (Human-in-the-Loop)</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Flujograma de control operativo donde se define el punto exacto de parada obligatoria del automatismo. Ninguna orden de apertura de interruptores troncales o cambio de ajuste de relés puede ejecutarse sin la revisión visual previa y la autorización con firma digital del ingeniero de guardia colegiado del CIP.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-rose-200 bg-rose-50/30 space-y-1">
+                            <strong class="text-rose-900 block font-bold text-xs">7. Criterio de Decisión Profesional y Veto Incondicional</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Formulación explícita de la regla de salvaguarda deontológica: facultad técnica del ingeniero residente de apagar la IA (botón de parada de emergencia <i>kill switch</i>) si la consigna contradice los procedimientos técnicos del COES o pone en riesgo vidas humanas. Matriz multicriterio que prioriza la seguridad pública sobre el ahorro financiero.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-slate-300 bg-slate-100 space-y-1">
+                            <strong class="text-slate-900 block font-bold text-xs">8. Responsabilidad Ética y Deontológica CIP</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Declaración formal firmada por los integrantes del equipo reconociendo que, conforme a la Ley N° 28858 y el Estatuto del CIP, la responsabilidad civil y penal por el ejercicio profesional es estrictamente personal e indelegable, asumiendo el compromiso ético de proteger la vida y la soberanía energética del Perú.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RÚBRICA INSTITUCIONAL VIGESIMAL IU4 (25%) -->
+                <div class="mt-6 p-4 rounded-xl border border-unac-gold bg-amber-50/50 text-xs">
+                    <span class="font-extrabold text-unac-navy block mb-2 text-sm">Rúbrica Analítica Oficial de Calificación del Producto Integrador (`IU4` — Escala Vigesimal 0–20):</span>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-[10px] border border-slate-300 bg-white rounded-lg">
+                            <thead class="bg-unac-navy text-white">
+                                <tr>
+                                    <th class="p-2">Criterio Institucional</th>
+                                    <th class="p-2">Excelente (18 - 20)</th>
+                                    <th class="p-2">Bueno (14 - 17)</th>
+                                    <th class="p-2">En Desarrollo (11 - 13)</th>
+                                    <th class="p-2">Insuficiente (00 - 10)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                    <td class="p-2 font-bold text-blue-900">1. Problema y Datos (4 pts)</td>
+                                    <td class="p-2">Delimita un reto real del SEIN con datos metrológicos trazables (COES/Osinergmin) y análisis riguroso de sesgos.</td>
+                                    <td class="p-2">Problema bien delimitado; cita datos oficiales aunque con análisis superficial de la incertidumbre.</td>
+                                    <td class="p-2">Problema genérico o datos no trazables sin mención a resoluciones normativas peruanas.</td>
+                                    <td class="p-2">Caso abstracto desconectado del sistema eléctrico peruano sin datos empíricos.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold text-indigo-900">2. Falsación Física (4 pts)</td>
+                                    <td class="p-2">Diseña filtros matemáticos basados en leyes de Kirchhoff que impiden alucinaciones de la IA bajo contingencias <i>N</i>&minus;1.</td>
+                                    <td class="p-2">Propone pruebas de esfuerzo adecuadas, pero los filtros de leyes físicas son solo conceptuales.</td>
+                                    <td class="p-2">Confía excesivamente en métricas estadísticas (<i>R</i><sup>2</sup>) sin diseñar pruebas severas de refutación.</td>
+                                    <td class="p-2">No incluye criterios de falsación; asume infalibilidad del modelo algorítmico.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold text-amber-900">3. Human-in-the-Loop (4 pts)</td>
+                                    <td class="p-2">Flujograma operativo claro con puntos de veto humano obligatorio y botón de desconexión manual (<i>kill switch</i>).</td>
+                                    <td class="p-2">Define la supervisión humana, pero el mecanismo operativo de veto no está detallado en diagrama.</td>
+                                    <td class="p-2">Mención genérica a la revisión humana sin protocolos de detención técnica del algoritmo.</td>
+                                    <td class="p-2">Propone control totalmente autónomo delegando decisiones críticas a la máquina.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold text-emerald-900">4. Sustentación Oral (4 pts)</td>
+                                    <td class="p-2">Defiende el protocolo ante preguntas socráticas complejas con lenguaje técnico impecable y madurez colegiada.</td>
+                                    <td class="p-2">Exposición fluida dentro del tiempo (5 min); respuestas aceptables a las objeciones del jurado.</td>
+                                    <td class="p-2">Excede el tiempo estipulado; lectura de diapositivas o titubeos ante preguntas conceptuales.</td>
+                                    <td class="p-2">Incapaz de responder a las preguntas del tribunal docente sobre su propio protocolo.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold text-rose-900">5. Deontología CIP (4 pts)</td>
+                                    <td class="p-2">Asume con solvencia la responsabilidad indelegable del ingeniero conforme a la Ley N° 28858 y normas IEEE/UNESCO.</td>
+                                    <td class="p-2">Cita el Código Deontológico del CIP y la primacía de la seguridad, con fundamentación adecuada.</td>
+                                    <td class="p-2">Mención superficial a la ética profesional sin articulación con el marco normativo peruano.</td>
+                                    <td class="p-2">Omite el compromiso ético; sostiene la inimputabilidad moral del profesional.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 16 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] UNESCO, "Recommendation on the Ethics of Artificial Intelligence," United Nations Educational, Scientific and Cultural Organization, París, Francia, SHS/BIO/REC-AI/2021, 2021.
+                    </p>
+                    <p>
+                        [2] National Institute of Standards and Technology (NIST), <em>Artificial Intelligence Risk Management Framework (AI RMF 1.0)</em>, NIST Trustworthy and Responsible AI, Washington, D.C., EE. UU., NIST AI 100-1, 2023. doi: 10.6028/NIST.AI.100-1.
+                    </p>
+                    <p>
+                        [3] IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems, <em>Ethically Aligned Design: A Vision for Prioritizing Human Well-being with Autonomous and Intelligent Systems</em>, 1.ª ed. Piscataway, NJ, EE. UU.: IEEE, 2019.
+                    </p>
+                    <p>
+                        [4] Colegio de Ingenieros del Perú, <em>Código Deontológico del Colegio de Ingenieros del Perú</em>, Consejo Nacional del CIP, Lima, Perú, 2019.
+                    </p>
+                    <p>
+                        [5] Congreso de la República del Perú, <em>Ley N° 28858: Ley que complementa la Ley N° 16053, sobre el ejercicio profesional de la ingeniería en el Perú</em>, Diario Oficial El Peruano, Lima, Perú, 2006.
+                    </p>
+                    <p>
+                        [6] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [7] W. G. Vincenti, <em>What Engineers Know and How They Know It: Analytical Studies from Aeronautical History</em>, Baltimore, MD, EE. UU.: The Johns Hopkins University Press, 1990.
+                    </p>
+                    <p>
+                        [8] J. Pearl y D. Mackenzie, <em>The Book of Why: The New Science of Cause and Effect</em>, 1.ª ed. Nueva York, NY, EE. UU.: Basic Books, 2018.
+                    </p>
+                    <p>
+                        [9] Comité de Operación Económica del Sistema Interconectado Nacional (COES-Perú), <em>Procedimiento Técnico PR-20: Criterios y Metodología para la Evaluación de la Seguridad Operativa del SEIN</em>, Lima, Perú, 2022.
+                    </p>
+                    <p>
+                        [10] Organismo Supervisor de la Inversión en Energía y Minería (Osinergmin), <em>Procedimiento para la Supervisión de la Calidad del Servicio Técnico en los Sistemas de Distribución Eléctrica</em>, Res. N° 068-2020-OS/CD, Lima, Perú, 2020.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

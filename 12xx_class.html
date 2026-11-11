@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 12 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            teal: '#0D9488',
+                            purple: '#7C3AED',
+                            rose: '#E11D48',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; font-size: 11pt; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 12:</span>
+                <span class="text-slate-200">Unidad IV • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 12 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🧠 Pirámide Epistémica &amp; PINNs
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📋 Auditoría de una Respuesta de IA (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-u4')" id="tab-sec-pi-u4" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🚀 Avance Miniestudio &amp; PI (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 12 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Unidad de Aprendizaje IV: Retos contemporáneos y transformación del conocimiento
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 12: Redes inteligentes, digitalización e inteligencia artificial: ¿Puede un algoritmo producir conocimiento confiable?
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-purple-100 text-purple-900 border border-purple-300">
+                    Eje: Dato, Información, Modelo, Predicción y Causalidad Física
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 12 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista diseñada para deconstruir la epistemología de la digitalización en el sector eléctrico. Los estudiantes examinan el tránsito ontológico desde la red analógica convencional hacia el sistema ciberfísico (<i>Smart Grid</i>), delimitando con rigor conceptual las diferencias entre dato sintáctico, información semántica, modelo matemático, predicción estadística e inferencia causal física.
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo Real (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Disparo Inexplicable en la S.E. San Juan: Cuando la IA Predice una Catástrofe pero no Puede Explicar la Física
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Presentación del caso por el docente:</strong> Se proyecta el entorno de control de una subestación troncal de 220 kV del anillo de Lima-Callao (nodo San Juan):
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>El Escenario Operativo:</strong> A las 18:42 h (máxima demanda de la capital), una red neuronal profunda LSTM integrada al sistema de supervisión en tiempo real emite una señal de alarma crítica con probabilidad de colapso por inestabilidad de tensión del 97.4%, ordenando deslastrar de inmediato 40 MW de carga industrial en el alimentador de Villa El Salvador.</p>
+                                <p>• <strong>La Observación Instrumental Fasorial:</strong> Los ingenieros de despacho del COES revisan las pantallas SCADA: la tensión de barra se encuentra en <i>V</i> = 0.992 p.u., la frecuencia está estable en <i>f</i> = 60.01 Hz y el flujo de potencia reactiva <i>Q</i> se mantiene dentro de los márgenes previstos. Al interrogar al software por la causa física de la alarma, el algoritmo responde únicamente: <em>"Inferencia derivada de la ponderación de 142 capas latentes ocultas no lineales"</em>.</p>
+                                <p>• <strong>La Disyuntiva Profesional:</strong> Si el ingeniero ejecuta la desconexión a ciegas, paraliza fábricas con pérdidas de 120,000 USD/hora sin evidencia observable; si ignora la alerta y la IA detectó un modo de oscilación real inadvertido, la red puede colapsar en un apagón sistémico masivo.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas socráticas al plenario:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>¿Una predicción numérica con 97.4% de probabilidad matemática constituye un <strong>conocimiento explicativo justificado</strong> o es solo una correlación estadística opaca (caja negra)?</li>
+                                <li>Si un modelo algorítmico no puede explicitar qué ley física (Kirchhoff, Maxwell o curvas P&ndash;V de estabilidad) se está vulnerando, ¿puede un ingeniero colegiado del CIP autorizar una maniobra operativa vinculante amparándose en el software?</li>
+                                <li>¿En qué se diferencian el dato crudo capturado por el sincrofasor (PMU), la información de topología de red y el conocimiento causal necesario para tomar una decisión de potencia?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Desmitificar la supuesta "infalibilidad" de la Inteligencia Artificial y evidenciar que en ingeniería de potencia, la correlación estadística sin causalidad física no es conocimiento confiable; es una conjetura inductiva que requiere supervisión humana crítica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Estructuración y Marco Dialógico (55 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:20</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            La Pirámide Epistémica y las Redes Neuronales Informadas por la Física (PINNs)
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <p>
+                                El docente desarrolla en pizarra la jerarquía epistemológica que diferencia los cinco estratos del procesamiento en redes inteligentes:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-2.5">
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. Dato (Sintaxis)</strong>
+                                    <p class="text-slate-600">Medición pura aislada: vector numérico capturado por un sincrofasor (<i>I</i> = 450 A, ángulo &delta; = &minus;12.4°). Sin semántica ni marco de referencia.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. Información</strong>
+                                    <p class="text-slate-600">El dato indexado en la topología de la barra de 60 kV en hora punta del Callao: revela que la línea opera al 82% de su límite térmico.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. Modelo</strong>
+                                    <p class="text-slate-600">Construcción estructural (circuito &pi; equivalente o arquitectura de red neuronal) que relaciona matemáticamente las variables del sistema.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">4. Predicción</strong>
+                                    <p class="text-slate-600">Inferencia estadística inductiva: probabilidad del 89% de superar la ampacidad nominal en los próximos 15 minutos según datos históricos.</p>
+                                </div>
+                                <div class="bg-blue-50/70 p-2.5 rounded-lg border border-blue-200">
+                                    <strong class="text-emerald-900 block font-bold mb-1">5. Conocimiento</strong>
+                                    <p class="text-slate-600">Comprensión causal: deducción de que el déficit de reactivos <i>Q</i> por desconexión de condensadores provoca caída fasorial &Delta;<i>V</i> &approx; (<i>R</i> &middot; <i>P</i> + <i>X</i> &middot; <i>Q</i>) / <i>V</i>.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 mt-2 space-y-1.5">
+                                <strong class="text-slate-900 font-bold block text-xs">La Superación de la "Caja Negra": Physics-Informed Neural Networks (PINNs):</strong>
+                                <p class="text-slate-700">
+                                    Para que un algoritmo produzca conocimiento confiable en ingeniería eléctrica, no basta con minimizar el error cuadrático entre datos de entrada y salida. Se debe estructurar una <strong>función de pérdida informada por la física</strong>:
+                                </p>
+                                <div class="p-2.5 bg-white rounded border border-slate-200 font-mono text-center text-[11px] text-slate-800 font-bold my-1">
+                                    <i>Loss</i><sub>total</sub> = <i>Loss</i><sub>datos</sub> + &lambda;<sub>1</sub> &middot; <i>Loss</i><sub>Kirchhoff</sub> + &lambda;<sub>2</sub> &middot; <i>Loss</i><sub>térmico</sub>
+                                </div>
+                                <p class="text-slate-600 text-[11px]">
+                                    Donde <i>Loss</i><sub>Kirchhoff</sub> penaliza cualquier predicción que viole &sum; <i>I</i><sub>nodo</sub> = 0 o &sum; <i>V</i><sub>malla</sub> = 0. De este modo, los principios invariantes de la conservación de la carga y la energía actúan como restricciones de frontera inviolables durante el aprendizaje automático.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (50 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:20 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Taller de Casuística: "Auditoría en Aula de un Algoritmo de Flujo de Potencia Óptimo Asistido por IA"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Equipos de 3 estudiantes (mismos grupos del Producto Integrador). Se distribuye una ficha técnica con la salida de un modelo de Machine Learning comercial empleado para estimar flujos de potencia en un alimentador industrial de 10 kV en el Callao:
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>Condición de Red:</strong> Falla bifásica a tierra momentánea con desconexión de una carga fabril de 8 MW.</p>
+                                <p>• <strong>Salida Predicha por la IA:</strong> El modelo calcula que la potencia activa en el extremo receptor es <i>P</i><sub>rec</sub> = &minus;12.4 MW y que la tensión en barra es <i>V</i> = 1.18 p.u. (generación espontánea de energía sin generador presente y sobretensión que viola la NTCSE).</p>
+                                <p>• <strong>Origen del Error:</strong> El dataset de entrenamiento no contenía suficientes registros de fallas asimétricas, por lo que la red neuronal realizó una extrapolación puramente polinómica que inventó potencia activa para minimizar el gradiente.</p>
+                            </div>
+                            <p>
+                                <strong>Consigna Operativa de Aula:</strong>
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5 font-medium text-slate-700">
+                                <li><strong>Identificación de la Falacia Epistemológica:</strong> Explicar por qué el modelo violó el Primer Principio de la Termodinámica (conservación de la energía) y la Ley de Ohm, demostrando la ceguera física de los algoritmos puramente conexionistas.</li>
+                                <li><strong>Diseño de la Regla de Filtrado Popperiano:</strong> Formular la ecuación de verificación lógica que debe programarse en el firmware del relé o del sistema SCADA para abortar automáticamente cualquier consigna que arroje potencias inversas en barras puramente pasivas.</li>
+                                <li><strong>Protocolo de Decisión Colegiada:</strong> Redactar el acta de veto técnico del ingeniero de guardia conforme al Código Deontológico del CIP.</li>
+                            </ol>
+                            <p>
+                                <strong>Sustentación relámpago (15 min):</strong> Dos equipos exponen su regla de filtrado y debaten ante las observaciones del plenario y docente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre Metacognitivo y Lanzamiento de la Actividad No Lectiva (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Consolidación Epistemológica y Directrices para la Auditoría de IA
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Conclusión Epistemológica de Cátedra:</strong> La Inteligencia Artificial no genera verdad científica por sí misma; produce correlaciones sintácticas optimizadas sobre conjuntos finitos de datos. El conocimiento en ingeniería eléctrica solo se alcanza cuando dichas predicciones son subsumidas bajo leyes físicas causales comprobadas y sometidas a la supervisión ética indelegable del ser humano.
+                            </p>
+                            <p>
+                                <strong>Lanzamiento en el SGA-UNAC (Moodle):</strong> Se formalizan las pautas para la actividad no lectiva de la Columna 4: <strong>"Auditoría de una respuesta de IA"</strong> y se dan las directrices para articular este análisis en el Hito 4 del Producto Integrador Final.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 12 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico Especializado</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🧠</span> Inteligencia Artificial, Causalidad Física y Límites del Aprendizaje Profundo
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Sustentado en Judea Pearl (<em>The Book of Why: The New Science of Cause and Effect</em>, 2018), Mario Bunge (2009), John Searle (el experimento del Cuarto Chino) y directrices éticas de la UNESCO (2021).
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: LA ESCALERA DE LA CAUSACIÓN DE JUDEA PEARL -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. La Escalera de la Causación de Judea Pearl en Sistemas de Potencia
+                        </h4>
+                        <p class="mb-3">
+                            En su obra canónica sobre inferencia causal, Judea Pearl demuestra que el aprendizaje automático tradicional está confinado al peldaño más bajo del razonamiento cognitivo:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-blue-900 text-sm block mb-1">Peldaño 1: Asociación (Correlación)</strong>
+                                <p class="text-slate-600">
+                                    <em>"¿Qué pasa si veo X?"</em>
+                                    <br>La IA detecta correlaciones estadísticas pasivas en datasets: por ejemplo, observa que cuando la corriente sube a 500 A, la temperatura del transformador suele registrar 85 °C. Es pura inducción estadística. Si la correlación es espuria, la IA falla.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-amber-900 text-sm block mb-1">Peldaño 2: Intervención (Acción)</strong>
+                                <p class="text-slate-600">
+                                    <em>"¿Qué pasará si hago Y?"</em>
+                                    <br>Exige modificar deliberadamente el sistema: ¿Qué ocurre si abro el interruptor 52-3 o inyecto 20 MVAR con un banco de condensadores? Requiere un <strong>modelo causal físico</strong> para predecir el impacto de maniobras no registradas en el historial.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-emerald-900 text-sm block mb-1">Peldaño 3: Contrafácticos (Imaginación)</strong>
+                                <p class="text-slate-600">
+                                    <em>"¿Qué habría pasado si hubiera actuado diferente?"</em>
+                                    <br>El nivel supremo de la ingeniería de diseño: evaluar por qué ocurrió una falla y qué configuración alternativa habría evitado el colapso del SEIN. Requiere teoría científica estructurada, totalmente inaccesible para una red neuronal estándar.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: SINTAXIS VS SEMÁNTICA -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. Manipulación Sintáctica vs. Comprensión Semántica: El Argumento de Searle
+                        </h4>
+                        <p class="mb-3">
+                            El experimento mental del <strong>Cuarto Chino</strong> de John Searle demuestra por qué las computadoras no "entienden" los conceptos que procesan:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-rose-900 text-sm block mb-1">La Sintaxis de la Máquina</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li>La red neuronal opera con tensores, matrices de pesos sinápticos <i>W</i> y funciones de activación sigmoides o ReLU.</li>
+                                    <li>Para el software, un valor de 220,000 no es "alta tensión peligrosa para la vida humana"; es simplemente un número de punto flotante en memoria.</li>
+                                    <li>La máquina carece de intencionalidad, conciencia del peligro y sentido moral del deber público.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-blue-900 text-sm block mb-1">La Semántica del Ingeniero</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li>El ingeniero comprende el significado físico: 220 kV implica campos electrostáticos intensos, distancias dieléctricas de aislamiento en aire y riesgo de arco eléctrico letal.</li>
+                                    <li>Interpreta la fórmula fasorial dentro del marco legal del Código Nacional de Electricidad (CNE).</li>
+                                    <li>Asume la responsabilidad legal y ética de que la instalación no electrocute a los pobladores de la zona periurbana.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: REDES NEURONALES INFORMADAS POR LA FÍSICA (PINNS) -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            3. Fundamentación de las Redes PINNs en la Ingeniería Eléctrica
+                        </h4>
+                        <p class="mb-2">
+                            Las Redes Neuronales Informadas por la Física (PINNs) representan el puente epistemológico contemporáneo entre el racionalismo deductivo y el conexionismo inductivo:
+                        </p>
+                        <div class="p-3 bg-white rounded-lg border border-blue-200 space-y-2 text-slate-700">
+                            <p>
+                                En lugar de tratar a la red eléctrica como una caja negra puramente estadística, las ecuaciones diferenciales del sistema de potencia se introducen como términos de regularización en el entrenamiento del modelo:
+                            </p>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 font-mono text-[11px] text-center text-slate-800">
+                                <i>f</i>(<i>x</i>, <i>t</i>) = &part;<i>V</i>/&part;<i>x</i> + <i>R</i> &middot; <i>I</i> + <i>L</i> &middot; &part;<i>I</i>/&part;<i>t</i> = 0 &emsp;(Ecuación del telegrafista)
+                            </div>
+                            <p class="text-[11px] text-slate-600">
+                                Al incorporar la derivada parcial dentro de la propagación del gradiente, la IA no puede converger a soluciones numéricas que violen las Ecuaciones de Maxwell o las Leyes de Kirchhoff, eliminando las alucinaciones matemáticas y otorgando validez epistemológica a sus predicciones.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: AUDITORÍA DE IA (COLUMNA 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📋</span> Actividad: "Auditoría Epistemológica de una Respuesta de Inteligencia Artificial en Ingeniería Eléctrica"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa individual o en parejas para el <strong>SGA-UNAC (Moodle)</strong>. El estudiante debe asumir el rol de un perito auditor del Colegio de Ingenieros del Perú (CIP) y someter a escrutinio formal un cálculo o recomendación de ingeniería emitido por un modelo de IA comercial (ChatGPT, Claude, Gemini o DeepSeek), identificando sesgos, alucinaciones numéricas y violaciones normativas.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DE LA AUDITORÍA -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>🔍</span> Protocolo Pericial de Auditoría de IA FIEE-SEMANA-12
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ El Desafío: "Cálculo de Coordinación de Aislamiento y Factor de Corrección por Altitud para una Línea en los Andes Peruanos"
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>1. El Problema Técnico a Someter a la IA:</strong></p>
+                        <p>
+                            Se requiere calcular la distancia mínima de aislamiento en aire y el factor de corrección por altitud <i>k</i><sub>a</sub> para una línea de transmisión de <i>V</i><sub>nom</sub> = 220 kV que cruza el abra de Anticona (Ticlio) a 4,818 m.s.n.m. en la sierra central del Perú, donde la presión atmosférica es de aproximadamente 56 kPa.
+                        </p>
+
+                        <p><strong>2. Protocolo de Ejecución de la Auditoría (4 Pasos Obligatorios):</strong></p>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Paso 1: Formulación del Prompt de Ingeniería (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    El estudiante diseña un prompt técnico riguroso exigiendo a la IA:
+                                    <br><em>"Actúa como ingeniero especialista en alta tensión. Calcula el factor de corrección por altitud <i>k</i><sub>a</sub> para una subestación de 220 kV ubicada a 4,800 m.s.n.m. en el Perú conforme a la norma IEC 60071-2 y el Código Nacional de Electricidad. Detalla la fórmula matemática barométrica y la distancia de aislamiento resultante."</em>
+                                    <br>&rarr; El estudiante captura la respuesta completa generada por la IA.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Paso 2: Detección de Alucinaciones y Desvíos Normativos (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Contrastar la salida de la IA contra la formulación matemática exacta de la norma IEC 60071-2:
+                                    <br><span class="font-mono text-slate-800 font-bold block my-1"><i>k</i><sub>a</sub> = <i>e</i><sup><i>m</i> &middot; (<i>H</i> &minus; 1000) / 8150</sup></span>
+                                    Verificar: ¿Aplicó la IA el exponente <i>m</i> correcto según la tensión de impulso de maniobra? ¿Utilizó fórmulas simplificadas genéricas obsoletas (regla del 1.25% cada 100 m)? ¿Ignoró la norma peruana CNE Suministro?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Paso 3: Deconstrucción Epistemológica (Dato vs. Conocimiento) (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Analizar por qué la IA incurrió en error: ¿Operó como un generador probabilístico de texto asociativo que mezcló fragmentos de foros web sin validar la coherencia dimensional de las unidades? ¿Distingue la IA entre una ecuación empírica aproximada y una prescripción regulatoria obligatoria?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Paso 4: Ficha de Dictamen Pericial CIP y Rectificación (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    El estudiante redacta el informe pericial rectificado con la memoria de cálculo manual exacta, emitiendo una cláusula de advertencia deontológica sobre los riesgos de utilizar salidas de IA generativa sin validación humana colegiada en proyectos de alta tensión del SEIN.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Formato y Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                            <li><strong>Entregable:</strong> Documento estructurado en formato PDF de 2 a 3 páginas (Plantilla SGA-UNAC) con capturas del prompt, análisis de errores y rectificación matemática.</li>
+                            <li><strong>Plataforma:</strong> Aula virtual SGA-UNAC (Moodle) en la sección "Tareas Semana 12: Auditoría de una Respuesta de IA".</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>Apellido_Nombre_Semana12_AuditoriaIA.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas antes del inicio de la Sesión Lectiva 13.</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-4 pt-3 border-t border-unac-blue/30">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Prompt Técnico (5 pts)</strong>
+                                <span class="text-slate-600">Formula el problema de ingeniería con parámetros físicos, geográficos y normativos rigurosos.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-indigo-900 block mb-0.5">Detección de Sesgos (5 pts)</strong>
+                                <span class="text-slate-600">Identifica con precisión matemática dónde la IA alucina o extrapola ecuaciones no normalizadas.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-amber-900 block mb-0.5">Crítica Epistémica (5 pts)</strong>
+                                <span class="text-slate-600">Explica con solvencia la diferencia entre predicción sintáctica estadística y conocimiento causal físico.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-emerald-900 block mb-0.5">Dictamen y Rectificación (5 pts)</strong>
+                                <span class="text-slate-600">Resuelve el cálculo exacto bajo IEC 60071 y formula salvaguardas deontológicas conformes al CIP.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: AVANCE DEL PRODUCTO INTEGRADOR EN UNIDAD IV (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u4" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Hito de la Unidad de Aprendizaje IV</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🚀</span> Hito 4 del Producto Integrador: Matriz de Falsación de IA y Miniestudio Epistemológico
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        La Unidad IV exige como evidencia sumativa el **Miniestudio epistemológico de un reto contemporáneo de la ingeniería eléctrica** (evaluado con <strong>PU4 — peso 0.05 / 5%</strong> en la Semana 14) y la consolidación del **Hito 4** del <em>Protocolo para el uso responsable de IA en ingeniería eléctrica</em>. En esta Semana 12 se formaliza el Apartado 4: **Verificación de Resultados mediante Filtros Físicos Inviolables**.
+                    </p>
+                </div>
+
+                <!-- LA CONEXIÓN EPISTÉMICA SEMANA 12 CON LA IA -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-amber-500 mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">💡 La Regla de Oro del Protocolo en la Semana 12:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Apartado 4 del Protocolo: Verificación de Resultados</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        Un protocolo de uso de IA en ingeniería de potencia <strong>no puede limitarse a confiar en métricas estadísticas de exactitud</strong> (como un error cuadrático medio <i>RMSE</i> &lt; 0.02 o un coeficiente <i>R</i><sup>2</sup> = 0.99). La verificación exige la incorporación obligatoria de un **mecanismo algorítmico de falsación física inmediata**:
+                    </p>
+                    <div class="p-3 bg-slate-800 rounded border border-slate-700 font-mono text-[11px] text-amber-200 space-y-1">
+                        <p>• <strong>El Filtro de Consistencia de Leyes Inviolables:</strong> Todo software de IA debe implementar una rutina de código en cascada que verifique el balance de corrientes en cada nodo (&sum; <i>I</i> = 0), el balance de tensiones en mallas (&sum; <i>V</i> = 0) y los límites de potencia aparente (<i>S</i> &le; <i>S</i><sub>nominal</sub>). Si el algoritmo genera una salida que viole cualquiera de estos principios, el resultado se bloquea automáticamente y se emite una alarma de alucinación.</p>
+                        <p>• <strong>Límites Regulatorios de la NTCSE:</strong> La salida debe comprobar que las tensiones de servicio se mantengan dentro del intervalo permitido: 0.95 p.u. &le; <i>V</i> &le; 1.05 p.u. Toda sugerencia algorítmica fuera de esta banda queda desestimada antes de llegar al operador humano.</p>
+                    </div>
+                </div>
+
+                <!-- TAREAS DE AVANCE SEMANA 12 PARA LOS EQUIPOS -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                            <span>📋</span> Directrices para el Portafolio del Producto Integrador (Apartado 4)
+                        </h4>
+                        <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-indigo-200 text-indigo-900">En Desarrollo (Hacia Semana 14)</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed">
+                        Cada equipo de trabajo debe formalizar en su portafolio colaborativo:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">1. La Matriz de Verificación y Falsación</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Especificar qué pruebas de esfuerzo numérico (<em>stress testing</em>) se aplicarán al modelo de IA:
+                            </p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li>Simulación de contingencia <i>N</i>&minus;1 en barra troncal.</li>
+                                <li>Inyección de armónicos severos (<i>THD</i><sub><i>I</i></sub> &gt; 25%).</li>
+                                <li>Disparo simultáneo de generación solar en el sur peruano.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">2. Protocolo de Bloqueo de Alucinaciones</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Redactar la cláusula técnica donde se establece qué parámetros activan el descarte automático de la inferencia y transfieren el control inmediato a las heurísticas de protección convencionales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHECKLIST DE AUTOEVALUACIÓN -->
+                <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <span class="font-bold text-slate-800 block mb-2">Checklist de Control Epistemológico de la Semana 12:</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[10px]">
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-1">1. Demarcación de la Pirámide</strong>
+                            <span>Diferencia con precisión entre dato sintáctico, información contextualizada, predicción estadística y conocimiento causal.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-indigo-900 block mb-1">2. Falsación de la IA</strong>
+                            <span>Diseña filtros basados en leyes de Kirchhoff que impiden alucinaciones matemáticas del algoritmo de Machine Learning.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-emerald-900 block mb-1">3. Criterio Deontológico</strong>
+                            <span>Subordina los resultados del software a la verificación metrológica y la responsabilidad ética del ingeniero firmante.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 12 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] J. Pearl y D. Mackenzie, <em>The Book of Why: The New Science of Cause and Effect</em>, 1.ª ed. Nueva York, NY, EE. UU.: Basic Books, 2018.
+                    </p>
+                    <p>
+                        [2] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [3] UNESCO, "Recommendation on the Ethics of Artificial Intelligence," United Nations Educational, Scientific and Cultural Organization, París, Francia, SHS/BIO/REC-AI/2021, 2021.
+                    </p>
+                    <p>
+                        [4] National Institute of Standards and Technology (NIST), <em>Artificial Intelligence Risk Management Framework (AI RMF 1.0)</em>, NIST Trustworthy and Responsible AI, Washington, D.C., EE. UU., NIST AI 100-1, 2023. doi: 10.6028/NIST.AI.100-1.
+                    </p>
+                    <p>
+                        [5] IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems, <em>Ethically Aligned Design: A Vision for Prioritizing Human Well-being with Autonomous and Intelligent Systems</em>, 1.ª ed. Piscataway, NJ, EE. UU.: IEEE, 2019.
+                    </p>
+                    <p>
+                        [6] International Electrotechnical Commission, <em>Insulation co-ordination - Part 2: Application guidelines</em>, IEC Std 60071-2:2023, Ginebra, Suiza, 2023.
+                    </p>
+                    <p>
+                        [7] IEEE, <em>IEEE Guide for Smart Grid Interoperability of Energy Technology and Information Technology Operation with the Electric Power System (EPS), End-Use Applications, and Loads</em>, IEEE Std 2030-2011, Piscataway, NJ, EE. UU., 2011. doi: 10.1109/IEEESTD.2011.6018231.
+                    </p>
+                    <p>
+                        [8] Colegio de Ingenieros del Perú, <em>Código Deontológico del Colegio de Ingenieros del Perú</em>, Consejo Nacional del CIP, Lima, Perú, 2019.
+                    </p>
+                    <p>
+                        [9] Organismo Supervisor de la Inversión en Energía y Minería (Osinergmin), <em>Procedimiento para la Supervisión de la Calidad del Servicio Técnico en los Sistemas de Distribución Eléctrica</em>, Res. N° 068-2020-OS/CD, Lima, Perú, 2020.
+                    </p>
+                    <p>
+                        [10] M. Raissi, P. Perdikaris, y G. E. Karniadakis, "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations," <em>Journal of Computational Physics</em>, vol. 378, pp. 686–707, 2019. doi: 10.1016/j.jcp.2018.10.045.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

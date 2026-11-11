@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 13 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            teal: '#0D9488',
+                            purple: '#7C3AED',
+                            rose: '#E11D48',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; font-size: 11pt; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 13:</span>
+                <span class="text-slate-200">Unidad IV • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 13 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📊 Epistemología de Datos del SEIN
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🎤 Presentación "Pitch Epistemológico" (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-u4')" id="tab-sec-pi-u4" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🚀 Avance Miniestudio &amp; PI (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 13 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Unidad de Aprendizaje IV: Retos contemporáneos y transformación del conocimiento
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 13: Integración: Epistemología de un reto eléctrico peruano (Osinergmin, COES y Electrificación Rural)
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-teal-100 text-teal-900 border border-teal-300">
+                    Eje: Auditoría de Datos del SEIN, SAIDI/SAIFI y Brechas Territoriales
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 13 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista diseñada para conectar la teoría del conocimiento con la realidad regulatoria y operativa del sector eléctrico peruano. Los estudiantes aprenden a auditar bases de datos masivas del COES, Osinergmin y el MINEM, identificando sesgos socio-espaciales de muestreo y analizando la brecha entre la métrica estadística urbana y el acceso real a la energía en zonas rurales andinas y amazónicas.
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo Real (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            La Paradoja del "Apagón Invisible" en el Datem del Marañón: Cuando la Falta de Sensores Genera una Falsa Realidad
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Presentación del caso por el docente:</strong> Se proyectan en pantalla dos reportes oficiales extraídos del Sistema de Información de Calidad de Suministro de Osinergmin correspondientes al cuarto trimestre:
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>Alimentador Urbano A (Bellavista / Callao - 10 kV):</strong> Cuenta con reconectadores automáticos telecontrolados, medidores inteligentes bidireccionales y sensores de falla en cada ramal. Se registraron 6 microcortes transitorios (&lt; 2 minutos) y un tiempo total de corte de <i>SAIDI</i> = 1.4 horas/año. El informe califica el servicio con alerta de compensación económica a usuarios.</p>
+                                <p>• <strong>Alimentador Rural Aislado B (San Lorenzo, Loreto - 22.9 kV):</strong> Monofásico con retorno por tierra (MRT), sin enlace SCADA, con cuadrilla técnica ubicada a 14 horas de lancha fluvial en Iquitos. El registro oficial en la base de datos de Osinergmin consigna: <em>"Interrupciones reportadas: Cero horas (0.0 h)"</em>.</p>
+                                <p>• <strong>La Evidencia de Campo Real:</strong> Los habitantes de la zona reportan que el grupo térmico estuvo sin diésel durante 18 días continuos y que la línea estuvo en el suelo tras caer un árbol de castaña. Sin embargo, como nadie ingresó el evento formalmente en el sistema digital del regulador, el alimentador aparece con 100% de calidad.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas socráticas al plenario:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>Si un modelo de optimización de inversiones o una red neuronal predictiva se entrena con esta base de datos oficial, ¿hacia dónde recomendará dirigir el presupuesto de reforzamiento de redes?</li>
+                                <li>¿Por qué la afirmación positivista <em>"solo lo medido y registrado en la base de datos existe"</em> constituye una <strong>falacia epistemológica con graves consecuencias éticas y sociales</strong>?</li>
+                                <li>¿En qué se diferencian el dato administrativo codificado en un servidor y el fenómeno físico real de indisponibilidad energética sufrido por una comunidad?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Despertar en los estudiantes la vigilancia epistemológica ante los datos abiertos del sector público, evidenciando que las bases de datos no son neutrales: reflejan asimetrías de infraestructura e instrumentación que el ingeniero debe auditar críticamente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Estructuración y Marco Dialógico (55 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:20</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Minería Epistemológica de Datos del SEIN: Osinergmin, COES y Normativa Peruana
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <p>
+                                El docente desarrolla en pizarra las fórmulas normalizadas por la Norma Técnica de Calidad de los Servicios Eléctricos (NTCSE - D.S. N° 020-97-EM) y explica cómo se deconstruyen metodológicamente:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. El Índice SAIDI (Duración)</strong>
+                                    <p class="text-slate-600">
+                                        Tiempo promedio de interrupción por cliente:
+                                        <br><span class="font-mono text-slate-800 font-bold block my-1"><i>SAIDI</i> = (&sum; <i>D<sub>i</sub></i> &middot; <i>N<sub>i</sub></i>) / <i>N</i><sub>total</sub></span>
+                                        Donde <i>D<sub>i</sub></i> es la duración de la interrupción <i>i</i> y <i>N<sub>i</sub></i> es el número de clientes afectados. En redes rurales, el sesgo de agregación diluye el sufrimiento de pocos usuarios dispersos en el denominador total de la concesionaria.
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. El Índice SAIFI (Frecuencia)</strong>
+                                    <p class="text-slate-600">
+                                        Frecuencia promedio de interrupciones por cliente:
+                                        <br><span class="font-mono text-slate-800 font-bold block my-1"><i>SAIFI</i> = (&sum; <i>N<sub>i</sub></i>) / <i>N</i><sub>total</sub></span>
+                                        Mide el número de veces que el usuario queda a oscuras. La NTCSE establece tolerancias diferenciadas: mientras en Lima urbana se toleran hasta 6 cortes/año, en zonas rurales se permiten hasta 14 cortes/año.
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. La Energía No Suministrada (ENS)</strong>
+                                    <p class="text-slate-600">
+                                        Métrica clave del COES PR-20 para evaluar contingencias:
+                                        <br><span class="font-mono text-slate-800 font-bold block my-1"><i>ENS</i> = &int; [<i>P</i><sub>prevista</sub>(<i>t</i>) &minus; <i>P</i><sub>real</sub>(<i>t</i>)] <i>dt</i></span>
+                                        Valoriza económicamente el costo del apagón. Revela que un corte en la industria de fundición del Callao tiene un costo marginal regulatorio inmensamente mayor que un corte en un caserío andino, introduciendo un conflicto ético de priorización.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 mt-2 space-y-1.5">
+                                <strong class="text-slate-900 font-bold block text-xs">Las Fuentes Primarias Abiertas del Sector Eléctrico Peruano:</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-700 text-[11px]">
+                                    <li><strong>Portal del COES (coes.org.pe):</strong> Informes diarios de operación, costos marginales barra por barra en 220 kV y 500 kV, reportes preliminares de fallas (IPF) y análisis de eventos de perturbación sistémica.</li>
+                                    <li><strong>Portal de Osinergmin (osinergmin.gob.pe):</strong> Estadísticas de interrupciones por alimentador, mapas de calidad de producto (tensión y perturbaciones armónicas) y resoluciones sancionadoras.</li>
+                                    <li><strong>Dirección General de Electricidad (MINEM):</strong> Plan Nacional de Electrificación Rural (PNER) y proyectos DSER mediante microrredes solares y sistemas fotovoltaicos aislados.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (50 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:20 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Taller de Casuística: "Auditoría Forense de un Informe Técnico de Falla del COES en Líneas de 220 kV"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Equipos de 3 estudiantes (mismos grupos del Producto Integrador). Se distribuye una ficha técnica basada en un evento real de apertura de línea en el sur peruano:
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>El Evento:</strong> Disparo de la Línea L-2054 (Tintaya - Socabaya 220 kV) por actuación de la protección de distancia (ANSI 21). El reporte del agente generador indica: <em>"Disparo monofásico no exitoso debido a recierre sobre falla permanente provocada por descargas atmosféricas"</em>.</p>
+                                <p>• <strong>La Data del Registrador Oscilográfico:</strong> Se analizan los canales de tensión y corriente: la corriente de falla en fase C alcanzó <i>I</i> = 8.4 kA, pero la tensión en bornes de barra no colapsó totalmente y el ángulo fasorial de potencia reactiva <i>Q</i> exhibe una distorsión no senoidal previa a la apertura.</p>
+                            </div>
+                            <p>
+                                <strong>Consigna Operativa de Aula:</strong>
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5 font-medium text-slate-700">
+                                <li><strong>Identificación de Variables y Trazabilidad:</strong> Contrastar los registros oscilográficos frente a la bitácora del Centro de Control SCADA del COES. ¿Concuerdan los estampados de tiempo GPS con resolución de 1 ms bajo norma IEEE Std C37.118?</li>
+                                <li><strong>Detección de Sesgos en el Peritaje:</strong> Analizar si la justificación de "fuerza mayor por rayo" presentada por la empresa operadora está respaldada por la red de detección de tormentas del SENAMHI o si representa una hipótesis complaciente para evitar multas de Osinergmin.</li>
+                                <li><strong>Estructuración del Argumento de Solución:</strong> Proponer la medida de ingeniería correctiva (recoordinación de tiempos de despeje de relés numéricos, blindaje con cable OPGW o instalación de descargadores ZnO en vanos críticos).</li>
+                            </ol>
+                            <p>
+                                <strong>Entrenamiento para el Pitch (15 min):</strong> Dos equipos seleccionados al azar realizan un ensayo en vivo de 3 minutos defendiendo su deconstrucción del caso frente al plenario y docente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre Metacognitivo y Lanzamiento del Pitch (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Consolidación Epistemológica y Directrices para la Actividad No Lectiva
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Conclusión Epistemológica de Cátedra:</strong> Los datos del sector eléctrico peruano son el puente entre las leyes abstractas de la física y el bienestar material de la sociedad. Un ingeniero de la UNAC no procesa números pasivamente; audita la representatividad de la muestra, desmonta sesgos regulatorios y sustenta decisiones técnicas orientadas a la justicia territorial y la resiliencia energética.
+                            </p>
+                            <p>
+                                <strong>Lanzamiento en el SGA-UNAC (Moodle):</strong> Se publican las pautas y rúbrica para la entrega asincrónica de la Columna 4: <strong>Presentación "Pitch Epistemológico" (video de 180 segundos con datos reales de Osinergmin o COES)</strong>, preparando el terreno para la evaluación formal de la Semana 14.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 13 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico Especializado</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📊</span> Epistemología de los Datos Abiertos en el Sector Eléctrico Regulado
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Sustentado en Mario Bunge (<em>Vigencia de la Filosofía</em>, 2009), Walter Vincenti (1990), la Norma Técnica de Calidad de los Servicios Eléctricos (NTCSE) y directrices de Ciencia Abierta de la UNESCO (2021).
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: EL ESTATUTO EPISTEMOLÓGICO DEL DATO REGULATORIO -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. La Naturaleza Política y Metrológica del Dato en Osinergmin y COES
+                        </h4>
+                        <p class="mb-3">
+                            En la epistemología ingenieril, un "dato regulatorio" no es un reflejo transparente ni espontáneo de la naturaleza física. Es el resultado de un proceso de medición condicionado por protocolos institucionales, umbrales de detección y penalidades económicas:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-blue-900 text-sm block mb-1">El Filtro de Significación Regulatoria</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Umbral de duración:</strong> La NTCSE no contabiliza las interrupciones menores a 3 minutos para el cálculo de compensaciones en baja tensión. Para el regulador formal, un microcorte de 2 minutos y 50 segundos "no existe" estadísticamente, aunque reinicie hornos de fundición y computadoras en fábricas del Callao.</li>
+                                    <li><strong>Exclusiones por fuerza mayor:</strong> Las descargas atmosféricas o caídas de huaycos pueden ser tipificadas como eventos fortuitos no atribuibles al concesionario, eliminando la obligación de compensación al usuario afectado.</li>
+                                    <li><strong>El sesgo de la instrumentación:</strong> Donde hay reconectadores SCADA telemedidos, cada evento se registra con precisión de microsegundos; donde no hay equipos, la medición depende de la llamada telefónica del usuario rural.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-emerald-900 text-sm block mb-1">El Juicio Crítico del Ingeniero Auditor</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Trazabilidad de la fuente:</strong> Verificar si el dato proviene de un analizador clase A bajo norma IEC 61000-4-30 calibrado por INACAL o de una estimación polinómica aproximada.</li>
+                                    <li><strong>Análisis de integridad:</strong> Identificar vacíos de telemetría (<em>missing data</em>) provocados por fallas en la red de comunicaciones o saturación de enlaces GPRS en zonas remotas.</li>
+                                    <li><strong>Compromiso deontológico:</strong> El ingeniero electricista colegiado jamás valida un reporte regulatorio sin constatar personalmente la consistencia física entre la topología de red y los registros de corriente.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: FÓRMULAS DE CALIDAD Y EQUIDAD SOCIAL -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. Deconstrucción Matemática de las Fórmulas de Calidad de Servicio
+                        </h4>
+                        <p class="mb-3">
+                            Las métricas de calidad técnica consagran un modelo de agregación estadística que encubre asimetrías territoriales críticas:
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Indicador NTCSE</th>
+                                        <th class="p-2.5">Ecuación Formal</th>
+                                        <th class="p-2.5">Significado Físico-Operativo</th>
+                                        <th class="p-2.5">Límite Epistémico y Social</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">SAIDI (Duración)</td>
+                                        <td class="p-2.5 font-mono"><i>SAIDI</i> = (&sum; <i>D<sub>i</sub></i> <i>N<sub>i</sub></i>) / <i>N</i><sub>total</sub></td>
+                                        <td class="p-2.5">Horas promedio de corte por cliente al año.</td>
+                                        <td class="p-2.5">Si una empresa tiene 900,000 clientes en Lima y 10,000 en la sierra, un corte de 100 horas en la sierra apenas eleva el SAIDI global en 1.1 horas, ocultando la precariedad rural.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-indigo-900 bg-indigo-50/50">SAIFI (Frecuencia)</td>
+                                        <td class="p-2.5 font-mono"><i>SAIFI</i> = (&sum; <i>N<sub>i</sub></i>) / <i>N</i><sub>total</sub></td>
+                                        <td class="p-2.5">Número de cortes promedio sufridos por un cliente al año.</td>
+                                        <td class="p-2.5">No pondera la gravedad del horario: un corte a las 03:00 h se contabiliza con el mismo peso matemático que un corte a las 19:30 h en plena hora punta comercial.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">Tolerancia de Tensión</td>
+                                        <td class="p-2.5 font-mono">|<i>V</i> &minus; <i>V</i><sub>nom</sub>| / <i>V</i><sub>nom</sub> &le; &delta;<sub>max</sub></td>
+                                        <td class="p-2.5">&plusmn; 5.0% en redes urbanas y &plusmn; 7.5% en redes rurales.</td>
+                                        <td class="p-2.5">Al permitir mayor caída de tensión en el campo (&plusmn; 7.5%), la norma formaliza una ciudadanía de segunda clase que perjudica la vida útil de electrodomésticos y motores agrícolas.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: CIENCIA ABIERTA Y ACCESO PÚBLICO -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            3. El Principio de Ciencia Abierta de la UNESCO y la Responsabilidad Social de la FIEE
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-3.5 bg-white rounded-lg border border-slate-200 space-y-1.5">
+                                <strong class="text-blue-900 block font-bold mb-1">Transparencia y Reproducibilidad Metrológica</strong>
+                                <p class="text-slate-600">
+                                    Conforme a la <em>Recomendación sobre Ciencia Abierta</em> de la UNESCO (2021), los datos energéticos generados en infraestructura pública deben ser accesibles, verificables y reutilizables. Los estudiantes de la UNAC tienen el deber académico de fundamentar sus investigaciones formativas en datos contrastables y no en conjeturas de gabinete.
+                                </p>
+                            </div>
+                            <div class="p-3.5 bg-white rounded-lg border border-teal-200 space-y-1.5">
+                                <strong class="text-teal-900 block font-bold mb-1">Ingeniería para el Desarrollo Regional</strong>
+                                <p class="text-slate-600">
+                                    La vocación institucional de la UNAC en el Callao y las regiones del país exige formar profesionales que utilicen la ciencia de datos no para maximizar rentas financieras privadas, sino para diagnosticar con precisión dónde se requiere infraestructura eléctrica para erradicar la pobreza, impulsar la agroindustria y garantizar la salud pública.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: PITCH EPISTEMOLÓGICO (COLUMNA 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🎤</span> Actividad: Presentación "Pitch Epistemológico: Diagnóstico y Decisión sobre un Reto Eléctrico Peruano"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa grupal (equipos de 3 estudiantes) para el <strong>SGA-UNAC (Moodle)</strong>. Consiste en la grabación y publicación de una presentación ejecutiva audiovisual de exactamente **180 segundos (3 minutos)**, donde el equipo sustenta la deconstrucción epistemológica de un reto real del sector eléctrico peruano utilizando datos abiertos de Osinergmin, COES o el MINEM.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DEL PITCH EPISTEMOLÓGICO -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>🎥</span> Protocolo Audiovisual de Sustentación FIEE-SEMANA-13
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • Equipos de 3 • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ Estructura Canónica Obligatoria de los 180 Segundos (3 Minutos Exactos)
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p>
+                            El video debe ser grabado con cámara y pantalla compartida, participando obligatoriamente los 3 integrantes del grupo. Se divide de forma inquebrantable en tres bloques de 60 segundos:
+                        </p>
+
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-blue-200">
+                                <div class="flex items-center justify-between mb-1">
+                                    <strong class="text-blue-900 font-bold">Bloque 1 (Segundo 0 a 60): El Reto Técnico Territorial y los Datos Reales</strong>
+                                    <span class="font-mono text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">60 segundos</span>
+                                </div>
+                                <p class="text-slate-600">
+                                    Presentar el problema real en una región del Perú (ej. electrificación rural en Huancavelica, variabilidad solar en Moquegua, armónicos en la zona pesquera de Gambetta en el Callao). Proyectar y explicar una gráfica o tabla oficial extraída del portal de Osinergmin, COES o MINEM, detallando magnitudes cuantitativas (<i>P</i> en MW, <i>V</i> en kV, horas de corte <i>SAIDI</i>).
+                                </p>
+                            </div>
+
+                            <div class="bg-white p-3.5 rounded-lg border border-amber-200">
+                                <div class="flex items-center justify-between mb-1">
+                                    <strong class="text-amber-900 font-bold">Bloque 2 (Segundo 61 a 120): La Deconstrucción de la Falla Epistemológica</strong>
+                                    <span class="font-mono text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">60 segundos</span>
+                                </div>
+                                <p class="text-slate-600">
+                                    Demostrar por qué los métodos convencionales o las simulaciones computacionales tradicionales fallaron o generaron sesgos. ¿Qué variables físicas fueron omitidas? ¿Qué supuestos simplificadores (linealidad, suelo homogéneo, datos incompletos) indujeron a error en la toma de decisión previa?
+                                </p>
+                            </div>
+
+                            <div class="bg-white p-3.5 rounded-lg border border-emerald-200">
+                                <div class="flex items-center justify-between mb-1">
+                                    <strong class="text-emerald-900 font-bold">Bloque 3 (Segundo 121 a 180): La Decisión de Ingeniería Justificada</strong>
+                                    <span class="font-mono text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">60 segundos</span>
+                                </div>
+                                <p class="text-slate-600">
+                                    Sustentar la solución de ingeniería recomendada (ej. microrred solar híbrida con almacenamiento BESS, reconexión automática con algoritmos adaptativos, protocolo de calibración metrológica). Justificar por qué la solución equilibra rigor físico, viabilidad económica (CAPEX/OPEX), cumplimiento normativo (CNE/COES) y resiliencia comunitaria.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Condiciones Técnicas y Formato de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                            <li><strong>Duración del Video:</strong> Mínimo 2 minutos con 45 segundos; máximo 3 minutos con 15 segundos (penalización por fuera de rango).</li>
+                            <li><strong>Plataforma de Alojamiento:</strong> Subir el video a YouTube (modo "No Listado" u "Oculto") o en carpeta compartida de Google Drive institucional (@unac.edu.pe).</li>
+                            <li><strong>Entregable en SGA-UNAC (Moodle):</strong> Subir un documento PDF de 1 página con: carátula oficial, enlace URL público al video comprobado, captura de pantalla de la gráfica de datos utilizada y referencias en formato IEEE.</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>GrupoX_Semana13_PitchEpistemologico.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas antes del inicio de la Sesión Lectiva 14.</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA S13 -->
+                    <div class="mt-4 pt-3 border-t border-unac-blue/30">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Evidencia Empírica (5 pts)</strong>
+                                <span class="text-slate-600">Utiliza e interpreta gráficas y datos cuantitativos oficiales del COES, Osinergmin o MINEM con rigor.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-indigo-900 block mb-0.5">Crítica Epistémica (5 pts)</strong>
+                                <span class="text-slate-600">Identifica con solvencia los supuestos teóricos simplificadores y los sesgos del modelo previo.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-amber-900 block mb-0.5">Decisión y Normativa (5 pts)</strong>
+                                <span class="text-slate-600">Propone una solución técnica viable alineada a los procedimientos técnicos del COES y el CNE.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-emerald-900 block mb-0.5">Comunicación y Síntesis (5 pts)</strong>
+                                <span class="text-slate-600">Comunica con lenguaje técnico preciso, sincronización fluida entre integrantes y exactitud cronométrica (180 s).</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: AVANCE DEL PRODUCTO INTEGRADOR EN UNIDAD IV (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u4" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Hito de la Unidad de Aprendizaje IV</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🚀</span> Hacia el Cierre de Unidad IV: Consolidación del Miniestudio y Borrador Integral del Protocolo
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        La Semana 13 es la antesala de la evaluación sumativa de la Unidad IV (Semana 14, donde se califica **PU4 — peso 0.05 / 5%**). En esta sesión, los equipos deben ensamblar los avances de los Apartados 1 al 5 del *Protocolo para el uso responsable de IA en ingeniería eléctrica*, articulando el análisis de sesgos con datos reales del SEIN.
+                    </p>
+                </div>
+
+                <!-- LA CONEXIÓN EPISTÉMICA SEMANA 13 CON LA IA -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-amber-500 mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">💡 La Tensión Epistémica de la Semana 13 para el Protocolo de IA:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Apartados 3 y 5 del Protocolo</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        ¿Cómo se auditan los datasets reales peruanos para entrenar herramientas de IA en sistemas de potencia? Un error común es asumir que los datos abiertos del COES u Osinergmin son perfectamente homogéneos:
+                    </p>
+                    <div class="p-3 bg-slate-800 rounded border border-slate-700 font-mono text-[11px] text-amber-200 space-y-1">
+                        <p>• <strong>El Sesgo de Asimetría Instrumental:</strong> El 85% de los sincrofasores (PMU) y registradores oscilográficos de falla están concentrados en las subestaciones de 500 kV y 220 kV que rodean a Lima Metropolitana y los polos mineros del sur. Los alimentadores rurales de 10 kV y 22.9 kV tienen casi nula telemetría en tiempo real.</p>
+                        <p>• <strong>La Regla Obligatoria del Protocolo:</strong> Todo protocolo de IA en el Perú debe documentar explícitamente en el **Apartado 5 ("Identificación de Sesgos e Incertidumbre")** qué áreas geográficas están subrepresentadas en el dataset y prohibir que el algoritmo extrapole predicciones de confiabilidad urbana a redes rurales aisladas sin previa calibración con mediciones en tierra.</p>
+                    </div>
+                </div>
+
+                <!-- CHECKLIST DE PREPARACIÓN PARA SEMANA 14 -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                            <span>📋</span> Checklist de Ensamble para la Presentación de la Semana 14
+                        </h4>
+                        <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-indigo-200 text-indigo-900">Borrador Integral (Apartados 1 a 5)</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed">
+                        Cada equipo debe verificar que su portafolio colaborativo cuente con los siguientes insumos listos para la ronda de exposiciones y coevaluación de la próxima sesión:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">1. Informe del Miniestudio Epistemológico</strong>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li>Delimitación del reto eléctrico contemporáneo en el Perú (descarbonización, microrredes o ciberseguridad en subestaciones).</li>
+                                <li>Gráficas y contrastación de datos reales de Osinergmin o COES analizados con rigor metrológico.</li>
+                                <li>Conclusiones epistemológicas sobre el cambio de conocimiento técnico derivado del reto.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">2. Borrador del Protocolo para el Uso Responsable de IA</strong>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                                <li><strong>Apartados 1 y 2:</strong> Problema eléctrico cuantificado y justificación de la necesidad de IA.</li>
+                                <li><strong>Apartado 3:</strong> Fuentes de datos del SEIN con incertidumbre y frecuencia de muestreo.</li>
+                                <li><strong>Apartado 4:</strong> Matriz de verificación popperiana con filtros de leyes de Kirchhoff inviolables.</li>
+                                <li><strong>Apartado 5:</strong> Mapa de sesgos geográficos y bandas de incertidumbre estocástica.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AUTOEVALUACIÓN DE VIGILANCIA EPISTÉMICA -->
+                <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <span class="font-bold text-slate-800 block mb-2">Preguntas Guía para la Coevaluación entre Pares (Semana 14):</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[10px]">
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-1">¿Los datos son trazables?</strong>
+                            <span>¿Se citan resoluciones oficiales de Osinergmin o procedimientos del COES con número y año de publicación verificables?</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-indigo-900 block mb-1">¿Se evita la fe ciega en la IA?</strong>
+                            <span>¿El equipo especifica bajo qué condiciones extremas de cortocircuito o contingencia <i>N</i>&minus;1 la IA fallará y deberá ser bloqueada?</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-emerald-900 block mb-1">¿Hay juicio profesional humano?</strong>
+                            <span>¿Se resguarda la primacía de la seguridad de la vida humana y la resiliencia social conforme al Código Deontológico del CIP?</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 13 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] Organismo Supervisor de la Inversión en Energía y Minería (Osinergmin), <em>Procedimiento para la Supervisión de la Calidad del Servicio Técnico en los Sistemas de Distribución Eléctrica</em>, Res. N° 068-2020-OS/CD, Lima, Perú, 2020.
+                    </p>
+                    <p>
+                        [2] Comité de Operación Económica del Sistema Interconectado Nacional (COES-Perú), <em>Procedimiento Técnico PR-20: Criterios y Metodología para la Evaluación de la Seguridad Operativa del SEIN</em>, Lima, Perú, 2022.
+                    </p>
+                    <p>
+                        [3] Ministerio de Energía y Minas del Perú (MINEM), <em>Norma Técnica de Calidad de los Servicios Eléctricos (NTCSE)</em>, Decreto Supremo N° 020-97-EM, Lima, Perú, 1997.
+                    </p>
+                    <p>
+                        [4] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [5] W. G. Vincenti, <em>What Engineers Know and How They Know It: Analytical Studies from Aeronautical History</em>, Baltimore, MD, EE. UU.: The Johns Hopkins University Press, 1990.
+                    </p>
+                    <p>
+                        [6] UNESCO, "Recommendation on Open Science," United Nations Educational, Scientific and Cultural Organization, París, Francia, SC-PCB/SPP/2021/OS-REC, 2021.
+                    </p>
+                    <p>
+                        [7] IEEE, <em>IEEE Standard for Synchrophasor Measurements for Power Systems</em>, IEEE Std C37.118.1-2011, Piscataway, NJ, EE. UU., 2011. doi: 10.1109/IEEESTD.2011.6111222.
+                    </p>
+                    <p>
+                        [8] International Electrotechnical Commission, <em>Electromagnetic Compatibility (EMC) - Part 4-30: Testing and Measurement Techniques - Power Quality Measurement Methods</em>, IEC Std 61000-4-30:2015, Ginebra, Suiza, 2015.
+                    </p>
+                    <p>
+                        [9] Dirección General de Electricidad del MINEM, <em>Plan Nacional de Electrificación Rural (PNER) 2016-2025</em>, Ministerio de Energía y Minas, Lima, Perú, 2016.
+                    </p>
+                    <p>
+                        [10] Colegio de Ingenieros del Perú, <em>Código Deontológico del Colegio de Ingenieros del Perú</em>, Consejo Nacional del CIP, Lima, Perú, 2019.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

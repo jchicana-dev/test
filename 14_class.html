@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 14 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            teal: '#0D9488',
+                            purple: '#7C3AED',
+                            rose: '#E11D48',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; font-size: 11pt; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 14:</span>
+                <span class="text-slate-200">Cierre Unidad IV • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">Evaluación PU4 (5%)</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 14 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-miniestudio')" id="tab-sec-miniestudio" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📑 Evaluación Miniestudio (PU4)
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🎤 Ronda de Pitch y Coevaluación (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-u4')" id="tab-sec-pi-u4" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🚀 Consolidación Hito 4 PI (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 14 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Semana de Cierre y Evaluación • Unidad de Aprendizaje IV: Retos contemporáneos
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 14: Evaluación del Miniestudio Epistemológico y Ronda de Pitches del Reto Eléctrico Peruano
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-amber-100 text-amber-900 border border-amber-300">
+                    Calificación Oficial: PU4 (Peso 0.05 / 5%)
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 14 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia didáctica centrada en la evaluación auténtica por competencias (Res. CU N° 318-2024-CU y Res. N° 102-2021-CU). Los estudiantes defienden ante el plenario colegiado su miniestudio epistemológico sobre los retos del sector eléctrico peruano (descarbonización, digitalización, microrredes rurales y datos de Osinergmin/COES), sometiéndose a rondas de coevaluación entre pares e interpelación socrática docente.
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Apertura y Encuadre Evaluativo (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:20</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            El Tribunal de Evaluación Colegiada FIEE: Criterios de Demarcación para el Reto Peruano
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Acción del docente:</strong> Presenta la rúbrica oficial de calificación de la Unidad IV (<b>PU4 — peso 0.05 / 5%</b>) y distribuye la ficha digital de coevaluación en el SGA-UNAC (Moodle).
+                            </p>
+                            <p>
+                                <strong>Planteamiento del conflicto metacognitivo inicial:</strong>
+                                <em>"Hoy evaluamos si ustedes han aprendido a mirar la infraestructura eléctrica como ingenieros con pensamiento crítico (CG3) y no como meros consumidores de software. ¿Su solución técnica resuelve el problema real de la comunidad o solo reproduce un óptimo financiero que deja sin luz a los caseríos rurales?"</em>
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700">
+                                Protocolo de Sustentación: 180 segundos de exposición ejecutiva por equipo (Pitch Epistemológico) + 2 minutos de réplica socrática por el tribunal docente.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Ronda de Defensa de los Miniestudios Epistemológicos (75 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:20 - 1:35</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Sustentación Oral Ejecutiva por Equipos de Trabajo (Pitches de 180 segundos)
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <p>
+                                Los equipos de 3 estudiantes proyectan sus síntesis gráficas y defienden su diagnóstico frente a datos reales de Osinergmin, COES y MINEM. El docente somete a cada grupo a una pregunta de tensión epistemológica:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">Eje 1: Microrredes Amazónicas</strong>
+                                    <p class="text-slate-600">
+                                        ¿Cómo sustentaron el sobredimensionamiento de baterías BESS frente a la persistencia de nubosidad tropical sin registros fluviométricos históricos trazables?
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">Eje 2: Inercia Sintética en el Sur</strong>
+                                    <p class="text-slate-600">
+                                        ¿Por qué la formulación clásica de la Ecuación de Swing colapsa ante inversores <i>Grid-Forming</i> y cómo verificaron que el <i>RoCoF</i> no dispare relés de subfrecuencia?
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">Eje 3: Calidad en el Callao</strong>
+                                    <p class="text-slate-600">
+                                        ¿Cómo desarmaron el argumento del alimentador industrial que atribuía explosión de condensadores al calor, demostrando resonancia de 5° armónico según IEEE Std 519?
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller de Coevaluación y Auditoría Cruzada (35 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:35 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Dinámica de Auditoría de Pares: "Detectando Supuestos Ciegos en el Reto del Colega"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Cada equipo intercambia su informe escrito del Miniestudio con otro grupo asignado al azar.
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5 font-medium text-slate-700">
+                                <li><strong>Auditoría de Fuentes Primarias:</strong> Verificar si los datos de fallas y tarifas corresponden a resoluciones vigentes de Osinergmin o procedimientos del COES con citas en formato IEEE.</li>
+                                <li><strong>Identificación de Falacias de Modelo:</strong> Buscar si el equipo evaluado asumió linealidad en sistemas ferromagnéticos, costos constantes de combustible o disponibilidad solar nocturna sin respaldo.</li>
+                                <li><strong>Calificación Formativa en SGA-UNAC:</strong> Ingreso de la retroalimentación cualitativa y puntaje de coevaluación en la plataforma virtual institucional.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre de Unidad IV y Transición a la Unidad V (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Consolidación de Calificaciones PU4 y Conexión con la Ética Deontológica
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Balance de la Cátedra:</strong> La Unidad IV ha demostrado que el conocimiento ingenieril se transforma al compás de la innovación tecnológica. Sin embargo, ninguna tecnología (redes inteligentes, baterías o algoritmos de Machine Learning) toma decisiones éticas ni asume responsabilidades morales.
+                            </p>
+                            <p>
+                                <strong>Apertura de la Unidad V (Semanas 15 y 16):</strong>
+                                <em>"La próxima semana ingresamos a la cumbre del curso: la ética en la ingeniería, la gobernanza de la IA y la responsabilidad legal indelegable de la firma y sello del ingeniero del CIP"</em>.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: EVALUACIÓN DEL MINIESTUDIO EPISTEMOLÓGICO (PU4 - 5%) -->
+        <!-- ========================================================================= -->
+        <section id="sec-miniestudio" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Instrumento de Evaluación Curricular Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📑</span> Estructura y Criterios del "Miniestudio Epistemológico de un Reto Contemporáneo"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Conforme a la tabla de evaluación curricular del sílabo oficial (Resolución N° 102-2021-CU), el informe del miniestudio constituye la evidencia sumativa formal <strong>PU4 (peso 0.05 / 5% de la nota promocional)</strong>.
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- ESTRUCTURA DEL DOCUMENTO -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. Estructura Canónica Obligatoria del Informe Escrito (Máximo 4 páginas en PDF)
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 space-y-1.5">
+                                <strong class="text-blue-900 block font-bold text-xs">Sección A: Delimitación del Reto en el SEIN</strong>
+                                <p class="text-slate-600">
+                                    Identificación cuantitativa del problema: nivel de tensión (kV), potencia comprometida (MW o MVAR), ubicación territorial en el Perú y actores institucionales involucrados (COES, Osinergmin, distribuidora o comunidades locales).
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 space-y-1.5">
+                                <strong class="text-indigo-900 block font-bold text-xs">Sección B: Auditoría de Datos y Evidencia Metrológica</strong>
+                                <p class="text-slate-600">
+                                    Análisis de datos abiertos: trazabilidad metrológica de sensores SCADA, registros de perturbaciones o series temporales de Osinergmin. Detección explícita de sesgos territoriales o vacíos de telemetría en zonas rurales.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 space-y-1.5">
+                                <strong class="text-amber-900 block font-bold text-xs">Sección C: Deconstrucción Epistémica del Cambio de Modelo</strong>
+                                <p class="text-slate-600">
+                                    Demostración de por qué los métodos deterministas clásicos (linealidad, Newton-Raphson, inercia rotacional fija) colapsan ante el reto y qué nuevo marco epistemológico (estocástico, ciberfísico o PINNs) se requiere.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 space-y-1.5">
+                                <strong class="text-emerald-900 block font-bold text-xs">Sección D: Dictamen Ingenieril y Gobernanza Social</strong>
+                                <p class="text-slate-600">
+                                    Propuesta de solución técnica fundamentada bajo compromisos <i>trade-offs</i> (costo CAPEX/OPEX, resiliencia y seguridad pública), cumplimiento normativo (CNE/COES) y referencias en formato estricto IEEE.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RÚBRICA INSTITUCIONAL DETALLADA PU4 -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                            <thead class="bg-unac-navy text-white text-[11px]">
+                                <tr>
+                                    <th class="p-2.5">Criterio Evaluado</th>
+                                    <th class="p-2.5">Sobresaliente (18 - 20)</th>
+                                    <th class="p-2.5">Bueno (14 - 17)</th>
+                                    <th class="p-2.5">En Desarrollo (11 - 13)</th>
+                                    <th class="p-2.5">Insuficiente (00 - 10)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700 text-[11px]">
+                                <tr>
+                                    <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">1. Rigor Epistemológico (25%)</td>
+                                    <td class="p-2.5">Deconstruye con maestría la diferencia entre leyes físicas, modelos computacionales e incertidumbre estocástica.</td>
+                                    <td class="p-2.5">Distingue el cambio de modelo teórico, aunque con tratamiento algo superficial de la causalidad física.</td>
+                                    <td class="p-2.5">Confunde el modelo computacional con la realidad física; argumentación teórica débil.</td>
+                                    <td class="p-2.5">Descripción meramente descriptiva sin ningún análisis epistemológico.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold text-indigo-900 bg-indigo-50/50">2. Evidencia y Datos SEIN (25%)</td>
+                                    <td class="p-2.5">Utiliza datos oficiales contrastables de Osinergmin o COES, identificando sesgos de medición y asimetrías territoriales.</td>
+                                    <td class="p-2.5">Cita datos del sector eléctrico peruano, pero no analiza a fondo la incertidumbre metrológica.</td>
+                                    <td class="p-2.5">Datos genéricos no trazables o desactualizados sin citar resoluciones regulatorias formales.</td>
+                                    <td class="p-2.5">Ausencia total de datos empíricos del sector eléctrico peruano.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">3. Dictamen y Normatividad (25%)</td>
+                                    <td class="p-2.5">Propone una solución equilibrada alineada al CNE, procedimientos COES y criterios de justicia distributiva.</td>
+                                    <td class="p-2.5">Solución técnica viable, pero omite alguno de los procedimientos normativos peruanos.</td>
+                                    <td class="p-2.5">Propuesta poco factible económicamente o desconectada de la realidad social del país.</td>
+                                    <td class="p-2.5">Propuesta inviable que vulnera abiertamente normas de seguridad del CNE.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold text-emerald-900 bg-emerald-50/50">4. Formato IEEE y Comunicación (25%)</td>
+                                    <td class="p-2.5">Redacción académica impecable, ecuaciones en formato limpio y citas bibliográficas exactas según IEEE.</td>
+                                    <td class="p-2.5">Buena redacción con leves errores en la aplicación de la norma IEEE de referencias.</td>
+                                    <td class="p-2.5">Falta de rigurosidad en citas bibliográficas; estilo de redacción poco profesional.</td>
+                                    <td class="p-2.5">Plagio evidente, desorden sintáctico y ausencia de referencias normalizadas.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: RONDA DE PITCH Y AUDITORÍA (COL. 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🎤</span> Actividad: Auditoría de Sustentación del Pitch y Ficha de Coevaluación entre Pares
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa complementaria en el <strong>SGA-UNAC (Moodle)</strong>. Cada estudiante consolida el informe de auditoría crítica de los pitches presentados por los grupos pares durante la sesión lectiva 14.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DE AUDITORÍA CRUZADA -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>📋</span> Protocolo de Coevaluación Pericial FIEE-SEMANA-14
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • Individual • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ Las Tres Preguntas de la Ficha de Auditoría de Pares
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p>
+                            Cada estudiante debe ingresar al foro del SGA-UNAC y responder la ficha analítica respecto al pitch de otro equipo asignado:
+                        </p>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">1. Auditoría del Dato Empírico</strong>
+                                <p class="text-slate-600">
+                                    ¿El equipo sustentador demostró la trazabilidad metrológica de sus datos o se limitó a repetir gráficas genéricas sin citar la resolución de Osinergmin o el procedimiento del COES correspondiente?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">2. Detección de la Falacia de "Solución Milagrosa"</strong>
+                                <p class="text-slate-600">
+                                    ¿La propuesta reconoció los compromisos en conflicto (<i>trade-offs</i>) y los costos de mantenimiento, o asumió ingenuamente que la tecnología elegida (solar, batería o algoritmo) no presenta modos de falla ni impacto ambiental?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">3. Veredicto Colegiado Constructivo</strong>
+                                <p class="text-slate-600">
+                                    Redactar una sugerencia técnica fundamentada para robustecer el diseño del grupo evaluado antes de la sustentación del Producto Integrador Final en la Semana 16.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
+                            <li><strong>Plataforma:</strong> Foro de Coevaluación del SGA-UNAC (Moodle).</li>
+                            <li><strong>Fecha límite:</strong> Hasta 48 horas posteriores al término de la sesión lectiva 14.</li>
+                            <li><strong>Ponderación:</strong> Calificación formativa integrada a la rúbrica actitudinal y procedimental.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: CONSOLIDACIÓN DEL HITO 4 DEL PRODUCTO INTEGRADOR (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u4" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Cierre de la Unidad IV</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🚀</span> Consolidación del Hito 4: Ensamble Integral del Borrador del Protocolo (Apartados 1 al 5)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        La Semana 14 marca el punto de convergencia donde el reto eléctrico peruano se formaliza dentro de la arquitectura del <em>Protocolo para el uso responsable de IA en ingeniería eléctrica</em>, dejando expedito el camino hacia los Apartados 6, 7 y 8 que se desarrollarán en la Unidad V (Semanas 15 y 16 — evaluación culminante **IU4 con peso 25%**).
+                    </p>
+                </div>
+
+                <!-- ESTADO DE LA ARQUITECTURA DEL PROTOCOLO -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-unac-gold mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-amber-400 text-sm">📐 Estado Consolidado del Protocolo al Cierre de la Unidad IV:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">5 de 8 Apartados Completos</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 pt-2 text-[11px] font-mono text-center">
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-emerald-300">
+                            <strong>1. Problema</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">Caso SEIN cuantificado (kV, MW).</p>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-emerald-300">
+                            <strong>2. Uso de IA</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">Justificación epistémica de necesidad.</p>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-emerald-300">
+                            <strong>3. Datos</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">Trazabilidad Osinergmin/COES (&plusmn;&Delta;<i>x</i>).</p>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-emerald-300">
+                            <strong>4. Falsación</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">Filtros físicos inviolables de Kirchhoff.</p>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700 text-amber-300 font-bold">
+                            <strong>5. Sesgos</strong>
+                            <p class="text-[10px] text-slate-400 mt-1">Incertidumbre estocástica y geográfica.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HOJA DE RUTA HACIA EL CIERRE DEL CURSO -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                            <span>📋</span> Hoja de Ruta Inmediata hacia la Unidad V (Semanas 15 y 16)
+                        </h4>
+                        <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-indigo-200 text-indigo-900">Rumbo a IU4 (25%)</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-1.5">
+                            <strong class="text-indigo-900 block font-bold text-xs">Semana 15: Inteligencia Artificial y Límites Epistemológicos</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Redacción del <strong>Apartado 6 (Validación Humana / Human-in-the-Loop)</strong> y formulación del experimento mental del Cuarto Chino aplicado a subestaciones automatizadas.
+                            </p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-1.5">
+                            <strong class="text-indigo-900 block font-bold text-xs">Semana 16: Sustentación del Protocolo Final</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Redacción de los <strong>Apartados 7 (Criterio de Decisión Profesional)</strong> y <strong>8 (Responsabilidad Deontológica CIP)</strong>. Sustentación oral ante jurado colegiado.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Unidad IV en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] Organismo Supervisor de la Inversión en Energía y Minería (Osinergmin), <em>Procedimiento para la Supervisión de la Calidad del Servicio Técnico en los Sistemas de Distribución Eléctrica</em>, Res. N° 068-2020-OS/CD, Lima, Perú, 2020.
+                    </p>
+                    <p>
+                        [2] Comité de Operación Económica del Sistema Interconectado Nacional (COES-Perú), <em>Procedimiento Técnico PR-20: Criterios y Metodología para la Evaluación de la Seguridad Operativa del SEIN</em>, Lima, Perú, 2022.
+                    </p>
+                    <p>
+                        [3] Ministerio de Energía y Minas del Perú (MINEM), <em>Norma Técnica de Calidad de los Servicios Eléctricos (NTCSE)</em>, Decreto Supremo N° 020-97-EM, Lima, Perú, 1997.
+                    </p>
+                    <p>
+                        [4] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [5] W. G. Vincenti, <em>What Engineers Know and How They Know It: Analytical Studies from Aeronautical History</em>, Baltimore, MD, EE. UU.: The Johns Hopkins University Press, 1990.
+                    </p>
+                    <p>
+                        [6] UNESCO, "Recommendation on Open Science," United Nations Educational, Scientific and Cultural Organization, París, Francia, SC-PCB/SPP/2021/OS-REC, 2021.
+                    </p>
+                    <p>
+                        [7] International Energy Agency (IEA), <em>Electricity Grids and Secure Energy Transitions</em>, París, Francia: IEA Publications, 2023. [En línea]. Disponible en: <span class="text-blue-600 underline">https://www.iea.org/reports/electricity-grids-and-secure-energy-transitions</span>
+                    </p>
+                    <p>
+                        [8] IEEE, <em>IEEE Guide for Smart Grid Interoperability of Energy Technology and Information Technology Operation with the Electric Power System (EPS), End-Use Applications, and Loads</em>, IEEE Std 2030-2011, Piscataway, NJ, EE. UU., 2011. doi: 10.1109/IEEESTD.2011.6018231.
+                    </p>
+                    <p>
+                        [9] Dirección General de Electricidad del MINEM, <em>Plan Nacional de Electrificación Rural (PNER) 2016-2025</em>, Ministerio de Energía y Minas, Lima, Perú, 2016.
+                    </p>
+                    <p>
+                        [10] Colegio de Ingenieros del Perú, <em>Código Deontológico del Colegio de Ingenieros del Perú</em>, Consejo Nacional del CIP, Lima, Perú, 2019.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
