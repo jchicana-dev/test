@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Didáctico Semana 11 | Epistemología de la Ingeniería Eléctrica - UNAC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unac: {
+                            navy: '#002B49',
+                            blue: '#004B87',
+                            gold: '#C69214',
+                            amber: '#D97706',
+                            emerald: '#059669',
+                            teal: '#0D9488',
+                            purple: '#7C3AED',
+                            rose: '#E11D48',
+                            slate: '#0F172A',
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; font-size: 11pt; }
+        }
+        .tab-active {
+            border-bottom: 3px solid #C69214;
+            color: #002B49;
+            font-weight: 700;
+            background-color: rgba(198, 146, 20, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER INSTITUCIONAL UNAC FIEE -->
+    <header class="bg-unac-navy text-white shadow-xl sticky top-0 z-50 border-b-4 border-unac-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-unac-gold flex items-center justify-center text-unac-navy font-black text-xl shadow-md">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight leading-tight">
+                        UNIVERSIDAD NACIONAL DEL CALLAO • FIEE
+                    </h1>
+                    <p class="text-xs text-amber-300 font-medium">
+                        Escuela Profesional de Ingeniería Eléctrica | Semestre Académico 2026-B
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs bg-slate-900/80 px-3.5 py-1.5 rounded-lg border border-slate-700">
+                <span class="text-amber-400 font-bold">Semana 11:</span>
+                <span class="text-slate-200">Unidad IV • EE305 (Ciclo III)</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-emerald-400 font-semibold">150 min presenciales</span>
+            </div>
+        </div>
+
+        <!-- SUBNAV TABS -->
+        <nav class="bg-slate-900/95 border-t border-slate-800 text-xs sm:text-sm overflow-x-auto no-print">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 md:gap-4">
+                <button onclick="switchTab('sec-plan')" id="tab-sec-plan" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition tab-active">
+                    ⏱️ Sesión 11 Lectiva (150 min)
+                </button>
+                <button onclick="switchTab('sec-teoria')" id="tab-sec-teoria" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    ☀️ Transición, Variabilidad e Incertidumbre
+                </button>
+                <button onclick="switchTab('sec-nolectivas')" id="tab-sec-nolectivas" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📊 Matriz de Decisión Tecnológica (Col. 4)
+                </button>
+                <button onclick="switchTab('sec-pi-u4')" id="tab-sec-pi-u4" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    🚀 Avance Unidad IV: Miniestudio & PI (Col. 5)
+                </button>
+                <button onclick="switchTab('sec-ieee')" id="tab-sec-ieee" class="tab-btn px-4 py-2.5 text-slate-300 hover:text-amber-300 transition">
+                    📚 Bibliografía IEEE de Cátedra
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- RESUMEN EJECUTIVO DE CÁTEDRA SEMANA 11 -->
+        <div class="bg-white p-5 rounded-xl border-l-4 border-unac-gold shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <span class="text-[11px] font-bold tracking-wider uppercase text-unac-blue bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    Unidad de Aprendizaje IV: Retos contemporáneos y transformación del conocimiento
+                </span>
+                <h2 class="text-xl font-bold text-slate-900 mt-1">
+                    Semana 11: Energías renovables, transición energética y acceso a la energía en el Perú
+                </h2>
+                <p class="text-xs text-slate-600 mt-0.5">
+                    Docente Responsable: <strong>Mg. Lic. / Julio Mariano Chicana López</strong> • Modalidad Presencial (1h Teoría + 2h Práctica = 150 min)
+                </p>
+            </div>
+            <div class="flex items-center gap-2 no-print self-end md:self-auto">
+                <span class="px-2.5 py-1 text-[11px] font-bold rounded bg-teal-100 text-teal-900 border border-teal-300">
+                    Eje: Variabilidad Estocástica, Potencia Firme y Justicia Energética
+                </span>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold flex items-center gap-1.5 transition">
+                    🖨️ Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 1: PLAN DETALLADO DE ACTIVIDAD LECTIVA (150 MINUTOS) -->
+        <!-- ========================================================================= -->
+        <section id="sec-plan" class="tab-content block space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Cronograma Pedagógico de Clase Presencial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>⏱️</span> Distribución Minuto a Minuto de la Sesión Lectiva 11 (150 minutos)
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Secuencia constructivista diseñada para deconstruir la transición energética en el Perú. Se analiza la tensión entre la física del recurso renovable intermitente (recursos solares y eólicos en el sur y norte del SEIN), los criterios de confiabilidad operativa del COES y el imperativo ético de universalizar el acceso a la electricidad en zonas rurales aisladas.
+                    </p>
+                </div>
+
+                <!-- LÍNEA DE TIEMPO DIDÁCTICA -->
+                <div class="space-y-6">
+
+                    <!-- FASE 1 -->
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                                Momento 1: Inicio y Conflicto Cognitivo Real (25 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:00 - 0:25</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            La Paradoja de la Potencia Firme Solar: ¿Por qué la Ley define la Realidad Física de los Megavatios?
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Presentación del caso por el docente:</strong> Se proyecta el diagrama de despacho del nodo Moquegua-Ica y el marco regulatorio del D.S. N° 088-2020-PCM y D.L. N° 1002:
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>La Realidad Física del Campo:</strong> A las 12:30 h, la Central Solar Fotovoltaica Rubí (144.5 MW nominales en Moquegua) inyecta 138 MW con factor de planta superior al 32%. A esa hora desplaza generación térmica a diésel cara, reduciendo el costo marginal del SEIN a mínimos históricos.</p>
+                                <p>• <strong>La Realidad Normativa del COES (Hora Punta):</strong> A las 19:15 h (máxima demanda del sistema nacional por iluminación y cocina en Lima y Callao), la radiación solar es <i>G</i><sub>T</sub> = 0 W/m<sup>2</sup>. Durante años, la normativa peruana reconoció a las centrales solares una <strong>Potencia Firme = 0 MW</strong>. Al no poder vender potencia firme, no podían suscribir contratos bilaterales directos con usuarios libres industriales.</p>
+                                <p>• <strong>La Tensión Epistémica:</strong> Los promotores de inversión afirman: <em>"Nuestra energía es real y barata"</em>. Los planificadores del COES responden: <em>"La energía sin garantía de disponibilidad en hora pico no compra seguridad de suministro para el país"</em>.</p>
+                            </div>
+                            <p>
+                                <strong>Preguntas socráticas al plenario:</strong>
+                            </p>
+                            <ul class="list-disc list-inside pl-2 space-y-1 text-slate-700">
+                                <li>¿El concepto de "Potencia Firme" es una propiedad física que se mide con voltímetros en los bornes o es un <strong>constructo epistemológico y regulatorio</strong> creado para gestionar el riesgo de apagón?</li>
+                                <li>¿Cómo cambia la definición de "energía confiable" cuando combinamos la planta solar con baterías BESS de litio o con centrales hidroeléctricas de bombeo?</li>
+                                <li>En un país donde más de 300,000 familias en la sierra y selva carecen de red eléctrica, ¿es éticamente admisible exigirles esperar 15 años a que llegue la línea troncal de alta tensión o la solución descentralizada solar aislada representa un paradigma tecnológico superior?</li>
+                            </ul>
+                            <p class="text-amber-800 font-semibold bg-amber-50 p-2 rounded">
+                                🎯 Propósito pedagógico: Guiar a los futuros ingenieros electricistas a comprender que la transición energética no es un reemplazo trivial de generadores; es una reconfiguración profunda del modelo estocástico del sistema de potencia y de la concepción ética del acceso a la energía como derecho humano.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div class="border-l-4 border-blue-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                Momento 2: Estructuración y Marco Dialógico (55 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 0:25 - 1:20</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Variabilidad, Incertidumbre y la Física del Recurso Renovable en el Contexto Peruano
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-3 leading-relaxed">
+                            <p>
+                                El docente desarrolla en pizarra las leyes físicas fundamentales que gobiernan los Recursos Energéticos Renovables (RER) y cómo transforman la matemática del despacho:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">1. La No Linealidad Eólica (Ley de Betz)</strong>
+                                    <p class="text-slate-600">
+                                        La potencia del viento depende del cubo de la velocidad:
+                                        <br><span class="font-mono text-slate-800 font-bold block my-1"><i>P</i><sub>viento</sub> = &frac12; &rho; <i>A</i> <i>v</i><sup>3</sup> <i>C</i><sub>p</sub></span>
+                                        Donde el coeficiente máximo teórico de Betz es <i>C</i><sub>p,max</sub> = 16/27 &approx; 0.593. Una variación de velocidad de apenas 10% en las pampas de Marcona altera la potencia inyectada a la barra en más de 33% (<i>1.10</i><sup>3</sup> &approx; <i>1.331</i>), obligando a rampas rápidas de regulación.
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">2. La Estocasticidad Solar y la Temperatura</strong>
+                                    <p class="text-slate-600">
+                                        La generación fotovoltaica sigue la irradiancia pero decae por calentamiento térmico de la celda:
+                                        <br><span class="font-mono text-slate-800 font-bold block my-1"><i>P</i><sub>PV</sub> = <i>Y</i><sub>PV</sub> <i>f</i><sub>PV</sub> (<i>G</i><sub>T</sub> / <i>G</i><sub>T,STC</sub>) [1 + &alpha;<sub>P</sub> (<i>T</i><sub>c</sub> &minus; <i>T</i><sub>c,STC</sub>)]</span>
+                                        El coeficiente de temperatura &alpha;<sub>P</sub> (&minus;0.35%/°C) impone que en desiertos como La Joya o Clemesí, a pesar del sol pleno, la alta temperatura reduce el rendimiento de conversión.
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+                                    <strong class="text-blue-900 block font-bold mb-1">3. Métricas Económicas Epistémicas</strong>
+                                    <p class="text-slate-600">
+                                        Se contrasta el <strong>LCOE</strong> (Costo Nivelado de la Energía, $/MWh puro en bornes) frente al <strong>VALCOE</strong> (Costo Nivelado Ajustado por Valor del Sistema, IEA 2023). Un MWh solar al mediodía tiene menor valor sistémico que un MWh entregado durante la noche por una hidroeléctrica o batería.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 mt-2 space-y-1.5">
+                                <strong class="text-slate-900 font-bold block text-xs">Comparativa Epistémica: Centralizada vs. Descentralizada en el Perú:</strong>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left text-xs bg-white rounded border border-slate-200">
+                                        <thead class="bg-slate-100 text-slate-800 font-bold">
+                                            <tr>
+                                                <th class="p-2">Criterio</th>
+                                                <th class="p-2">Matriz Fósil / Gran Hidroeléctrica</th>
+                                                <th class="p-2">Transición RER Variable + BESS</th>
+                                                <th class="p-2">Electrificación Rural Descentralizada</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200 text-slate-600">
+                                            <tr>
+                                                <td class="p-2 font-bold text-slate-800">Modelo Epistémico</td>
+                                                <td class="p-2">Determinista, centralizado, flujo de potencia estático.</td>
+                                                <td class="p-2">Estocástico, probabilístico, control dinámico de lazos.</td>
+                                                <td class="p-2">Sistemas aislados (off-grid), tecnología apropiada comunitaria.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2 font-bold text-slate-800">Incertidumbre Primaria</td>
+                                                <td class="p-2">Incertidumbre hidrológica multianual (Fenómeno El Niño).</td>
+                                                <td class="p-2">Incertidumbre meteorológica horaria y minutal (nubes, viento).</td>
+                                                <td class="p-2">Incertidumbre de carga social y logística de recambio de baterías.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2 font-bold text-slate-800">Justicia Energética</td>
+                                                <td class="p-2">Prioriza el polo industrial urbano (Lima-Callao, minería).</td>
+                                                <td class="p-2">Descarbonización nacional, reducción de emisiones globales.</td>
+                                                <td class="p-2">Erradicación de la pobreza energética en comunidades vulnerables.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                                Momento 3: Taller Aplicativo en Aula (50 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 1:20 - 2:10</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Taller de Casuística: "Resolviendo la Paradoja de Electrificación en una Comunidad Nativa de Loreto"
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Metodología de Trabajo:</strong> Equipos de 3 estudiantes (mismos grupos del Producto Integrador). Se les presenta el expediente técnico de electrificación para la comunidad ribereña de Nueva Esperanza (a orillas del río Marañón, Loreto, a 180 km fluviales de Iquitos):
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 space-y-1">
+                                <p>• <strong>Población y Carga:</strong> 120 familias, posta de salud con cadena de frío para vacunas (requiere 24 h continuas de suministro) y escuela rural. Demanda pico proyectada: 35 kW; consumo diario: 180 kWh/día.</p>
+                                <p>• <strong>Alternativa 1 (Tradicional Fósil):</strong> Grupo electrógeno diésel de 50 kW. CAPEX bajo ($18,000 USD), pero costo de combustible fluvial subsidiado elevadísimo ($1.40 USD/kWh equivalente), alta contaminación del río por derrames y fallas mecánicas frecuentes por falta de técnicos en zona.</p>
+                                <p>• <strong>Alternativa 2 (Microrred Híbrida Renovable):</strong> Sistema solar fotovoltaico de 45 kWp con almacenamiento BESS de ion-litio de 120 kWh y generador diésel de respaldo para emergencias. CAPEX elevado ($115,000 USD), pero OPEX casi nulo ($0.08 USD/kWh), cero ruido nocturno y garantía de refrigeración ininterrumpida de vacunas.</p>
+                            </div>
+                            <p>
+                                <strong>Consigna Operativa de Aula:</strong>
+                            </p>
+                            <ol class="list-decimal list-inside bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5 font-medium text-slate-700">
+                                <li><strong>Desglose de Restricciones Epistemológicas:</strong> Identificar por qué una evaluación económica convencional estricta basada solo en el período de retorno de la inversión (Payback) o CAPEX favorecería al diésel, pero una evaluación de <em>sostenibilidad epistémica integral</em> demuestra la superioridad de la microrred solar híbrida.</li>
+                                <li><strong>Gestión de la Incertidumbre Amazónica:</strong> Analizar qué factores estocásticos climáticos (nubosidad selvática persistente de 4 días continuos) obligan a sobredimensionar el banco de baterías con días de autonomía calculados probabilísticamente.</li>
+                                <li><strong>El Factor Humano y de Gobernanza:</strong> Formular la estrategia de transferencia de conocimiento técnico básico a los promotores comunales para evitar que el sistema sea abandonado tras la primera falla menor de un fusible o inversor.</li>
+                            </ol>
+                            <p>
+                                <strong>Sustentación relámpago (15 min):</strong> Dos equipos exponen su árbol de decisión y responden las objeciones del plenario y docente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div class="border-l-4 border-purple-600 pl-4 py-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">
+                                Momento 4: Cierre Metacognitivo y Lanzamiento de la Actividad No Lectiva (20 min)
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 font-semibold">Minuto 2:10 - 2:30 (150 min)</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">
+                            Consolidación del Pensamiento Crítico y Lanzamiento de la Matriz de Decisión
+                        </h4>
+                        <div class="text-xs text-slate-600 mt-2 space-y-2 leading-relaxed">
+                            <p>
+                                <strong>Conclusión Epistemológica de Cátedra:</strong> La ingeniería eléctrica moderna no puede limitarse a resolver la física de circuitos en zonas urbanas privilegiadas. El ingeniero electricista de la UNAC debe dominar la ciencia de la transición energética: comprender cómo gobernar la variabilidad estocástica de los electrones renovables y, simultáneamente, asumir el compromiso ético de que la energía es la palanca habilitadora de la salud, la educación y la dignidad humana.
+                            </p>
+                            <p>
+                                <strong>Lanzamiento en el SGA-UNAC (Moodle):</strong> Se formalizan los requerimientos para la entrega asincrónica de la Columna 4: <strong>"Matriz de Decisión Tecnológica para una Solución Energética"</strong> y se dan las directrices para el avance del **Miniestudio Epistemológico** que nutre el Hito 4 del Producto Integrador.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 2: FUNDAMENTACIÓN TEÓRICO-CONCEPTUAL DE LA SEMANA 11 -->
+        <!-- ========================================================================= -->
+        <section id="sec-teoria" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Marco Epistemológico Especializado</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>☀️</span> Transición Energética, Intermitencia Estocástica y Epistemología del Acceso a la Energía
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Sustentado en International Energy Agency (IEA, 2023), IRENA (2022), Mario Bunge (2009), E. F. Schumacher (<em>Small Is Beautiful: Technology with a Human Face</em>) y el Plan Energético Nacional del MINEM (2022-2030).
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-xs text-slate-700 leading-relaxed">
+
+                    <!-- BLOQUE 1: LA NATURALEZA DE LA VARIABILIDAD RENOVABLE -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            1. La Deconstrucción de la "Intermitencia": ¿Por qué no es un Caos Ingobernable?
+                        </h4>
+                        <p class="mb-3">
+                            En los discursos tradicionales opuestos a la descarbonización, se suele calificar peyorativamente a la energía solar y eólica como "energías intermitentes y caóticas". Desde la epistemología de la ingeniería de potencia moderna (IRENA, 2022), se establece una distinción fundamental entre tres conceptos:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-blue-900 text-sm block mb-1">1. Variabilidad (Predecible)</strong>
+                                <p class="text-slate-600">
+                                    El ciclo solar día/noche y los patrones estacionales de viento responden a leyes físicas astronómicas y termodinámicas perfectamente modelables. Sabemos con certeza matemática que a medianoche la radiación solar es nula. No hay incertidumbre; hay <strong>variabilidad cíclica conocida</strong>.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-amber-900 text-sm block mb-1">2. Incertidumbre (Estocástica)</strong>
+                                <p class="text-slate-600">
+                                    Corresponde a las fluctuaciones de corto plazo causadas por turbulencias atmosféricas o bancos de nubes cúmulos. Se modela mediante procesos estocásticos de Markov y distribuciones probabilísticas (distribución de Weibull para viento, distribución Beta para radiación). Se mitiga con <strong>reservas rodantes dinámicas y sistemas BESS</strong>.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
+                                <strong class="text-emerald-900 text-sm block mb-1">3. Flexibilidad Sistémica</strong>
+                                <p class="text-slate-600">
+                                    La capacidad de la red para absorber la variabilidad e incertidumbre sin comprometer la frecuencia ni la tensión. Proviene de cuatro fuentes: interconexiones de transmisión robustas, almacenamiento, gestión activa de la demanda (Demand Response) y generación hidroeléctrica flexible.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: EL DILEMA DE LA PLANIFICACIÓN Y EL ACCESO UNIVERSAL -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            2. El Dilema del Acceso a la Energía: Tecnología Centralizada vs. Tecnología Apropiada
+                        </h4>
+                        <p class="mb-3">
+                            En el Perú, el Coeficiente de Electrificación Rural alcanza aproximadamente el 86%, dejando a miles de poblados andinos y amazónicos sin servicio. La planificación ingenieril enfrenta dos visiones epistemológicas contrapuestas:
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden bg-white">
+                                <thead class="bg-unac-navy text-white">
+                                    <tr>
+                                        <th class="p-2.5">Dimensión Epistémica</th>
+                                        <th class="p-2.5">Paradigma de Extensión de Red (Centralizado)</th>
+                                        <th class="p-2.5">Paradigma Descentralizado (Microrredes / SFV)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-blue-900 bg-blue-50/50">Postura Ontológica</td>
+                                        <td class="p-2.5">Concibe a la red como una telaraña única conectada al SEIN a 220 kV que debe expandirse indefinidamente mediante postes y transformadores.</td>
+                                        <td class="p-2.5">Concibe a la energía como un servicio modular distribuido, adaptado al ecosistema local y a los recursos inmediatamente disponibles (solar, biomasa, micro-hidro).</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-900 bg-amber-50/50">Frontera Económica y Geográfica</td>
+                                        <td class="p-2.5">Costos de inversión descomunales: cruzar la selva o quebradas andinas puede costar más de $45,000 USD por kilómetro de línea para alimentar a 15 viviendas dispersas.</td>
+                                        <td class="p-2.5">Inversión localizada eficiente: Sistemas Fotovoltaicos Autónomos individuales o microrredes en 220 V con costo de instalación $3,000 USD por hogar.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-emerald-900 bg-emerald-50/50">Resiliencia y Soberanía</td>
+                                        <td class="p-2.5">Alta vulnerabilidad a derrumbes, huaycos y caídas de torres que dejan al pueblo incomunicado semanas hasta la llegada de cuadrillas técnicas.</td>
+                                        <td class="p-2.5">Autonomía local: la comunidad no depende del colapso de una línea a 500 km de distancia para iluminar su posta médica o escuela.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: LA ECUACIÓN DE BETZ Y LÍMITES TERMODINÁMICOS -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-sm text-unac-blue mb-2">
+                            3. Fundamentos Matemáticos y Límites Epistemológicos de las Renovables
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-3.5 bg-white rounded-lg border border-blue-200 space-y-1.5">
+                                <strong class="text-blue-900 block font-bold mb-1">El Límite Físico de Betz en Aerogeneradores</strong>
+                                <p class="text-slate-600">
+                                    Ninguna turbina eólica puede extraer más del 59.3% de la energía cinética del viento:
+                                    <br><span class="font-mono text-slate-800 font-bold block my-1"><i>C</i><sub>p</sub> = 4 <i>a</i> (1 &minus; <i>a</i>)<sup>2</sup> &le; 16/27 &approx; 0.593</span>
+                                    Donde <i>a</i> = (<i>v</i><sub>1</sub> &minus; <i>v</i><sub>2</sub>) / (2 <i>v</i><sub>1</sub>) es el factor de interferencia axial. Si el aerogenerador frenase el aire al 100%, la masa se acumularía aguas arriba bloqueando el flujo. Este límite es una verdad termodinámica universal inviolable por cualquier innovación de software o IA.
+                                </p>
+                            </div>
+                            <div class="p-3.5 bg-white rounded-lg border border-teal-200 space-y-1.5">
+                                <strong class="text-teal-900 block font-bold mb-1">El Límite de Shockley-Queisser en Celdas Solares</strong>
+                                <p class="text-slate-600">
+                                    Para celdas solares fotovoltaicas de unión simple de silicio cristalino, el límite termodinámico máximo de eficiencia de conversión es de aproximadamente 33.7% bajo espectro AM1.5G. Los fotones con energía menor a la banda prohibida del silicio (<i>E</i> &lt; <i>E</i><sub>g</sub> = 1.12 eV) no son absorbidos, y los fotones con exceso de energía se disipan inevitablemente como calor térmico.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 3: ACTIVIDAD NO LECTIVA OFICIAL: MATRIZ DE DECISIÓN TECNOLÓGICA (COL. 4) -->
+        <!-- ========================================================================= -->
+        <section id="sec-nolectivas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Columna 4 del Sílabo: Actividad No Lectiva Oficial</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📊</span> Actividad: "Matriz de Decisión Tecnológica para una Solución Energética en el Perú"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Actividad asincrónica formativa grupal para el <strong>SGA-UNAC (Moodle)</strong>. Los estudiantes asumen el rol de un equipo de ingenieros consultores contratados por el Ministerio de Energía y Minas (MINEM) o el Fondo Nacional de Financiamiento de la Actividad Empresarial del Estado (FONAFE). Deben evaluar y emitir un dictamen técnico-epistemológico sobre la mejor alternativa energética para una zona real del territorio peruano con déficit de suministro.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA DE LA MATRIZ DE DECISIÓN -->
+                <div class="bg-slate-50 p-5 rounded-xl border-2 border-unac-blue mb-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-unac-navy text-white flex items-center gap-1">
+                            <span>📋</span> Protocolo de Decisión Energética FIEE-SEMANA-11
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold">Dedicación: 3 horas no lectivas • Equipos de 3 • SGA-UNAC</span>
+                    </div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                        ⚡ El Escenario de Controversia: "Electrificación de la Microcuenca de Huayllapa (Cajatambo, Lima - 4,100 m.s.n.m.)"
+                    </h4>
+
+                    <div class="text-xs text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>1. El Contexto Territorial y Geográfico:</strong></p>
+                        <p>
+                            La comunidad campesina de Huayllapa se ubica en la cordillera de Huayhuash a 4,100 metros de altitud. Cuenta con 180 familias dedicadas al pastoreo de camélidos, quesería comunitaria y albergues de turismo de montaña. Carecen de interconexión al SEIN; la línea de media tensión más próxima se encuentra a 38 km a través de quebradas escarpadas sujetas a deslizamientos en época de lluvias.
+                        </p>
+
+                        <p><strong>2. Las Tres Alternativas Tecnológicas en Competencia:</strong></p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px]">
+                            <div class="bg-white p-3 rounded border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Alternativa A: Extensión de Red SEIN en 22.9 kV</strong>
+                                <span>Tendido de 38 km de línea en media tensión con postes de concreto en alta montaña. CAPEX: $1,420,000 USD. Suministro interconectado firme, pero alta vulnerabilidad sísmica y cortes recurrentes por caída de rocas.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Alternativa B: Microrred Solar Fotovoltaica + BESS</strong>
+                                <span>Planta solar comunitaria de 65 kWp en ladera sur con banco de baterías BESS LiFePO4 de 180 kWh y red de distribución local. CAPEX: $290,000 USD. Rápida instalación, pero sujeta a nevadas y caída de radiación en invierno.</span>
+                            </div>
+                            <div class="bg-white p-3 rounded border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Alternativa C: Microcentral Hidroeléctrica (MCH) de Pasada</strong>
+                                <span>Aprovechamiento de un salto de agua de 45 m en el río Huayllapa con turbina Pelton de 50 kW y canal abierto. CAPEX: $380,000 USD. Generación continua 24 h en verano, pero estiaje severo (caudal cae 70%) entre junio y agosto.</span>
+                            </div>
+                        </div>
+
+                        <p><strong>3. Las Cuatro Dimensiones Obligatorias del Informe (Documento PDF de 3 páginas):</strong></p>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-blue-900 block font-bold mb-1">Dimensión 1: Caracterización de Recursos y Factores de Derateo en Altura (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Analizar la física del recurso en Huayllapa a 4,100 m.s.n.m. Calcular el factor de desclasificación dieléctrica del aire por baja presión atmosférica para la Alternativa A (según CNE Suministro) y el factor de enfriamiento por viento frío en paneles solares para la Alternativa B.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-indigo-900 block font-bold mb-1">Dimensión 2: Deconstrucción de la Incertidumbre Estocástica de Cada Opción (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Identificar las fuentes de incertidumbre aleatoria (estacionalidad hidrológica del río vs. nubosidad y nieve sobre paneles) y epistémica (falta de registros fluviométricos históricos en la cuenca). ¿Cómo condiciona el desconocimiento de caudales mínimos el riesgo de que la MCH quede en seco?
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-amber-900 block font-bold mb-1">Dimensión 3: Matriz de Ponderación Multicriterio Ponderada (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Construir una matriz formal con pesos porcentuales definidos: Costo Nivelado LCOE (25%), Resiliencia ante Desastres Naturales (25%), Confiabilidad de Suministro 24/7 (25%) y Facilidad de Operación Comunal Local (25%). Asignar puntajes cuantitativos justificados a cada una de las 3 alternativas.
+                                </p>
+                            </div>
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200">
+                                <strong class="text-emerald-900 block font-bold mb-1">Dimensión 4: Dictamen Pericial Colegiado FIEE-UNAC (5 pts)</strong>
+                                <p class="text-slate-600">
+                                    Emitir una resolución vinculante (200 palabras) fundamentando la opción recomendada (que puede ser una solución híbrida MCH + BESS o Solar + micro-hidro) y formulando las salvaguardas técnicas y éticas no negociables ante el MINEM y Osinergmin.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p><strong>4. Formato y Condiciones de Entrega:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                            <li><strong>Entregable:</strong> Documento estructurado en formato PDF de 3 páginas (incluyendo tabla matricial de decisión).</li>
+                            <li><strong>Plataforma:</strong> Aula virtual SGA-UNAC (Moodle) en la sección "Tareas Semana 11: Matriz de Decisión Tecnológica".</li>
+                            <li><strong>Nomenclatura oficial:</strong> <code>GrupoX_Semana11_MatrizDecision.pdf</code>.</li>
+                            <li><strong>Fecha límite:</strong> Hasta 24 horas antes del inicio de la Sesión Lectiva 12.</li>
+                        </ul>
+                    </div>
+
+                    <!-- RÚBRICA SINTÉTICA -->
+                    <div class="mt-4 pt-3 border-t border-unac-blue/30">
+                        <span class="text-[11px] font-bold text-slate-900 block mb-1">Rúbrica Analítica de Calificación (Escala Vigesimal 0-20):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-[10px]">
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-blue-900 block mb-0.5">Física del Recurso en Altura (5 pts)</strong>
+                                <span class="text-slate-600">Aplica con exactitud ecuaciones de derateo por altitud, radiación solar y potencial hidráulico en montaña.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-indigo-900 block mb-0.5">Auditoría de Incertidumbre (5 pts)</strong>
+                                <span class="text-slate-600">Discrimina entre estacionalidad climática e incertidumbre epistémica de datos en cuencas no aforadas.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-amber-900 block mb-0.5">Matriz Multicriterio (5 pts)</strong>
+                                <span class="text-slate-600">Estructura una tabla ponderada rigurosa integrando costo LCOE, resiliencia y gobernanza social.</span>
+                            </div>
+                            <div class="p-2 rounded bg-white border border-slate-200">
+                                <strong class="text-emerald-900 block mb-0.5">Dictamen Ingenieril MINEM (5 pts)</strong>
+                                <span class="text-slate-600">Formula una recomendación sustentada con solvencia ética, orientada al acceso universal y la dignidad humana.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 4: AVANCE DEL PRODUCTO INTEGRADOR EN UNIDAD IV (COLUMNA 5) -->
+        <!-- ========================================================================= -->
+        <section id="sec-pi-u4" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-gold uppercase tracking-widest">Columna 5 del Sílabo: Hito de la Unidad de Aprendizaje IV</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>🚀</span> Hito 4 del Producto Integrador: El "Miniestudio Epistemológico de un Reto Contemporáneo"
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        La Unidad IV consolida dos entregables interrelacionados: el <strong>Miniestudio epistemológico de un reto contemporáneo de la ingeniería eléctrica</strong> y el avance del <strong>Protocolo para el uso responsable de IA</strong>. En esta Semana 11, los equipos integran la dimensión de la **variabilidad climática, los sesgos geográficos de datos y los pronósticos estocásticos asistidos por IA**.
+                    </p>
+                </div>
+
+                <!-- LA TENSIÓN EPISTÉMICA SEMANA 11 CON LA IA -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border-l-4 border-teal-500 mb-6 space-y-3 text-xs">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-teal-400 text-sm">💡 La Tensión Epistemológica en Pronósticos de Renovables con IA:</strong>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Apartado 5 del Protocolo: Sesgos Espaciales y Datos Satelitales</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        Los operadores de red y las empresas generadoras utilizan algoritmos de Machine Learning (como redes neuronales LSTM o XGBoost) para predecir la generación eólica y solar del día siguiente con el fin de programar el despacho del COES. Sin embargo, en el Perú estos modelos sufren una **ceguera epistemológica de origen geográfico**:
+                    </p>
+                    <div class="p-3 bg-slate-800 rounded border border-slate-700 font-mono text-[11px] text-amber-200 space-y-1">
+                        <p>• <strong>La Ilusión de los Modelos Meteorológicos Globales:</strong> Muchos modelos se entrenan con datos satelitales globales (como NASA-POWER o ERA5 de resolución 25 km &times; 25 km). En la costa del Callao o en los valles interandinos, la orografía es tan abrupta y los microclimas tan cerrados (la neblina costera de Lima o los vientos térmicos de valle) que las predicciones satelitales yerran por más de 40% en la irradiación efectiva.</p>
+                        <p>• <strong>El Mandato de la Semana 11:</strong> El protocolo debe prohibir aceptar predicciones de IA basadas en fuentes satelitales brutas que no hayan sido recalibradas metrológicamente mediante estaciones piranométricas y anemómetros locales certificados en tierra.</p>
+                    </div>
+                </div>
+
+                <!-- TAREAS DE AVANCE SEMANA 11 PARA LOS EQUIPOS -->
+                <div class="p-5 rounded-xl border-2 border-indigo-200 bg-indigo-50/40 space-y-4 text-xs">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-extrabold text-indigo-950 text-sm flex items-center gap-2">
+                            <span>📋</span> Directrices para el Miniestudio Epistemológico (Vinculación con el PI)
+                        </h4>
+                        <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-indigo-200 text-indigo-900">En Desarrollo (Hacia Semana 14)</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed">
+                        En el portafolio del equipo, se debe redactar el avance del Miniestudio centrándose en el reto de la descarbonización:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">1. Identificación del Sesgo de Inercia y Confiabilidad</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Analizar cómo los algoritmos de optimización económica tradicionales favorecen a las turbinas térmicas de gas fósil debido a que internalizan únicamente el costo del combustible inmediato y no contabilizan las externalidades climáticas ni el valor de la descarbonización a largo plazo.
+                            </p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-lg border border-indigo-200 space-y-2">
+                            <strong class="text-indigo-900 block font-bold text-xs">2. Protocolo de Incertidumbre y Bandas de Predicción</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Especificar en el protocolo que los modelos de pronóstico de generación renovable asistidos por IA deben entregar densidades de probabilidad probabilísticas (p10, p50, p90) y no una predicción puntual única, para que el despachador de guardia conozca el margen de reserva mínimo que debe mantener en hidroeléctricas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHECKLIST DE AUTOEVALUACIÓN -->
+                <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                    <span class="font-bold text-slate-800 block mb-2">Checklist de Control Epistemológico de la Semana 11:</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[10px]">
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-blue-900 block mb-1">1. Dominio de la Variabilidad</strong>
+                            <span>Distingue conceptualmente entre la variabilidad predecible del recurso solar/eólico y la incertidumbre estocástica de corto plazo.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-indigo-900 block mb-1">2. Ponderación Multicriterio</strong>
+                            <span>Sustenta decisiones energéticas que equilibran el costo de inversión (CAPEX/LCOE) con la resiliencia social y la equidad comunitaria.</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white border border-slate-200">
+                            <strong class="text-emerald-900 block mb-1">3. Supervisión de Pronósticos IA</strong>
+                            <span>Exige la validación de modelos climáticos algorítmicos mediante instrumentación terrenal trazable en la geografía peruana.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECCIÓN 5: REFERENCIAS BIBLIOGRÁFICAS EN FORMATO IEEE -->
+        <!-- ========================================================================= -->
+        <section id="sec-ieee" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="text-xs font-bold text-unac-blue uppercase tracking-widest">Fuentes Oficiales Normalizadas</span>
+                    <h3 class="text-xl font-extrabold text-unac-navy flex items-center gap-2 mt-0.5">
+                        <span>📚</span> Referencias Bibliográficas Oficiales de la Semana 11 en Formato IEEE
+                    </h3>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Citas bibliográficas estandarizadas bajo las directrices del <em>IEEE Standards Style Manual</em> para publicaciones y trabajos académicos en ingeniería eléctrica.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono text-slate-800 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <p>
+                        [1] International Energy Agency (IEA), <em>Renewables 2023: Analysis and Forecast to 2028</em>, París, Francia: IEA Publications, 2024. [En línea]. Disponible en: <span class="text-blue-600 underline">https://www.iea.org/reports/renewables-2023</span>
+                    </p>
+                    <p>
+                        [2] International Renewable Energy Agency (IRENA), <em>Renewable Power Generation Costs in 2022</em>, Abu Dabi, EAU: IRENA, 2023.
+                    </p>
+                    <p>
+                        [3] Ministerio de Energía y Minas del Perú (MINEM), <em>Plan Energético Nacional 2014-2025: Hacia una Matriz Energética Sostenible</em>, Dirección General de Eficiencia Energética, Lima, Perú, 2014.
+                    </p>
+                    <p>
+                        [4] Organismo Supervisor de la Inversión en Energía y Minería (Osinergmin), <em>Evaluación del Marco Regulatorio para la Integración de Recursos Energéticos Distribuidos (DER) en el Mercado Eléctrico Peruano</em>, Gerencia de Políticas y Análisis Económico, Lima, Perú, Documento de Trabajo N° 58, 2022.
+                    </p>
+                    <p>
+                        [5] E. F. Schumacher, <em>Small Is Beautiful: A Study of Economics as if People Mattered</em>, Londres, Reino Unido: Blond & Briggs, 1973.
+                    </p>
+                    <p>
+                        [6] M. Bunge, <em>Vigencia de la Filosofía: Ciencia, Técnica y Epistemología</em>, 1.ª ed. Lima, Perú: Fondo Editorial de la Universidad Inca Garcilaso de la Vega, 2009.
+                    </p>
+                    <p>
+                        [7] IEEE, <em>IEEE Standard for Interconnection and Interoperability of Distributed Energy Resources with Associated Electric Power Systems Interfaces</em>, IEEE Std 1547-2018, Piscataway, NJ, EE. UU., 2018. doi: 10.1109/IEEESTD.2018.8332112.
+                    </p>
+                    <p>
+                        [8] IEEE, <em>IEEE Recommended Practice for Sizing Lead-Acid Batteries for Photovoltaic (PV) Systems</em>, IEEE Std 1013-2019, Piscataway, NJ, EE. UU., 2019. doi: 10.1109/IEEESTD.2019.8930438.
+                    </p>
+                    <p>
+                        [9] Congreso de la República del Perú, <em>Decreto Legislativo N° 1002: Decreto Legislativo de Promoción de la Inversión para la Generación de Electricidad con el Uso de Energías Renovables</em>, Diario Oficial El Peruano, Lima, Perú, 2008.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-unac-navy text-slate-400 text-xs py-6 border-t-2 border-unac-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Universidad Nacional del Callao (UNAC) — Licenciada por SUNEDU</p>
+                <p>Facultad de Ingeniería Eléctrica y Electrónica (FIEE) • Escuela Profesional de Ingeniería Eléctrica</p>
+                <p class="text-amber-400/90 text-[11px] mt-0.5">Asignatura: EE305 Epistemología de la Ingeniería Eléctrica | Semestre 2026-B</p>
+            </div>
+            <div class="text-slate-400 text-right">
+                <p>Docente: <strong>Mg. Lic. / Julio Mariano Chicana López</strong></p>
+                <p class="text-[11px]">Material elaborado conforme a la Res. CU N° 318-2024-CU y Res. N° 102-2021-CU</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(sectionId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const targetBtn = document.getElementById('tab-' + sectionId);
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
